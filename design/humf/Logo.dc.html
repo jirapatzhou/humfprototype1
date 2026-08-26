@@ -7,51 +7,16 @@
 <body>
 <x-dc>
 <helmet>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@600;700&display=swap">
   <style>
     * { box-sizing: border-box; }
     body { margin: 0; }
-    a { color: #ffffff; } a:hover { color: #ffe3f2; }
   </style>
 </helmet>
 
-<div style="position:relative; width:1400px; height:920px; background:#C81C77; overflow:hidden; font-family:'Manrope',ui-sans-serif,system-ui,sans-serif;">
-
-  <!-- liquid glow blobs -->
-  <div style="position:absolute; left:-220px; top:-260px; width:820px; height:820px; border-radius:50%; background:radial-gradient(circle at 35% 35%, #FF6FC0 0%, #FF3EA5 45%, rgba(255,62,165,0) 72%); filter: blur(70px); mix-blend-mode: screen; opacity:0.95;"></div>
-
-  <div style="position:absolute; right:-260px; top:-180px; width:760px; height:760px; border-radius:50%; background:radial-gradient(circle at 60% 40%, #FFB37A 0%, #FF8A56 40%, rgba(255,138,86,0) 70%); filter: blur(80px); mix-blend-mode: screen; opacity:0.75;"></div>
-
-  <div style="position:absolute; left:120px; bottom:-320px; width:900px; height:900px; border-radius:50%; background:radial-gradient(circle at 50% 30%, #C24DFF 0%, #9A2CE0 42%, rgba(154,44,224,0) 70%); filter: blur(90px); mix-blend-mode: screen; opacity:0.7;"></div>
-
-  <div style="position:absolute; right:-160px; bottom:-260px; width:680px; height:680px; border-radius:50%; background:radial-gradient(circle at 45% 55%, #FF4FAE 0%, #E0218A 45%, rgba(224,33,138,0) 72%); filter: blur(70px); mix-blend-mode: screen; opacity:0.8;"></div>
-
-  <!-- soft central luminous core behind wordmark -->
-  <div style="position:absolute; left:50%; top:50%; width:1000px; height:520px; transform:translate(-50%,-50%); border-radius:50%; background:radial-gradient(ellipse at center, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.14) 40%, rgba(255,255,255,0) 72%); filter: blur(10px);"></div>
-
-  <!-- vignette -->
-  <div style="position:absolute; inset:0; background:radial-gradient(circle at center, rgba(0,0,0,0) 55%, rgba(60,0,35,0.30) 100%);"></div>
-
-  <!-- grain -->
-  <svg style="position:absolute; inset:0; width:100%; height:100%; opacity:0.05; mix-blend-mode:overlay; pointer-events:none;">
-    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0"></feColorMatrix></filter>
-    <rect width="100%" height="100%" filter="url(#grain)"></rect>
-  </svg>
-
-  <!-- wordmark -->
-  <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px;">
-    <div style="font-family:'Sora',ui-sans-serif,system-ui,sans-serif; font-weight:800; font-size:196px; line-height:1; letter-spacing:0.01em; color:#FFFFFF; text-shadow: 0 0 70px rgba(255,255,255,0.65), 0 0 140px rgba(255,255,255,0.30), 0 6px 30px rgba(90,0,50,0.25);">HUMF</div>
-    <div style="font-family:'Manrope',ui-sans-serif,system-ui,sans-serif; font-weight:600; font-size:20px; letter-spacing:0.42em; color:rgba(255,255,255,0.82); text-transform:uppercase; margin-left:0.42em;">Performance&nbsp;Gym</div>
-  </div>
-
-  <!-- secondary mark usage, bottom-left -->
-  <div style="position:absolute; left:64px; bottom:56px; display:flex; align-items:center; gap:14px;">
-    <div style="width:56px; height:56px; border-radius:16px; background:linear-gradient(135deg,#FF6FC0,#B0157A); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,0.18);">
-      <span style="font-family:'Sora',ui-sans-serif,system-ui,sans-serif; font-weight:800; font-size:28px; color:#ffffff;">H</span>
-    </div>
-    <div style="font-family:'Manrope',ui-sans-serif,system-ui,sans-serif; font-weight:600; font-size:13px; letter-spacing:0.14em; color:rgba(255,255,255,0.65); text-transform:uppercase;">App&nbsp;Icon<br>Lockup</div>
-  </div>
-
+<div style="position:relative; width:1400px; height:820px; background:#E0218A; overflow:hidden; font-family:'Manrope',ui-sans-serif,system-ui,sans-serif; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:26px;">
+  <div style="font-family:'Unbounded',ui-sans-serif,system-ui,sans-serif; font-weight:800; font-size:150px; line-height:1; letter-spacing:-0.01em; color:#FFFFFF;">HUMF</div>
+  <div style="font-family:'Manrope',ui-sans-serif,system-ui,sans-serif; font-weight:700; font-size:19px; letter-spacing:0.4em; color:#FFFFFF; text-transform:uppercase; margin-left:0.4em;">Performance&nbsp;Gym</div>
 </div>
 </x-dc>
 </body>

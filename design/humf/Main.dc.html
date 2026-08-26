@@ -58,14 +58,19 @@
         <span style="font-size:13.5px; font-weight:{{navMemWeight}};">Memberships</span>
       </div>
 
-      <div style="display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:12px; color:#6E6D78;">
+      <div class="clickable" onClick="{{goTrainers}}" style="display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:12px; background:{{navTrnBg}}; color:{{navTrnColor}};">
         <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8v8M17.5 8v8M3.5 10.5v3M20.5 10.5v3M6.5 12h11"></path></svg>
-        <span style="font-size:13.5px; font-weight:600;">Trainers</span>
+        <span style="font-size:13.5px; font-weight:{{navTrnWeight}};">Trainers</span>
       </div>
 
       <div style="display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:12px; color:#6E6D78;">
         <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="11" rx="2"></rect><path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"></path></svg>
         <span style="font-size:13.5px; font-weight:600;">Employees</span>
+      </div>
+
+      <div class="clickable" onClick="{{goInventory}}" style="display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:12px; background:{{navInvBg}}; color:{{navInvColor}};">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5 12 3l8 4.5M4 7.5v9L12 21m-8-4.5L12 21m0-13.5 8 4.5M12 21l8-4.5v-9M12 7.5v13.5"></path></svg>
+        <span style="font-size:13.5px; font-weight:{{navInvWeight}};">Inventory</span>
       </div>
 
       <div style="display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:12px; color:#6E6D78;">
@@ -448,6 +453,84 @@
     </div>
     </sc-if>
 
+    <!-- ===================== TRAINERS VIEW ===================== -->
+    <sc-if value="{{isTrainers}}" hint-placeholder-val="{{false}}">
+    <div style="position:relative; display:flex; flex-direction:column; flex:1; min-height:0; margin-top:20px;">
+
+      <div style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px;">
+        <sc-for list="{{trainerCards}}" as="t" hint-placeholder-count="4">
+          <div style="background:#fff; border-radius:20px; padding:24px 20px; box-shadow:0 1px 2px rgba(22,21,28,0.04), 0 12px 28px -12px rgba(22,21,28,0.08); display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px;">
+            <div style="width:72px; height:72px; border-radius:50%; background:{{t.bg}}; color:{{t.fg}}; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:800;">{{t.initials}}</div>
+            <div class="humf-num" style="font-size:15px; font-weight:800; margin-top:4px;">{{t.name}}</div>
+            <div style="font-size:12px; color:#9C9BA6; font-weight:600;">{{t.specialty}}</div>
+            <span style="font-size:11px; font-weight:700; color:#6E6D78; background:#F2F1F5; padding:4px 10px; border-radius:999px;">{{t.store}}</span>
+            <div style="display:flex; align-items:center; gap:6px; margin-top:2px;">
+              <span style="width:8px; height:8px; border-radius:50%; background:{{t.dotColor}};"></span>
+              <span style="font-size:11.5px; font-weight:700; color:#6E6D78;">{{t.statusLabel}}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="position:absolute; right:0; bottom:0; display:flex; align-items:center; gap:8px; background:{{accent}}; color:#fff; border-radius:999px; padding:13px 22px; font-size:13px; font-weight:800; box-shadow:0 12px 28px -8px color-mix(in oklab, {{accent}} 55%, transparent);">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg>
+        Add Trainer
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== INVENTORY VIEW ===================== -->
+    <sc-if value="{{isInventory}}" hint-placeholder-val="{{false}}">
+    <div style="display:flex; flex-direction:column; flex:1; min-height:0; margin-top:20px; gap:20px;">
+
+      <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px;">
+        <div style="background:#fff; border-radius:20px; padding:20px; box-shadow:0 1px 2px rgba(22,21,28,0.04), 0 12px 28px -12px rgba(22,21,28,0.08);">
+          <span style="font-size:12px; font-weight:700; color:#9C9BA6; letter-spacing:0.02em;">TOTAL SKUs</span>
+          <div class="humf-num" style="font-size:26px; font-weight:800; margin-top:8px;">156</div>
+        </div>
+        <div style="background:#fff; border-radius:20px; padding:20px; box-shadow:0 1px 2px rgba(22,21,28,0.04), 0 12px 28px -12px rgba(22,21,28,0.08);">
+          <span style="font-size:12px; font-weight:700; color:#9C9BA6; letter-spacing:0.02em;">LOW / OUT OF STOCK</span>
+          <div class="humf-num" style="font-size:26px; font-weight:800; margin-top:8px; color:#B5701C;">3</div>
+        </div>
+        <div style="background:#fff; border-radius:20px; padding:20px; box-shadow:0 1px 2px rgba(22,21,28,0.04), 0 12px 28px -12px rgba(22,21,28,0.08);">
+          <span style="font-size:12px; font-weight:700; color:#9C9BA6; letter-spacing:0.02em;">INVENTORY VALUE</span>
+          <div class="humf-num" style="font-size:26px; font-weight:800; margin-top:8px;">$18,240</div>
+        </div>
+      </div>
+
+      <div style="background:#fff; border-radius:20px; padding:20px 22px; box-shadow:0 1px 2px rgba(22,21,28,0.04), 0 12px 28px -12px rgba(22,21,28,0.08); flex:1; min-height:0; display:flex; flex-direction:column;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+          <div style="font-size:14.5px; font-weight:800;">Stock by Item</div>
+          <div style="display:flex; gap:6px;">
+            <sc-for list="{{inventoryTabs}}" as="tb" hint-placeholder-count="4">
+              <span class="tab" onClick="{{tb.onClick}}" style="background:{{tb.bg}}; color:{{tb.color}};">{{tb.label}}</span>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 2.4fr 1fr 1fr 0.8fr 0.8fr 1fr; padding:0 4px 8px 4px; border-bottom:1px solid #EFEEF3;">
+          <span style="font-size:10.5px; font-weight:700; color:#9C9BA6; letter-spacing:0.02em;">ITEM</span>
+          <span style="font-size:10.5px; font-weight:700; color:#9C9BA6; letter-spacing:0.02em;">SKU</span>
+          <span style="font-size:10.5px; font-weight:700; color:#9C9BA6; letter-spacing:0.02em;">STORE</span>
+          <span style="font-size:10.5px; font-weight:700; color:#9C9BA6; letter-spacing:0.02em;">STOCK</span>
+          <span style="font-size:10.5px; font-weight:700; color:#9C9BA6; letter-spacing:0.02em;">PRICE</span>
+          <span style="font-size:10.5px; font-weight:700; color:#9C9BA6; letter-spacing:0.02em;">STATUS</span>
+        </div>
+
+        <sc-for list="{{inventoryItems}}" as="i" hint-placeholder-count="8">
+          <div style="display:grid; grid-template-columns: 2.4fr 1fr 1fr 0.8fr 0.8fr 1fr; align-items:center; padding:11px 4px; border-bottom:1px solid #F5F5F7;">
+            <span style="font-size:13px; font-weight:700;">{{i.name}}</span>
+            <span style="font-size:12px; color:#9C9BA6; font-weight:600;">{{i.sku}}</span>
+            <span style="font-size:12px; color:#6E6D78; font-weight:600;">{{i.store}}</span>
+            <span style="font-size:12px; font-weight:700;">{{i.stock}}</span>
+            <span style="font-size:12px; font-weight:700;">{{i.price}}</span>
+            <span class="badge" style="background:{{i.badgeBg}}; color:{{i.badgeColor}};">{{i.status}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
   </div>
 </div>
 </x-dc>
@@ -462,7 +545,8 @@ class Component extends DCLogic {
       employeeFilter: "All",
       memberFilter: "All",
       selectedMemberId: "je",
-      selectedDay: 30
+      selectedDay: 30,
+      inventoryFilter: "All"
     };
   }
 
@@ -481,11 +565,15 @@ class Component extends DCLogic {
     const navDash = navStyle("dashboard");
     const navCal = navStyle("calendar");
     const navMem = navStyle("memberships");
+    const navTrn = navStyle("trainers");
+    const navInv = navStyle("inventory");
 
     const topbarCopy = {
       dashboard: ["Dashboard", "Overview across all locations · Aug 2026"],
       calendar: ["Calendar", "Bookings & schedule · Downtown"],
-      memberships: ["Memberships", "1,284 active members across all stores"]
+      memberships: ["Memberships", "1,284 active members across all stores"],
+      trainers: ["Trainers", "In-house training staff across all stores"],
+      inventory: ["Inventory", "Retail & equipment stock across all stores"]
     }[st.view];
 
     const trainersAll = [
@@ -518,6 +606,34 @@ class Component extends DCLogic {
     const employees = employeesAll
       .filter((e) => st.employeeFilter === "All" || e.store === st.employeeFilter)
       .map((e) => ({ ...e, dotColor: e.active ? accent : "#C9C8D1" }));
+
+    const trainerCards = trainersAll.map((t) => ({ ...t, dotColor: t.active ? accent : "#C9C8D1", statusLabel: t.active ? "Active" : "On Leave" }));
+
+    const inventoryAll = [
+      { id: "i1", name: "Whey Protein — Vanilla 2lb", category: "Supplements", sku: "HM-SUP-014", store: "Downtown", stock: 42, price: "$54.00", tone: "good" },
+      { id: "i2", name: "Pre-Workout Sachet Box", category: "Supplements", sku: "HM-SUP-027", store: "Riverside", stock: 6, price: "$28.00", tone: "warn" },
+      { id: "i3", name: "HUMF Performance Tee", category: "Apparel", sku: "HM-APP-003", store: "Downtown", stock: 58, price: "$32.00", tone: "good" },
+      { id: "i4", name: "HUMF Gym Towel", category: "Apparel", sku: "HM-APP-011", store: "Uptown", stock: 3, price: "$12.00", tone: "warn" },
+      { id: "i5", name: "Resistance Bands Set", category: "Equipment", sku: "HM-EQP-009", store: "Riverside", stock: 15, price: "$24.00", tone: "good" },
+      { id: "i6", name: "Foam Roller", category: "Equipment", sku: "HM-EQP-014", store: "Downtown", stock: 0, price: "$22.00", tone: "bad" },
+      { id: "i7", name: "Lifting Gloves (M)", category: "Apparel", sku: "HM-APP-019", store: "Uptown", stock: 21, price: "$18.00", tone: "good" },
+      { id: "i8", name: "Shaker Bottle", category: "Supplements", sku: "HM-SUP-032", store: "Downtown", stock: 9, price: "$9.00", tone: "warn" }
+    ];
+
+    const toneStyle = (tone) => tone === "good"
+      ? { bg: tint(14), color: accent, label: "In Stock" }
+      : tone === "warn"
+        ? { bg: "#FDF1DE", color: "#B5701C", label: "Low Stock" }
+        : { bg: "#F1F0F4", color: "#9C9BA6", label: "Out of Stock" };
+
+    const inventoryTabs = makeTabs(["All", "Supplements", "Apparel", "Equipment"], st.inventoryFilter, (v) => this.setState({ inventoryFilter: v }));
+
+    const inventoryItems = inventoryAll
+      .filter((i) => st.inventoryFilter === "All" || i.category === st.inventoryFilter)
+      .map((i) => {
+        const s = toneStyle(i.tone);
+        return { ...i, status: s.label, badgeBg: s.bg, badgeColor: s.color };
+      });
 
     const membersAll = [
       { id: "je", initials: "JE", name: "Jordan Ellis", plan: "Elite Annual", store: "Downtown Flagship", memberId: "HM-10482", start: "Feb 14, 2026", end: "Feb 13, 2027", endLabel: "ends 2/13/27", billing: "Annual · Auto-renew", trainer: "Maya Chen", payment: "Paid in full", status: "Active", avatarBg: "#FDE7F1", avatarColor: "#B0157A", progressPct: 53, daysElapsed: 193, daysRemaining: 171, notes: "Training toward a first half-marathon in November. Prefers early-morning sessions (6–8am) with Maya Chen. Mild left-knee sensitivity — avoid high-impact plyometrics. Regularly joins Thursday group HIIT. Referred by Grace Kim; member since Feb 2026.", visits: 14, lastCheckin: "Aug 25, 7:12a", homeStore: "Downtown" },
@@ -580,18 +696,26 @@ class Component extends DCLogic {
       isDashboard: st.view === "dashboard",
       isCalendar: st.view === "calendar",
       isMembership: st.view === "memberships",
+      isTrainers: st.view === "trainers",
+      isInventory: st.view === "inventory",
       topbarTitle: topbarCopy[0],
       topbarSubtitle: topbarCopy[1],
       goDashboard: go("dashboard"),
       goCalendar: go("calendar"),
       goMembership: go("memberships"),
+      goTrainers: go("trainers"),
+      goInventory: go("inventory"),
       navDashBg: navDash.bg, navDashColor: navDash.color, navDashWeight: navDash.weight,
       navCalBg: navCal.bg, navCalColor: navCal.color, navCalWeight: navCal.weight,
       navMemBg: navMem.bg, navMemColor: navMem.color, navMemWeight: navMem.weight,
+      navTrnBg: navTrn.bg, navTrnColor: navTrn.color, navTrnWeight: navTrn.weight,
+      navInvBg: navInv.bg, navInvColor: navInv.color, navInvWeight: navInv.weight,
       trainerTabs: trainerTabs, employeeTabs: employeeTabs, trainers: trainers, employees: employees,
+      trainerCards: trainerCards,
       memberTabs: memberTabs, members: members, selectedMember: selectedMember,
       selMemberBadgeBg: selS.bg, selMemberBadgeColor: selS.color,
-      days: days
+      days: days,
+      inventoryTabs: inventoryTabs, inventoryItems: inventoryItems
     };
   }
 }

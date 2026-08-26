@@ -1,7 +1,8 @@
 {
   "artboards": [
-    { "file": "Logo.dc.html", "x": 0, "y": 0, "w": 1400, "h": 920 },
-    { "file": "Main.dc.html", "x": 1500, "y": 0, "w": 1440, "h": 960 }
+    { "file": "Logo.dc.html", "x": 0, "y": 0, "w": 1400, "h": 820 },
+    { "file": "Icon.dc.html", "x": 1500, "y": 0, "w": 1400, "h": 800 },
+    { "file": "Main.dc.html", "x": 3020, "y": 0, "w": 1440, "h": 960 }
   ],
   "launch": { "view": "focused", "file": "Main.dc.html" }
 }
