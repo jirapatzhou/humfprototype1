@@ -1,9 +1,7 @@
 {
   "artboards": [
     { "file": "Logo.dc.html", "x": 0, "y": 0, "w": 1400, "h": 920 },
-    { "file": "Main.dc.html", "x": 1500, "y": 0, "w": 1440, "h": 960 },
-    { "file": "Calendar.dc.html", "x": 3060, "y": 0, "w": 1440, "h": 960 },
-    { "file": "Membership.dc.html", "x": 4620, "y": 0, "w": 1440, "h": 960 }
+    { "file": "Main.dc.html", "x": 1500, "y": 0, "w": 1440, "h": 960 }
   ],
-  "launch": { "view": "canvas" }
+  "launch": { "view": "focused", "file": "Main.dc.html" }
 }
