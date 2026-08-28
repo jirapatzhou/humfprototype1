@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    a { color: #FF0091; } a:hover { color: #C4006F; }
+    .phone {
+      width: 390px; height: 844px; position: relative; overflow: hidden;
+      background: #FFFFFF;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+      color: #111111;
+      display: flex; flex-direction: column;
+    }
+    .scroll { flex: 1 1 auto; overflow-y: auto; padding: 22px 20px 120px 20px; display: flex; flex-direction: column; gap: 16px; }
+
+    .header-row { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+    .icon-btn {
+      width: 40px; height: 40px; border-radius: 13px; background: #F5F5F7;
+      border: 1px solid rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .icon-btn:hover { transform: scale(1.02); box-shadow: 0 8px 22px rgba(0,0,0,0.08); }
+    .icon-btn:active { transform: scale(0.95); }
+
+    .id-card { display: flex; align-items: center; gap: 14px; padding: 4px 2px; }
+    .id-avatar { width: 66px; height: 66px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 3px rgba(0,0,0,0.06); overflow: hidden; }
+    .id-info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .id-name { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 19px; margin: 0; color: #FF0091; }
+    .id-meta-row { display: flex; align-items: center; gap: 8px; }
+    .id-phone { font-size: 12.5px; color: #7E7E87; }
+    .id-edit { font-size: 12px; font-weight: 700; color: #FF0091; text-decoration: underline; text-underline-offset: 2px; }
+
+    .box { background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 20px rgba(0,0,0,0.04); border-radius: 22px; }
+
+    .stat-card { padding: 18px 20px; color: #111111; display: flex; align-items: center; justify-content: space-between; }
+    .stat-left { display: flex; flex-direction: column; gap: 4px; }
+    .stat-label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #7E7E87; font-weight: 700; }
+    .stat-num-row { display: flex; align-items: baseline; gap: 6px; }
+    .stat-num { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 28px; color: #111111; }
+    .stat-trend { font-size: 12px; font-weight: 700; color: #16965A; }
+    .stat-badges { display: flex; gap: 8px; }
+    .badge-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+
+    .list-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 20px rgba(0,0,0,0.04); border-radius: 22px; overflow: hidden; }
+    .list-row {
+      display: flex; align-items: center; gap: 14px; padding: 15px 18px; color: #111111;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      transition: background 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .list-row:last-child { border-bottom: none; }
+    .list-row:hover { background: #FAFAFB; }
+    .list-row:active { background: #F5F5F7; }
+    .list-icon { width: 34px; height: 34px; border-radius: 10px; background: #F5F5F7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .list-label { flex: 1 1 auto; font-size: 14px; font-weight: 700; }
+    .list-trail { font-size: 12px; font-weight: 700; color: #FF0091; }
+    .list-chevron { flex-shrink: 0; }
+
+    .invite-card {
+      position: relative; overflow: hidden; border-radius: 22px; padding: 18px 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #111111;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .invite-card:hover { transform: scale(1.01); box-shadow: 0 16px 32px rgba(0,0,0,0.18); }
+    .invite-card:active { transform: scale(0.98); }
+    .invite-copy { display: flex; flex-direction: column; gap: 3px; }
+    .invite-title { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 14.5px; margin: 0; color: #FFFFFF; }
+    .invite-sub { font-size: 11.5px; color: rgba(255,255,255,0.72); }
+    .invite-arrow { width: 34px; height: 34px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    .tabbar {
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: space-around;
+      padding: 14px 12px 26px 12px;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 5px; transition: transform 300ms cubic-bezier(0.16,1,0.3,1); }
+    .tab-item:hover { transform: scale(1.05); }
+    .tab-item:active { transform: scale(0.95); }
+    .tab-label { font-size: 10px; font-weight: 700; color: #B4B4BC; }
+    .tab-item.active .tab-label { color: #FF0091; }
+    .tab-dot { width: 4px; height: 4px; border-radius: 50%; background: #FF0091; opacity: 0; }
+    .tab-item.active .tab-dot { opacity: 1; }
+  </style>
+</helmet>
+
+<div class="phone">
+  <div class="scroll">
+    <div class="id-card">
+      <div class="id-avatar">
+        <svg width="66" height="66" viewBox="0 0 44 44">
+          <circle cx="22" cy="22" r="22" fill="#FF0091"/>
+          <text x="22" y="27.5" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="800" font-size="14.5" letter-spacing="-0.4" fill="#FFFFFF">HUM</text>
+        </svg>
+      </div>
+      <div class="id-info">
+        <h1 class="id-name">ZHOU</h1>
+        <div class="id-meta-row">
+          <span class="id-phone">081 ···· 5820</span>
+          <a class="id-edit">Edit</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="box stat-card">
+      <div class="stat-left">
+        <span class="stat-label">Workouts this month</span>
+        <div class="stat-num-row">
+          <span class="stat-num">12</span>
+          <span class="stat-trend">▲ 4</span>
+        </div>
+      </div>
+      <div class="stat-badges">
+        <div class="badge-icon" style="background: rgba(255,0,145,0.1);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 8 8 10.5 12 5l4 5.5L20 8l-2 10H6L4 8Z" stroke="#FF0091" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="badge-icon" style="background: rgba(17,17,17,0.06);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="5.5" stroke="#111111" stroke-width="1.6"/><path d="M9 14 8 21l4-2 4 2-1-7" stroke="#111111" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-card">
+      <div class="list-row">
+        <div class="list-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2.5" stroke="#111111" stroke-width="1.6"/><path d="M3 10h18" stroke="#111111" stroke-width="1.6"/></svg>
+        </div>
+        <span class="list-label">HUMF Card</span>
+        <span class="list-trail">Get card</span>
+        <svg class="list-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m9 6 6 6-6 6" stroke="#C7C7CE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="list-row">
+        <div class="list-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 10v4M20 10v4" stroke="#111111" stroke-width="1.6" stroke-linecap="round"/><rect x="6" y="8" width="2.4" height="8" rx="1" stroke="#111111" stroke-width="1.6"/><rect x="15.6" y="8" width="2.4" height="8" rx="1" stroke="#111111" stroke-width="1.6"/><path d="M8.4 12h7.2" stroke="#111111" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <span class="list-label">Book a Trainer</span>
+        <svg class="list-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m9 6 6 6-6 6" stroke="#C7C7CE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="list-row">
+        <div class="list-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 10a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v1a2 2 0 0 0 0 4v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1a2 2 0 0 0 0-4v-1Z" stroke="#111111" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="list-label">My Coupons</span>
+        <svg class="list-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m9 6 6 6-6 6" stroke="#C7C7CE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="list-row">
+        <div class="list-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#111111" stroke-width="1.6"/><path d="M12 7.5V12l3 2" stroke="#111111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="list-label">Visit &amp; Purchase History</span>
+        <svg class="list-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m9 6 6 6-6 6" stroke="#C7C7CE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="list-row">
+        <div class="list-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="#111111" stroke-width="1.6"/><path d="M3 9.5h18" stroke="#111111" stroke-width="1.6"/><path d="M6.5 14.5h5" stroke="#111111" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <span class="list-label">Manage my payment</span>
+        <svg class="list-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m9 6 6 6-6 6" stroke="#C7C7CE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="list-row">
+        <div class="list-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 3.5h9l4 4V20a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" stroke="#111111" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12h6M9 15.5h6" stroke="#111111" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <span class="list-label">Membership Agreement</span>
+        <svg class="list-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m9 6 6 6-6 6" stroke="#C7C7CE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="list-row">
+        <div class="list-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#111111" stroke-width="1.6"/><path d="M12 16v.01M12 8a2.2 2.2 0 0 1 2.2 2.2c0 1.6-2.2 1.8-2.2 3.6" stroke="#111111" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <span class="list-label">Help Center</span>
+        <svg class="list-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m9 6 6 6-6 6" stroke="#C7C7CE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="list-row">
+        <div class="list-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 2 6H4c.5-.5 2-2 2-6Z" stroke="#111111" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 19a2 2 0 0 0 4 0" stroke="#111111" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <span class="list-label">Messages</span>
+        <svg class="list-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m9 6 6 6-6 6" stroke="#C7C7CE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <div class="invite-card">
+      <div class="invite-copy">
+        <p class="invite-title">Invite friends to HUMF</p>
+        <span class="invite-sub">You both get a free session</span>
+      </div>
+      <div class="invite-arrow">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabbar">
+    <div class="tab-item">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M4 11.5 12 4l8 7.5" stroke="#B4B4BC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke="#B4B4BC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="tab-label">Home</span>
+      <div class="tab-dot"></div>
+    </div>
+    <div class="tab-item">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2Z" stroke="#B4B4BC" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="#B4B4BC" stroke-width="1.6"/></svg>
+      <span class="tab-label">Branches</span>
+      <div class="tab-dot"></div>
+    </div>
+    <div class="tab-item">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="8.5" cy="8" r="3" stroke="#B4B4BC" stroke-width="1.6"/><circle cx="16" cy="9.5" r="2.4" stroke="#B4B4BC" stroke-width="1.6"/><path d="M3.5 19c.5-3 2.4-4.6 5-4.6s4.5 1.6 5 4.6" stroke="#B4B4BC" stroke-width="1.6" stroke-linecap="round"/><path d="M14.5 14.8c2.2.2 3.7 1.7 4 4.2" stroke="#B4B4BC" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span class="tab-label">Community</span>
+      <div class="tab-dot"></div>
+    </div>
+    <div class="tab-item">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M3 12h3.2l1.8-5 3 10 2-8 1.5 3H21" stroke="#B4B4BC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="tab-label">Performance</span>
+      <div class="tab-dot"></div>
+    </div>
+    <div class="tab-item active">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.2" r="3.4" stroke="#FF0091" stroke-width="1.6"/><path d="M4.8 19c1-3.4 3.6-5.2 7.2-5.2s6.2 1.8 7.2 5.2" stroke="#FF0091" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span class="tab-label">Profile</span>
+      <div class="tab-dot"></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

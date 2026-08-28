@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    .phone {
+      width: 390px; height: 844px; position: relative; overflow: hidden;
+      background: #F5F5F7;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+      color: #111111;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .scrim {
+      position: absolute; inset: 0;
+      background: rgba(17,17,17,0.55);
+    }
+    .unlock-card {
+      position: relative; z-index: 2;
+      background: #FFFFFF; border-radius: 26px; padding: 30px 24px 24px 24px;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+      width: 100%; max-width: 320px; margin: 0 24px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.32);
+    }
+    .unlock-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px; color: #111111; margin: 0; }
+    .unlock-sub { font-size: 12.5px; color: #7E7E87; text-align: center; }
+    .unlock-qr-wrap { position: relative; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; margin-top: 4px; }
+    .unlock-qr-ring { position: absolute; inset: 0; animation: ring-glow 2.2s ease-in-out infinite; }
+    @keyframes ring-glow { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
+    .unlock-qr-inner { width: 150px; height: 150px; border-radius: 20px; background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); padding: 12px; position: relative; z-index: 2; }
+    .unlock-branch { font-size: 12.5px; font-weight: 700; color: #111111; margin-top: 2px; }
+    .unlock-timer { font-size: 11.5px; color: #7E7E87; text-align: center; }
+    .unlock-close {
+      margin-top: 6px; background: #111111; color: #FFFFFF; font-weight: 700; font-size: 13px;
+      padding: 13px 26px; border-radius: 999px; width: 100%; text-align: center; cursor: pointer;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .unlock-close:hover { transform: scale(1.02); opacity: 0.92; }
+    .unlock-close:active { transform: scale(0.95); }
+
+    .closed-wrap {
+      position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; padding: 0 40px;
+    }
+    .closed-icon {
+      width: 64px; height: 64px; border-radius: 50%; background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .closed-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 17px; margin: 0; color: #111111; }
+    .closed-sub { font-size: 12.5px; color: #7E7E87; }
+    .reopen-btn {
+      background: #FF0091; color: #FFFFFF; font-weight: 700; font-size: 13px;
+      padding: 13px 22px; border-radius: 999px; cursor: pointer;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .reopen-btn:hover { transform: scale(1.02); opacity: 0.92; }
+    .reopen-btn:active { transform: scale(0.95); }
+  </style>
+</helmet>
+
+<div class="phone">
+  <div class="scrim"></div>
+
+  <sc-if value="{{isOpen}}" hint-placeholder-val="{{true}}">
+  <div class="unlock-card">
+    <p class="unlock-title">Entrance unlocking</p>
+    <span class="unlock-sub">Show this at the Thonglor entrance scanner</span>
+    <div class="unlock-qr-wrap">
+      <svg class="unlock-qr-ring" width="200" height="200" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="94" fill="none" stroke="#ECECEF" stroke-width="6"/>
+        <circle cx="100" cy="100" r="94" fill="none" stroke="#FF0091" stroke-width="6"
+          stroke-linecap="round" stroke-dasharray="590.6" stroke-dashoffset="88"
+          transform="rotate(-90 100 100)"/>
+      </svg>
+      <div class="unlock-qr-inner">
+        <svg width="126" height="126" viewBox="0 0 25 25">
+          <rect x="0" y="0" width="25" height="25" fill="#FFFFFF"/>
+          <rect x="0" y="0" width="7" height="7" fill="#111111"/><rect x="1.5" y="1.5" width="4" height="4" fill="#FFFFFF"/><rect x="2.6" y="2.6" width="1.8" height="1.8" fill="#111111"/>
+          <rect x="18" y="0" width="7" height="7" fill="#111111"/><rect x="19.5" y="1.5" width="4" height="4" fill="#FFFFFF"/><rect x="20.6" y="2.6" width="1.8" height="1.8" fill="#111111"/>
+          <rect x="0" y="18" width="7" height="7" fill="#111111"/><rect x="1.5" y="19.5" width="4" height="4" fill="#FFFFFF"/><rect x="2.6" y="20.6" width="1.8" height="1.8" fill="#111111"/>
+          <rect x="9" y="1" width="1.6" height="1.6" fill="#111111"/><rect x="12" y="1" width="1.6" height="1.6" fill="#111111"/><rect x="9" y="4" width="1.6" height="1.6" fill="#111111"/>
+          <rect x="15" y="9" width="1.6" height="1.6" fill="#111111"/><rect x="18" y="9" width="1.6" height="1.6" fill="#111111"/><rect x="9" y="9" width="1.6" height="1.6" fill="#111111"/>
+          <rect x="9" y="12" width="1.6" height="1.6" fill="#111111"/><rect x="12" y="12" width="1.6" height="1.6" fill="#111111"/><rect x="15" y="12" width="1.6" height="1.6" fill="#111111"/>
+          <rect x="21" y="12" width="1.6" height="1.6" fill="#111111"/><rect x="9" y="15" width="1.6" height="1.6" fill="#111111"/><rect x="13.2" y="15" width="1.6" height="1.6" fill="#111111"/>
+          <rect x="16.5" y="16.5" width="1.6" height="1.6" fill="#111111"/><rect x="9" y="18" width="1.6" height="1.6" fill="#111111"/><rect x="12" y="18" width="1.6" height="1.6" fill="#111111"/>
+          <rect x="15" y="21" width="1.6" height="1.6" fill="#111111"/><rect x="18" y="21" width="1.6" height="1.6" fill="#111111"/><rect x="21" y="18" width="1.6" height="1.6" fill="#111111"/>
+        </svg>
+      </div>
+    </div>
+    <span class="unlock-branch">HUMF Thonglor · Main entrance</span>
+    <span class="unlock-timer">Code refreshes in 4s · rotates automatically to block sharing</span>
+    <div class="unlock-close" onClick="{{close}}">Done</div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{isClosed}}" hint-placeholder-val="{{false}}">
+  <div class="closed-wrap">
+    <div class="closed-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6 6 18" stroke="#7E7E87" stroke-width="2" stroke-linecap="round"/></svg>
+    </div>
+    <p class="closed-title">Code closed</p>
+    <span class="closed-sub">This is what the temporary unlock QR looks like when a member taps "Unlock entrance" on Home — it's dismissed the same way here.</span>
+    <div class="reopen-btn" onClick="{{reopen}}">Show QR again</div>
+  </div>
+  </sc-if>
+</div>
+
+<script data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { open: true };
+  }
+  renderVals() {
+    return {
+      isOpen: this.state.open,
+      isClosed: !this.state.open,
+      close: () => this.setState({ open: false }),
+      reopen: () => this.setState({ open: true }),
+    };
+  }
+}
+</script>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    a { color: #FF0091; } a:hover { color: #C4006F; }
+    .phone {
+      width: 390px; height: 844px; position: relative; overflow: hidden;
+      background: #FFFFFF;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+      color: #111111;
+      display: flex; flex-direction: column;
+    }
+    .scroll {
+      flex: 1 1 auto; overflow-y: auto;
+      display: flex; flex-direction: column; gap: 16px;
+      padding: 22px 20px 120px 20px;
+    }
+    .topbar { display: flex; align-items: center; justify-content: space-between; }
+    .greet-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #7E7E87; font-weight: 700; margin: 0 0 4px 0; }
+    .greet-row { display: flex; align-items: center; gap: 8px; }
+    .greet-name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 22px; margin: 0; color: #111111; }
+    .name-accent { color: #FF0091; }
+    .new-pill { font-size: 10px; font-weight: 700; letter-spacing: 0.4px; color: #111111; background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); padding: 3px 9px; border-radius: 999px; }
+    .icon-btn {
+      width: 44px; height: 44px; border-radius: 14px; background: #F5F5F7;
+      border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .icon-btn:hover { transform: scale(1.02); box-shadow: 0 8px 22px rgba(0,0,0,0.08); }
+    .icon-btn:active { transform: scale(0.95); }
+    .avatar {
+      width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; overflow: hidden;
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.06);
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .avatar:hover { transform: scale(1.02); }
+    .avatar:active { transform: scale(0.95); }
+    .topbar-actions { display: flex; align-items: center; gap: 10px; }
+
+    .box {
+      background: #F5F5F7; border-radius: 22px; color: #111111;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+    .box-interactive { transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1); }
+    .box-interactive:hover { transform: scale(1.02); box-shadow: 0 14px 30px rgba(0,0,0,0.08); }
+    .box-interactive:active { transform: scale(0.95); }
+
+    .price-card {
+      padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      background: #FF0091; border: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 12px 32px rgba(255,0,145,0.42);
+    }
+    .price-left { display: flex; flex-direction: column; gap: 4px; }
+    .price-tag { display: flex; align-items: center; gap: 5px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.88); font-weight: 700; }
+    .price-row { display: flex; align-items: baseline; gap: 5px; }
+    .price-amount { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 30px; color: #FFFFFF; text-shadow: 0 0 18px rgba(255,255,255,0.55); }
+    .price-period { font-size: 13px; color: rgba(255,255,255,0.85); font-weight: 600; }
+    .price-note { font-size: 11.5px; color: rgba(255,255,255,0.78); }
+    .price-card .btn-obsidian { background: #FFFFFF; color: #111111; }
+    .btn-obsidian {
+      flex-shrink: 0; background: #111111; color: #FFFFFF; font-family: 'Manrope', sans-serif;
+      font-weight: 700; font-size: 13px; padding: 12px 18px; border-radius: 14px; white-space: nowrap;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .btn-obsidian:hover { transform: scale(1.02); opacity: 0.92; }
+    .btn-obsidian:active { transform: scale(0.95); }
+
+    .branch-card { padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+    .branch-top { display: flex; align-items: center; justify-content: space-between; }
+    .branch-name-col { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+    .branch-name-row { display: flex; align-items: center; gap: 8px; min-width: 0; }
+    .branch-name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 18px; margin: 0; color: #111111; white-space: nowrap; }
+    .branch-distance { font-size: 12px; font-weight: 600; color: #7E7E87; white-space: nowrap; margin-left: 26px; }
+    .status-pill {
+      display: flex; align-items: center; gap: 6px; padding: 5px 10px 5px 8px;
+      border-radius: 999px; background: rgba(27,184,100,0.12); flex-shrink: 0;
+      margin-left: 6px;
+    }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #1BB864; }
+    .status-text { font-size: 12px; font-weight: 700; color: #16965A; }
+    .branch-addr { font-size: 13px; color: #7E7E87; margin: 0; }
+
+    .gauge-card { padding: 26px 20px 22px 20px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .gauge-heading { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 6px; }
+    .gauge-title { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #7E7E87; font-weight: 700; margin: 0; }
+    .live-pill { display: flex; align-items: center; gap: 5px; }
+    .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #FF4757; animation: pulse-dot 1.6s ease-in-out infinite; }
+    .live-text { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #FF4757; }
+    @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+    .gauge-wrap { position: relative; width: 176px; height: 176px; }
+    .gauge-center {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .gauge-pct { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; margin: 0; color: #111111; }
+    .gauge-status { font-size: 13px; font-weight: 700; color: #7E7E87; margin: 4px 0 0 0; }
+    .gauge-foot { display: flex; align-items: baseline; gap: 6px; margin-top: 14px; }
+    .gauge-count { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15px; color: #111111; }
+    .gauge-max { font-size: 13px; color: #7E7E87; }
+
+    .cta-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: #111111; color: #FFFFFF; border-radius: 18px; padding: 17px;
+      font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 16px;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .cta-btn:hover { transform: scale(1.02); opacity: 0.92; }
+    .cta-btn:active { transform: scale(0.95); }
+
+    .section-label { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #7E7E87; font-weight: 700; margin: 4px 2px 0 2px; }
+
+    .slot-row { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 2px; }
+    .slot-chip {
+      flex: 0 0 auto; padding: 12px 16px; border-radius: 16px; display: flex; flex-direction: column; gap: 3px; min-width: 108px;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .slot-open, .slot-tight { background: #FFFFFF; color: #111111; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+    .slot-open:hover, .slot-tight:hover { transform: scale(1.02); box-shadow: 0 10px 24px rgba(0,0,0,0.08); }
+    .slot-open:active, .slot-tight:active { transform: scale(0.95); }
+    .slot-full { background: #F5F5F7; color: #B4B4BC; }
+    .slot-time { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 14px; }
+    .slot-meta { font-size: 11px; font-weight: 700; }
+    .slot-open .slot-meta { color: #16965A; }
+    .slot-tight .slot-meta { color: #C98A00; }
+    .slot-full .slot-meta { color: #B4B4BC; }
+
+    .key-card { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+    .key-head { display: flex; align-items: center; justify-content: space-between; }
+    .key-title { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 16px; margin: 0; color: #111111; }
+    .key-sub { font-size: 12px; color: #7E7E87; margin: 2px 0 0 0; }
+    .key-body { display: flex; align-items: center; gap: 18px; }
+    .qr-wrap { position: relative; width: 136px; height: 136px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: transform 300ms cubic-bezier(0.16,1,0.3,1); cursor: pointer; }
+    .qr-wrap:hover { transform: scale(1.02); }
+    .qr-wrap:active { transform: scale(0.95); }
+    .qr-ring-svg { position: absolute; inset: 0; animation: ring-glow 2.2s ease-in-out infinite; }
+    @keyframes ring-glow { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
+    .qr-inner { width: 96px; height: 96px; border-radius: 14px; background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); padding: 8px; position: relative; z-index: 2; }
+    .key-copy { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+    .key-cta {
+      font-size: 12.5px; font-weight: 700; color: #FFFFFF; background: #111111; border-radius: 999px; padding: 9px 14px;
+      white-space: nowrap; cursor: pointer;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .key-cta:hover { transform: scale(1.02); opacity: 0.92; }
+    .key-cta:active { transform: scale(0.95); }
+    .key-countdown { font-size: 12px; color: #7E7E87; }
+
+    .tabbar {
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: space-around;
+      padding: 14px 12px 26px 12px;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 5px; transition: transform 300ms cubic-bezier(0.16,1,0.3,1); }
+    .tab-item:hover { transform: scale(1.05); }
+    .tab-item:active { transform: scale(0.95); }
+    .tab-label { font-size: 10px; font-weight: 700; color: #B4B4BC; }
+    .tab-item.active .tab-label { color: #FF0091; }
+    .tab-dot { width: 4px; height: 4px; border-radius: 50%; background: #FF0091; opacity: 0; }
+    .tab-item.active .tab-dot { opacity: 1; }
+
+    .unlock-overlay {
+      position: absolute; inset: 0; z-index: 20;
+      background: rgba(17,17,17,0.55);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .unlock-card {
+      background: #FFFFFF; border-radius: 26px; padding: 30px 24px 24px 24px;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+      width: 100%; max-width: 320px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.32);
+    }
+    .unlock-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px; color: #111111; margin: 0; }
+    .unlock-sub { font-size: 12.5px; color: #7E7E87; text-align: center; }
+    .unlock-qr-wrap { position: relative; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; margin-top: 4px; }
+    .unlock-qr-ring { position: absolute; inset: 0; animation: ring-glow 2.2s ease-in-out infinite; }
+    .unlock-qr-inner { width: 150px; height: 150px; border-radius: 20px; background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); padding: 12px; position: relative; z-index: 2; }
+    .unlock-branch { font-size: 12.5px; font-weight: 700; color: #111111; margin-top: 2px; }
+    .unlock-timer { font-size: 11.5px; color: #7E7E87; text-align: center; }
+    .unlock-close {
+      margin-top: 6px; background: #111111; color: #FFFFFF; font-weight: 700; font-size: 13px;
+      padding: 13px 26px; border-radius: 999px; width: 100%; text-align: center; cursor: pointer;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .unlock-close:hover { transform: scale(1.02); opacity: 0.92; }
+    .unlock-close:active { transform: scale(0.95); }
+  </style>
+</helmet>
+
+<div class="phone">
+  <div class="scroll">
+    <div class="topbar">
+      <div>
+        <p class="greet-label">Good morning</p>
+        <div class="greet-row">
+          <h1 class="greet-name">Hi, <span class="name-accent">ZHOU</span></h1>
+          <span class="new-pill">Welcome</span>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <div class="icon-btn" aria-label="Notifications">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 2 6H4c.5-.5 2-2 2-6Z" stroke="#111111" stroke-width="1.7" stroke-linejoin="round"/><path d="M10 19a2 2 0 0 0 4 0" stroke="#111111" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </div>
+        <div class="avatar">
+          <svg width="44" height="44" viewBox="0 0 44 44">
+            <circle cx="22" cy="22" r="22" fill="#FF0091"/>
+            <text x="22" y="27.5" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="800" font-size="14.5" letter-spacing="-0.4" fill="#FFFFFF">HUM</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="box price-card">
+      <div class="price-left">
+        <span class="price-tag">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="m12 2 2.4 7.2H21l-5.8 4.3 2.2 7.1L12 16.2 6.6 20.6l2.2-7.1L3 9.2h6.6Z" fill="#FFFFFF"/></svg>
+          Membership
+        </span>
+        <div class="price-row">
+          <span class="price-amount">฿349</span>
+          <span class="price-period">/ month</span>
+        </div>
+        <span class="price-note">Billed monthly · cancel anytime</span>
+      </div>
+      <div class="btn-obsidian">Start</div>
+    </div>
+
+    <div class="box branch-card">
+      <div class="branch-top">
+        <div class="branch-name-col">
+          <div class="branch-name-row">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke="#111111" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke="#111111" stroke-width="1.7"/></svg>
+            <h2 class="branch-name">HUMF Thonglor</h2>
+          </div>
+          <span class="branch-distance">0.6 km away</span>
+        </div>
+        <div class="status-pill">
+          <div class="status-dot"></div>
+          <span class="status-text">Until 22:00</span>
+        </div>
+      </div>
+      <p class="branch-addr">12 Soi Thonglor 13, Watthana, Bangkok</p>
+    </div>
+
+    <div class="box gauge-card">
+      <div class="gauge-heading">
+        <p class="gauge-title">Live capacity</p>
+        <div class="live-pill">
+          <div class="live-dot"></div>
+          <span class="live-text">LIVE</span>
+        </div>
+      </div>
+      <div class="gauge-wrap">
+        <svg width="176" height="176" viewBox="0 0 176 176">
+          <circle cx="88" cy="88" r="76" fill="none" stroke="#ECECEF" stroke-width="14"/>
+          <circle cx="88" cy="88" r="76" fill="none" stroke="#FF0091" stroke-width="14"
+            stroke-linecap="round" stroke-dasharray="477.5" stroke-dashoffset="277"
+            transform="rotate(-90 88 88)"/>
+        </svg>
+        <div class="gauge-center">
+          <p class="gauge-pct">42%</p>
+          <p class="gauge-status">Moderate</p>
+        </div>
+      </div>
+      <div class="gauge-foot">
+        <span class="gauge-count">84</span>
+        <span class="gauge-max">/ 200 members on the floor</span>
+      </div>
+    </div>
+
+    <div class="cta-btn">
+      Reserve Gym
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <p class="section-label">Available time windows</p>
+    <div class="slot-row">
+      <div class="slot-chip slot-open">
+        <span class="slot-time">06:00–07:00</span>
+        <span class="slot-meta">32 spots left</span>
+      </div>
+      <div class="slot-chip slot-tight">
+        <span class="slot-time">07:00–08:00</span>
+        <span class="slot-meta">6 spots left</span>
+      </div>
+      <div class="slot-chip slot-full">
+        <span class="slot-time">08:00–09:00</span>
+        <span class="slot-meta">Full</span>
+      </div>
+      <div class="slot-chip slot-open">
+        <span class="slot-time">17:00–18:00</span>
+        <span class="slot-meta">18 spots left</span>
+      </div>
+      <div class="slot-chip slot-tight">
+        <span class="slot-time">18:00–19:00</span>
+        <span class="slot-meta">4 spots left</span>
+      </div>
+    </div>
+
+    <div class="box key-card">
+      <div class="key-head">
+        <div>
+          <h3 class="key-title">Smart Key</h3>
+          <p class="key-sub">Digital access to the Thonglor entrance</p>
+        </div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="4" y="9" width="16" height="11" rx="2.5" stroke="#111111" stroke-width="1.7"/><path d="M8 9V6.5a4 4 0 0 1 8 0V9" stroke="#111111" stroke-width="1.7"/></svg>
+      </div>
+      <div class="key-body">
+        <div class="qr-wrap" onClick="{{openUnlock}}">
+          <svg class="qr-ring-svg" width="136" height="136" viewBox="0 0 136 136">
+            <circle cx="68" cy="68" r="64" fill="none" stroke="#ECECEF" stroke-width="6"/>
+            <circle cx="68" cy="68" r="64" fill="none" stroke="#FF0091" stroke-width="6"
+              stroke-linecap="round" stroke-dasharray="402.1" stroke-dashoffset="60"
+              transform="rotate(-90 68 68)"/>
+          </svg>
+          <div class="qr-inner">
+            <svg width="80" height="80" viewBox="0 0 25 25">
+              <rect x="0" y="0" width="25" height="25" fill="#FFFFFF"/>
+              <rect x="0" y="0" width="7" height="7" fill="#111111"/><rect x="1.5" y="1.5" width="4" height="4" fill="#FFFFFF"/><rect x="2.6" y="2.6" width="1.8" height="1.8" fill="#111111"/>
+              <rect x="18" y="0" width="7" height="7" fill="#111111"/><rect x="19.5" y="1.5" width="4" height="4" fill="#FFFFFF"/><rect x="20.6" y="2.6" width="1.8" height="1.8" fill="#111111"/>
+              <rect x="0" y="18" width="7" height="7" fill="#111111"/><rect x="1.5" y="19.5" width="4" height="4" fill="#FFFFFF"/><rect x="2.6" y="20.6" width="1.8" height="1.8" fill="#111111"/>
+              <rect x="9" y="1" width="1.6" height="1.6" fill="#111111"/><rect x="12" y="1" width="1.6" height="1.6" fill="#111111"/><rect x="9" y="4" width="1.6" height="1.6" fill="#111111"/>
+              <rect x="15" y="9" width="1.6" height="1.6" fill="#111111"/><rect x="18" y="9" width="1.6" height="1.6" fill="#111111"/><rect x="9" y="9" width="1.6" height="1.6" fill="#111111"/>
+              <rect x="9" y="12" width="1.6" height="1.6" fill="#111111"/><rect x="12" y="12" width="1.6" height="1.6" fill="#111111"/><rect x="15" y="12" width="1.6" height="1.6" fill="#111111"/>
+              <rect x="21" y="12" width="1.6" height="1.6" fill="#111111"/><rect x="9" y="15" width="1.6" height="1.6" fill="#111111"/><rect x="13.2" y="15" width="1.6" height="1.6" fill="#111111"/>
+              <rect x="16.5" y="16.5" width="1.6" height="1.6" fill="#111111"/><rect x="9" y="18" width="1.6" height="1.6" fill="#111111"/><rect x="12" y="18" width="1.6" height="1.6" fill="#111111"/>
+              <rect x="15" y="21" width="1.6" height="1.6" fill="#111111"/><rect x="18" y="21" width="1.6" height="1.6" fill="#111111"/><rect x="21" y="18" width="1.6" height="1.6" fill="#111111"/>
+            </svg>
+          </div>
+        </div>
+        <div class="key-copy">
+          <div class="key-cta" onClick="{{openUnlock}}">Unlock entrance</div>
+          <span class="key-countdown">Code refreshes in 4s · rotates automatically to block sharing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabbar">
+    <div class="tab-item active">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M4 11.5 12 4l8 7.5" stroke="#FF0091" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke="#FF0091" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="tab-label">Home</span>
+      <div class="tab-dot"></div>
+    </div>
+    <div class="tab-item">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2Z" stroke="#B4B4BC" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="#B4B4BC" stroke-width="1.6"/></svg>
+      <span class="tab-label">Branches</span>
+      <div class="tab-dot"></div>
+    </div>
+    <div class="tab-item">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="8.5" cy="8" r="3" stroke="#B4B4BC" stroke-width="1.6"/><circle cx="16" cy="9.5" r="2.4" stroke="#B4B4BC" stroke-width="1.6"/><path d="M3.5 19c.5-3 2.4-4.6 5-4.6s4.5 1.6 5 4.6" stroke="#B4B4BC" stroke-width="1.6" stroke-linecap="round"/><path d="M14.5 14.8c2.2.2 3.7 1.7 4 4.2" stroke="#B4B4BC" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span class="tab-label">Community</span>
+      <div class="tab-dot"></div>
+    </div>
+    <div class="tab-item">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M3 12h3.2l1.8-5 3 10 2-8 1.5 3H21" stroke="#B4B4BC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="tab-label">Performance</span>
+      <div class="tab-dot"></div>
+    </div>
+    <div class="tab-item">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.2" r="3.4" stroke="#B4B4BC" stroke-width="1.6"/><path d="M4.8 19c1-3.4 3.6-5.2 7.2-5.2s6.2 1.8 7.2 5.2" stroke="#B4B4BC" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span class="tab-label">Profile</span>
+      <div class="tab-dot"></div>
+    </div>
+  </div>
+
+  <sc-if value="{{showUnlock}}" hint-placeholder-val="{{false}}">
+  <div class="unlock-overlay">
+    <div class="unlock-card">
+      <p class="unlock-title">Entrance unlocking</p>
+      <span class="unlock-sub">Show this at the Thonglor entrance scanner</span>
+      <div class="unlock-qr-wrap">
+        <svg class="unlock-qr-ring" width="200" height="200" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="94" fill="none" stroke="#ECECEF" stroke-width="6"/>
+          <circle cx="100" cy="100" r="94" fill="none" stroke="#FF0091" stroke-width="6"
+            stroke-linecap="round" stroke-dasharray="590.6" stroke-dashoffset="88"
+            transform="rotate(-90 100 100)"/>
+        </svg>
+        <div class="unlock-qr-inner">
+          <svg width="126" height="126" viewBox="0 0 25 25">
+            <rect x="0" y="0" width="25" height="25" fill="#FFFFFF"/>
+            <rect x="0" y="0" width="7" height="7" fill="#111111"/><rect x="1.5" y="1.5" width="4" height="4" fill="#FFFFFF"/><rect x="2.6" y="2.6" width="1.8" height="1.8" fill="#111111"/>
+            <rect x="18" y="0" width="7" height="7" fill="#111111"/><rect x="19.5" y="1.5" width="4" height="4" fill="#FFFFFF"/><rect x="20.6" y="2.6" width="1.8" height="1.8" fill="#111111"/>
+            <rect x="0" y="18" width="7" height="7" fill="#111111"/><rect x="1.5" y="19.5" width="4" height="4" fill="#FFFFFF"/><rect x="2.6" y="20.6" width="1.8" height="1.8" fill="#111111"/>
+            <rect x="9" y="1" width="1.6" height="1.6" fill="#111111"/><rect x="12" y="1" width="1.6" height="1.6" fill="#111111"/><rect x="9" y="4" width="1.6" height="1.6" fill="#111111"/>
+            <rect x="15" y="9" width="1.6" height="1.6" fill="#111111"/><rect x="18" y="9" width="1.6" height="1.6" fill="#111111"/><rect x="9" y="9" width="1.6" height="1.6" fill="#111111"/>
+            <rect x="9" y="12" width="1.6" height="1.6" fill="#111111"/><rect x="12" y="12" width="1.6" height="1.6" fill="#111111"/><rect x="15" y="12" width="1.6" height="1.6" fill="#111111"/>
+            <rect x="21" y="12" width="1.6" height="1.6" fill="#111111"/><rect x="9" y="15" width="1.6" height="1.6" fill="#111111"/><rect x="13.2" y="15" width="1.6" height="1.6" fill="#111111"/>
+            <rect x="16.5" y="16.5" width="1.6" height="1.6" fill="#111111"/><rect x="9" y="18" width="1.6" height="1.6" fill="#111111"/><rect x="12" y="18" width="1.6" height="1.6" fill="#111111"/>
+            <rect x="15" y="21" width="1.6" height="1.6" fill="#111111"/><rect x="18" y="21" width="1.6" height="1.6" fill="#111111"/><rect x="21" y="18" width="1.6" height="1.6" fill="#111111"/>
+          </svg>
+        </div>
+      </div>
+      <span class="unlock-branch">HUMF Thonglor · Main entrance</span>
+      <span class="unlock-timer">Code refreshes in 4s · rotates automatically to block sharing</span>
+      <div class="unlock-close" onClick="{{closeUnlock}}">Done</div>
+    </div>
+  </div>
+  </sc-if>
+</div>
+
+<script data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { showUnlock: false };
+  }
+  renderVals() {
+    return {
+      showUnlock: this.state.showUnlock,
+      openUnlock: () => this.setState({ showUnlock: true }),
+      closeUnlock: () => this.setState({ showUnlock: false }),
+    };
+  }
+}
+</script>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    a { color: #FF0091; } a:hover { color: #C4006F; }
+    .phone {
+      width: 390px; height: 844px; position: relative; overflow: hidden;
+      background: #FFFFFF;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+      color: #111111;
+      display: flex; flex-direction: column;
+    }
+    .header { padding: 22px 20px 4px 20px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+    .page-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 22px; margin: 0; color: #111111; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .icon-btn {
+      width: 40px; height: 40px; border-radius: 13px; background: #F5F5F7;
+      border: 1px solid rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; position: relative;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .icon-btn:hover { transform: scale(1.02); box-shadow: 0 8px 22px rgba(0,0,0,0.08); }
+    .icon-btn:active { transform: scale(0.95); }
+    .icon-dot { position: absolute; top: 8px; right: 8px; width: 6px; height: 6px; border-radius: 50%; background: #FF0091; box-shadow: 0 0 0 2px #FFFFFF; }
+
+    .scroll { flex: 1 1 auto; overflow-y: auto; padding: 16px 0 120px 0; display: flex; flex-direction: column; gap: 20px; }
+
+    .stories-row { display: flex; gap: 16px; overflow-x: auto; padding: 0 20px 2px 20px; }
+    .story { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 0 0 auto; transition: transform 300ms cubic-bezier(0.16,1,0.3,1); }
+    .story:hover { transform: scale(1.05); }
+    .story:active { transform: scale(0.95); }
+    .story-ring { width: 60px; height: 60px; border-radius: 50%; padding: 3px; background: transparent; border: 2px solid rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; }
+    .story-inner { width: 100%; height: 100%; border-radius: 50%; background: #F5F5F7; display: flex; align-items: center; justify-content: center; }
+    .story-label { font-size: 10px; font-weight: 600; color: #111111; max-width: 62px; text-align: center; }
+
+    .section-pad { padding: 0 20px; }
+
+    .box { background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 20px rgba(0,0,0,0.04); border-radius: 22px; }
+    .box-interactive { transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1); }
+    .box-interactive:hover { transform: scale(1.02); box-shadow: 0 14px 30px rgba(0,0,0,0.08); }
+    .box-interactive:active { transform: scale(0.95); }
+
+    .challenge-card { padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+    .challenge-top { display: flex; align-items: center; justify-content: space-between; }
+    .challenge-tag { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #7E7E87; }
+    .challenge-title { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 16px; margin: 4px 0 0 0; color: #111111; }
+    .challenge-days { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px; color: #FF0091; }
+    .progress-track { height: 8px; border-radius: 999px; background: #EDEDF0; overflow: hidden; }
+    .progress-fill { height: 100%; width: 60%; border-radius: 999px; background: #FF0091; }
+    .challenge-foot { display: flex; align-items: center; justify-content: space-between; }
+    .challenge-note { font-size: 12px; color: #7E7E87; }
+    .challenge-cta {
+      font-size: 12px; font-weight: 700; background: #111111; color: #FFFFFF; padding: 8px 14px; border-radius: 999px;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .challenge-cta:hover { transform: scale(1.05); opacity: 0.92; }
+    .challenge-cta:active { transform: scale(0.95); }
+
+    .feed-card {
+      background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      border-radius: 22px; overflow: hidden; color: #111111;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .feed-card:hover { transform: scale(1.01); box-shadow: 0 16px 32px rgba(0,0,0,0.08); }
+    .feed-card:active { transform: scale(0.98); }
+    .feed-head { display: flex; align-items: center; gap: 10px; padding: 14px 16px 10px 16px; }
+    .feed-avatar { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .feed-who { display: flex; flex-direction: column; }
+    .feed-name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13px; color: #111111; }
+    .feed-time { font-size: 11px; color: #7E7E87; }
+    .feed-text { padding: 0 16px 14px 16px; font-size: 13.5px; line-height: 1.5; color: #3A3A40; margin: 0; }
+
+    .feed-banner { height: 168px; position: relative; overflow: hidden; }
+    .rays-spin { animation: spin-rays 32s linear infinite; transform-origin: 100px 100px; }
+    @keyframes spin-rays { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .confetti { position: absolute; border-radius: 50%; }
+    .feed-banner-copy { position: absolute; left: 16px; bottom: 14px; right: 16px; color: #FFFFFF; z-index: 2; }
+    .feed-banner-tag { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; opacity: 0.9; background: rgba(0,0,0,0.3); display: inline-block; padding: 3px 9px; border-radius: 999px; }
+    .feed-banner-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 20px; margin: 8px 0 0 0; }
+    .runner { position: absolute; }
+
+    .feed-actions { display: flex; align-items: center; gap: 18px; padding: 12px 16px 16px 16px; }
+    .feed-action { display: flex; align-items: center; gap: 6px; }
+    .feed-action-text { font-size: 12px; font-weight: 700; color: #7E7E87; }
+    .feed-registered {
+      margin-left: auto; font-size: 11px; font-weight: 700; color: #FFFFFF; background: #111111;
+      padding: 7px 13px; border-radius: 999px; white-space: nowrap;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .feed-registered:hover { transform: scale(1.05); opacity: 0.92; }
+    .feed-registered:active { transform: scale(0.95); }
+    .feed-registered-float { position: absolute; right: 14px; bottom: 14px; z-index: 3; margin-left: 0; }
+
+    .fab-add {
+      position: absolute; right: 20px; bottom: 118px; z-index: 4;
+      display: flex; align-items: center; gap: 8px;
+      background: #111111; color: #FFFFFF; padding: 14px 18px; border-radius: 999px;
+      font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13.5px; white-space: nowrap;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .fab-add:hover { transform: scale(1.03); }
+    .fab-add:active { transform: scale(0.95); }
+
+    .tabbar {
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: space-around;
+      padding: 14px 12px 26px 12px;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 5px; transition: transform 300ms cubic-bezier(0.16,1,0.3,1); }
+    .tab-item:hover { transform: scale(1.05); }
+    .tab-item:active { transform: scale(0.95); }
+    .tab-label { font-size: 10px; font-weight: 700; color: #B4B4BC; }
+    .tab-item.active .tab-label { color: #FF0091; }
+    .tab-dot { width: 4px; height: 4px; border-radius: 50%; background: #FF0091; opacity: 0; }
+    .tab-item.active .tab-dot { opacity: 1; }
+  </style>
+</helmet>
+
+<div class="phone">
+  <div class="header">
+    <h1 class="page-title">Community</h1>
+    <div class="header-actions">
+      <div class="icon-btn">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="#111111" stroke-width="1.8"/><path d="m20 20-3.5-3.5" stroke="#111111" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </div>
+      <div class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 2 6H4c.5-.5 2-2 2-6Z" stroke="#111111" stroke-width="1.7" stroke-linejoin="round"/><path d="M10 19a2 2 0 0 0 4 0" stroke="#111111" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <div class="icon-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll">
+    <div class="stories-row">
+      <div class="story">
+        <div class="story-ring"><div class="story-inner">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 8 8 10.5 12 5l4 5.5L20 8l-2 10H6L4 8Z" stroke="#111111" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div></div>
+        <span class="story-label">Thonglor promo</span>
+      </div>
+      <div class="story">
+        <div class="story-ring"><div class="story-inner">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.4-9.3-9C1 8 3 4 7 4c2.2 0 3.7 1.2 5 3 1.3-1.8 2.8-3 5-3 4 0 6 4 4.3 8-2.3 4.6-9.3 9-9.3 9Z" stroke="#111111" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div></div>
+        <span class="story-label">Active Challenge</span>
+      </div>
+      <div class="story">
+        <div class="story-ring"><div class="story-inner">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.4" stroke="#111111" stroke-width="1.6"/><path d="M12 8.5 8.5 13l3.5 2 1 6M12 8.5 15 12l-1.5 2M9.5 19l1-4-2-2" stroke="#111111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div></div>
+        <span class="story-label">City RUN</span>
+      </div>
+      <div class="story">
+        <div class="story-ring"><div class="story-inner">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 19h18L15 8l-4 6-2.5-3L3 19Z" stroke="#111111" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div></div>
+        <span class="story-label">Mini Marathon</span>
+      </div>
+    </div>
+
+    <div class="section-pad">
+      <div class="box box-interactive challenge-card">
+        <div class="challenge-top">
+          <div>
+            <span class="challenge-tag">Active challenge</span>
+            <p class="challenge-title">30-Day Active Challenge</p>
+          </div>
+          <span class="challenge-days">18<span style="font-size:13px; font-weight:500; color:#7E7E87;">/30</span></span>
+        </div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+        <div class="challenge-foot">
+          <span class="challenge-note">2,140 members joined across all branches</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-pad">
+      <div class="feed-card">
+        <div class="feed-head">
+          <div class="feed-avatar" style="background: #111111;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 2 2 7l10 5 10-5-10-5Z" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="feed-who">
+            <span class="feed-name">HUMF Staff</span>
+            <span class="feed-time">All branches · 2h ago</span>
+          </div>
+        </div>
+        <p class="feed-text">New sanitizing stations are now live at every entrance. Equipment wipe-downs take 10 seconds — help us keep the floor fast for everyone.</p>
+        <div class="feed-actions">
+          <div class="feed-action">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.4-9.3-9C1 8 3 4 7 4c2.2 0 3.7 1.2 5 3 1.3-1.8 2.8-3 5-3 4 0 6 4 4.3 8-2.3 4.6-9.3 9-9.3 9Z" stroke="#111111" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <span class="feed-action-text">312</span>
+          </div>
+          <div class="feed-action">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 5h16v11H8l-4 4V5Z" stroke="#111111" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <span class="feed-action-text">28</span>
+          </div>
+          <div class="feed-registered">Register</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-pad">
+      <div class="feed-card">
+        <div class="feed-head">
+          <div class="feed-avatar" style="background: #FF0091;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 8 8 10.5 12 5l4 5.5L20 8l-2 10H6L4 8Z" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="feed-who">
+            <span class="feed-name">HUMF Thonglor</span>
+            <span class="feed-time">Event · 5h ago</span>
+          </div>
+        </div>
+        <div class="feed-banner" style="background: #FF0091;">
+          <svg width="200" height="200" viewBox="0 0 200 200" style="position:absolute; top:-30px; right:-40px; opacity:0.3;">
+            <g class="rays-spin">
+              <rect x="98.5" y="6" width="3" height="90" fill="#FFFFFF"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FFFFFF" transform="rotate(30 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FFFFFF" transform="rotate(60 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FFFFFF" transform="rotate(90 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FFFFFF" transform="rotate(120 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FFFFFF" transform="rotate(150 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FFFFFF" transform="rotate(180 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FFFFFF" transform="rotate(210 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FFFFFF" transform="rotate(240 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FFFFFF" transform="rotate(270 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FFFFFF" transform="rotate(300 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FFFFFF" transform="rotate(330 100 100)"/>
+            </g>
+          </svg>
+          <div class="confetti" style="width:8px;height:8px;top:20px;left:30px;background:#FFE96B;"></div>
+          <div class="confetti" style="width:6px;height:6px;top:40px;left:90px;background:#FFFFFF;"></div>
+          <div class="confetti" style="width:10px;height:10px;top:16px;left:150px;background:#7CF7C4;"></div>
+          <div class="confetti" style="width:6px;height:6px;top:70px;left:220px;background:#FFFFFF;"></div>
+          <div class="confetti" style="width:8px;height:8px;top:34px;left:270px;background:#FFE96B;"></div>
+          <div class="confetti" style="width:7px;height:7px;top:90px;left:40px;background:#FFFFFF;"></div>
+          <svg class="runner" width="70" height="70" viewBox="0 0 100 80" style="right: 14px; bottom: 44px;">
+            <g fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="58" cy="16" r="8" fill="#FFFFFF" stroke="none"/>
+              <path d="M56 26 L42 52 L28 46"/>
+              <path d="M56 26 L68 50 L84 40"/>
+              <path d="M52 32 L32 22"/>
+              <path d="M56 34 L76 18"/>
+            </g>
+          </svg>
+          <div class="feed-banner-copy">
+            <span class="feed-banner-tag">This Saturday · 6:00</span>
+            <p class="feed-banner-title">HUMF City RUN Event</p>
+          </div>
+          <div class="feed-registered feed-registered-float">Register</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-pad">
+      <div class="feed-card">
+        <div class="feed-head">
+          <div class="feed-avatar" style="background: #111111;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="2.5" stroke="#FFFFFF" stroke-width="1.6"/><path d="M4 10h16M8 3v4M16 3v4" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <div class="feed-who">
+            <span class="feed-name">HUMF Ari</span>
+            <span class="feed-time">Event · Sun, 6:00</span>
+          </div>
+        </div>
+        <div class="feed-banner" style="background: #111111;">
+          <svg width="200" height="200" viewBox="0 0 200 200" style="position:absolute; top:-40px; left:-30px; opacity:0.22;">
+            <g class="rays-spin">
+              <rect x="98.5" y="6" width="3" height="90" fill="#FF0091"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FF0091" transform="rotate(30 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FF0091" transform="rotate(60 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FF0091" transform="rotate(90 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FF0091" transform="rotate(120 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FF0091" transform="rotate(150 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FF0091" transform="rotate(180 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FF0091" transform="rotate(210 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FF0091" transform="rotate(240 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FF0091" transform="rotate(270 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FF0091" transform="rotate(300 100 100)"/>
+              <rect x="98.5" y="6" width="3" height="90" fill="#FF0091" transform="rotate(330 100 100)"/>
+            </g>
+          </svg>
+          <div class="confetti" style="width:7px;height:7px;top:26px;left:24px;background:#FF0091;"></div>
+          <div class="confetti" style="width:9px;height:9px;top:12px;left:110px;background:#7CF7C4;"></div>
+          <div class="confetti" style="width:6px;height:6px;top:54px;left:200px;background:#FFE96B;"></div>
+          <div class="confetti" style="width:8px;height:8px;top:84px;left:260px;background:#FFFFFF;"></div>
+          <svg class="runner" width="76" height="76" viewBox="0 0 100 80" style="left: 14px; bottom: 40px;">
+            <path d="M4 60 L20 40 L40 52 L60 24 L80 34 L96 14" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="96" cy="14" r="6" fill="#FF0091"/>
+          </svg>
+          <div class="feed-banner-copy">
+            <span class="feed-banner-tag">Community run · 21K</span>
+            <p class="feed-banner-title">Sunrise Mini Marathon</p>
+          </div>
+          <div class="feed-registered feed-registered-float">Register</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-pad">
+      <div class="feed-card">
+        <div class="feed-head">
+          <div class="feed-avatar" style="background: #4A3524;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M4.5 6.5l15 11M19.5 6.5l-15 11M2 12h20" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="feed-who">
+            <span class="feed-name">HUMF Recovery Lab</span>
+            <span class="feed-time">Event · Wed, 7:00</span>
+          </div>
+        </div>
+        <div class="feed-banner" style="background: #4A3524;">
+          <svg width="100" height="100" viewBox="0 0 90 90" style="position:absolute; top:-14px; right:-14px; opacity:0.45;">
+            <path d="M45 0 C20 10 0 40 10 75 C40 70 70 50 75 15 C65 5 55 0 45 0Z" fill="#2F4A34"/>
+          </svg>
+          <svg width="70" height="70" viewBox="0 0 90 90" style="position:absolute; bottom:-16px; left:-16px; opacity:0.4;">
+            <path d="M45 0 C20 10 0 40 10 75 C40 70 70 50 75 15 C65 5 55 0 45 0Z" fill="#2F4A34"/>
+          </svg>
+          <div style="position:absolute; width:36px; height:36px; border-radius:50%; background:#241A12; border:4px solid #8A7256; top:24px; left:28px;">
+            <div style="position:absolute; width:6px; height:6px; border-radius:2px; background:#CFE8F2; top:8px; left:8px;"></div>
+            <div style="position:absolute; width:5px; height:5px; border-radius:2px; background:#CFE8F2; top:16px; left:18px;"></div>
+          </div>
+          <div style="position:absolute; width:36px; height:36px; border-radius:50%; background:#241A12; border:4px solid #8A7256; top:24px; left:74px;">
+            <div style="position:absolute; width:6px; height:6px; border-radius:2px; background:#CFE8F2; top:8px; left:8px;"></div>
+            <div style="position:absolute; width:5px; height:5px; border-radius:2px; background:#CFE8F2; top:16px; left:18px;"></div>
+          </div>
+          <div class="feed-banner-copy">
+            <span class="feed-banner-tag">New · Recovery</span>
+            <p class="feed-banner-title"><span style="color:#7CDBB3;">Ice</span> <span style="color:#FFFFFF;">Bathing Event</span></p>
+          </div>
+          <div class="feed-registered feed-registered-float">Register</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fab-add">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/></svg>
+    Add events
+  </div>
+
+  <div class="tabbar">
+    <div class="tab-item">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M4 11.5 12 4l8 7.5" stroke="#B4B4BC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke="#B4B4BC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="tab-label">Home</span>
+      <div class="tab-dot"></div>
+    </div>
+    <div class="tab-item">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2Z" stroke="#B4B4BC" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="#B4B4BC" stroke-width="1.6"/></svg>
+      <span class="tab-label">Branches</span>
+      <div class="tab-dot"></div>
+    </div>
+    <div class="tab-item active">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="8.5" cy="8" r="3" stroke="#FF0091" stroke-width="1.6"/><circle cx="16" cy="9.5" r="2.4" stroke="#FF0091" stroke-width="1.6"/><path d="M3.5 19c.5-3 2.4-4.6 5-4.6s4.5 1.6 5 4.6" stroke="#FF0091" stroke-width="1.6" stroke-linecap="round"/><path d="M14.5 14.8c2.2.2 3.7 1.7 4 4.2" stroke="#FF0091" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span class="tab-label">Community</span>
+      <div class="tab-dot"></div>
+    </div>
+    <div class="tab-item">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M3 12h3.2l1.8-5 3 10 2-8 1.5 3H21" stroke="#B4B4BC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="tab-label">Performance</span>
+      <div class="tab-dot"></div>
+    </div>
+    <div class="tab-item">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.2" r="3.4" stroke="#B4B4BC" stroke-width="1.6"/><path d="M4.8 19c1-3.4 3.6-5.2 7.2-5.2s6.2 1.8 7.2 5.2" stroke="#B4B4BC" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span class="tab-label">Profile</span>
+      <div class="tab-dot"></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

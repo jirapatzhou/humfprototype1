@@ -1,0 +1,22 @@
+{
+  "artboards": [
+    { "file": "Cover.dc.html", "x": 0, "y": 0, "w": 900, "h": 560 },
+    { "file": "Main.dc.html", "x": 1020, "y": 0, "w": 390, "h": 844 },
+    { "file": "Branches.dc.html", "x": 1530, "y": 0, "w": 390, "h": 844 },
+    { "file": "Community.dc.html", "x": 2040, "y": 0, "w": 390, "h": 844 },
+    { "file": "Profile.dc.html", "x": 2550, "y": 0, "w": 390, "h": 844 },
+    { "file": "Reserve.dc.html", "x": 1020, "y": 1000, "w": 390, "h": 844 },
+    { "file": "Performance.dc.html", "x": 1530, "y": 1000, "w": 390, "h": 844 },
+    { "file": "Unlock.dc.html", "x": 2040, "y": 1000, "w": 390, "h": 844 }
+  ],
+  "annotations": [
+    { "id": "note-main", "x": 1020, "y": -80, "w": 250, "text": "1 — Home / My Gym Status\nCapacity gauge, ฿349/mo membership, Smart Key QR" },
+    { "id": "note-branches", "x": 1530, "y": -80, "w": 250, "text": "2 — Nearby Branches\nRealistic map + branch list with capacity" },
+    { "id": "note-community", "x": 2040, "y": -80, "w": 250, "text": "3 — Community & Events\nStories, challenges, RUN / marathon / ice bath feed" },
+    { "id": "note-profile", "x": 2550, "y": -80, "w": 250, "text": "4 — Profile\nAvatar, achievements, account, invite" },
+    { "id": "note-reserve", "x": 1020, "y": 920, "w": 390, "text": "5 — Reserve Gym flow (interactive: click through slot -> confirm -> success)\nOpened from Home's \"Reserve Gym\" button — this canvas can't link artboards together, so try the flow directly on this artboard." },
+    { "id": "note-performance", "x": 1530, "y": 920, "w": 390, "text": "6 — Performance (wearable HUMF tech)\nReplaces the Wallet tab — sleep/recovery/strain rings, health + stress monitors, today's activities." },
+    { "id": "note-unlock", "x": 2040, "y": 920, "w": 390, "text": "7 — Unlock QR (interactive: click Done, then \"Show QR again\")\nThe same popup Home's \"Unlock entrance\" opens, shown here as its own standalone page — try the close/reopen." }
+  ],
+  "launch": { "view": "canvas" }
+}
