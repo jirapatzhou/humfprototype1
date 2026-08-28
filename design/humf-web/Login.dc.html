@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    a { color: #FF0091; text-decoration: none; } a:hover { color: #C4006F; }
+    .page {
+      width: 1440px; height: 900px; position: relative; overflow: hidden;
+      background: #FFFFFF; color: #111111;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+      display: flex;
+    }
+    .brand-panel {
+      width: 44%; height: 100%; background: #FF0091; position: relative; overflow: hidden;
+      display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between;
+      padding: 56px;
+    }
+    .brand-lockup { display: flex; align-items: center; gap: 10px; }
+    .brand-mark { width: 40px; height: 40px; border-radius: 11px; background: #FFFFFF; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .brand-word { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 20px; color: #FFFFFF; }
+    .brand-msg { max-width: 380px; }
+    .brand-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 36px; line-height: 1.2; color: #FFFFFF; margin: 0; letter-spacing: -0.5px; }
+    .brand-sub { font-size: 14.5px; color: rgba(255,255,255,0.82); line-height: 1.6; margin-top: 14px; }
+    .brand-foot { font-size: 12px; color: rgba(255,255,255,0.65); }
+
+    .form-panel { flex: 1 1 auto; display: flex; align-items: center; justify-content: center; padding: 40px; }
+    .form-card { width: 100%; max-width: 380px; display: flex; flex-direction: column; gap: 22px; }
+    .form-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 26px; margin: 0; letter-spacing: -0.4px; }
+    .form-sub { font-size: 13.5px; color: #7E7E87; margin-top: -14px; }
+    .field-group { display: flex; flex-direction: column; gap: 16px; }
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field-label { font-size: 12px; font-weight: 700; color: #111111; }
+    .field-input {
+      font-family: 'Manrope', sans-serif; font-size: 14px; color: #7E7E87;
+      background: #F5F5F7; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 13px 14px;
+      transition: border-color 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .field-input:focus-within, .field-input.focused { border-color: #FF0091; box-shadow: 0 0 0 3px rgba(255,0,145,0.1); }
+    .field-row { display: flex; align-items: center; justify-content: space-between; }
+    .forgot-link { font-size: 12.5px; font-weight: 700; }
+    .btn-obsidian {
+      font-size: 14px; font-weight: 700; color: #FFFFFF; background: #111111; padding: 14px; border-radius: 999px;
+      text-align: center;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .btn-obsidian:hover { transform: scale(1.02); opacity: 0.9; }
+    .btn-obsidian:active { transform: scale(0.96); }
+    .divider-row { display: flex; align-items: center; gap: 12px; }
+    .divider-line { flex: 1 1 auto; height: 1px; background: rgba(0,0,0,0.08); }
+    .divider-text { font-size: 11.5px; color: #B4B4BC; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .switch-row { text-align: center; font-size: 13.5px; color: #7E7E87; }
+    .switch-link { font-weight: 700; }
+  </style>
+</helmet>
+
+<div class="page">
+  <div class="brand-panel">
+    <div class="brand-lockup">
+      <div class="brand-mark">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="m12 2 2.4 7.2H21l-5.8 4.3 2.2 7.1L12 16.2 6.6 20.6l2.2-7.1L3 9.2h6.6Z" fill="#FF0091"/></svg>
+      </div>
+      <span class="brand-word">HUMF</span>
+    </div>
+    <div class="brand-msg">
+      <p class="brand-title">Your gym, your city, one account.</p>
+      <p class="brand-sub">Log in to book a slot, unlock the door with your Smart Key, and manage your membership across every HUMF branch.</p>
+    </div>
+    <span class="brand-foot">© HUMF — member prototype</span>
+  </div>
+
+  <div class="form-panel">
+    <div class="form-card">
+      <div>
+        <h1 class="form-title">Log in to HUMF</h1>
+        <p class="form-sub">Welcome back — pick up right where you left off.</p>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <span class="field-label">Email or phone</span>
+          <div class="field-input">you@email.com</div>
+        </div>
+        <div class="field">
+          <span class="field-label">Password</span>
+          <div class="field-input">••••••••••</div>
+        </div>
+        <div class="field-row">
+          <span></span>
+          <a class="forgot-link">Forgot password?</a>
+        </div>
+      </div>
+      <div class="btn-obsidian">Log In</div>
+      <div class="divider-row">
+        <div class="divider-line"></div>
+        <span class="divider-text">or</span>
+        <div class="divider-line"></div>
+      </div>
+      <p class="switch-row">New to HUMF? <a class="switch-link">Create an account</a></p>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
