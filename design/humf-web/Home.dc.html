@@ -78,7 +78,7 @@
     }
     .plan-card:hover { transform: scale(1.015); box-shadow: 0 16px 32px rgba(0,0,0,0.08); }
     .plan-card.featured { background: #FF0091; color: #FFFFFF; border-color: transparent; box-shadow: 0 16px 34px rgba(255,0,145,0.32); }
-    .plan-card.elite { background: #111111; color: #FFFFFF; border-color: transparent; }
+    .plan-card.elite { background: #0B0B0D; color: #FFFFFF; border-color: transparent; }
     .plan-top { display: flex; align-items: center; justify-content: space-between; }
     .plan-name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 18px; }
     .plan-badge { font-size: 10px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; color: #FFFFFF; background: #FF0091; padding: 4px 10px; border-radius: 999px; }
@@ -97,6 +97,7 @@
     .plan-features { display: flex; flex-direction: column; gap: 9px; margin: 2px 0 4px 0; }
     .plan-feature { display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.9); }
     .feature-check { width: 18px; height: 18px; border-radius: 50%; background: rgba(255,0,145,0.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .plan-card.featured .feature-check { background: rgba(255,255,255,0.22); }
     .plan-cta {
       margin-top: 6px; align-self: flex-start; font-size: 13px; font-weight: 700; padding: 11px 20px; border-radius: 999px;
       border: 1px solid rgba(0,0,0,0.14); color: #111111;
@@ -187,6 +188,20 @@
             <span class="plan-period">/ month</span>
           </div>
           <p class="plan-desc">Billed monthly, cancel anytime. Includes slot booking, Smart Key entry, and access to every HUMF branch.</p>
+          <div class="plan-features">
+            <div class="plan-feature">
+              <div class="feature-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              Access 24/7
+            </div>
+            <div class="plan-feature">
+              <div class="feature-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              Joining HUMF Community
+            </div>
+            <div class="plan-feature">
+              <div class="feature-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              Receive HUMF Digital Card
+            </div>
+          </div>
           <div class="plan-cta">Get Started</div>
         </div>
         <div class="plan-card elite">

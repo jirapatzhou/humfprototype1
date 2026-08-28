@@ -37,7 +37,8 @@
     .form-panel { flex: 1 1 auto; display: flex; align-items: center; justify-content: center; padding: 40px; }
     .form-card { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 20px; }
     .form-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 26px; margin: 0; letter-spacing: -0.4px; }
-    .form-sub { font-size: 13.5px; color: #7E7E87; margin-top: -12px; }
+    .form-head { display: flex; flex-direction: column; gap: 10px; }
+    .form-sub { font-size: 13.5px; color: #7E7E87; margin: 0; }
     .field-group { display: flex; flex-direction: column; gap: 14px; }
     .field-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .field { display: flex; flex-direction: column; gap: 7px; }
@@ -94,7 +95,7 @@
 
   <div class="form-panel">
     <div class="form-card">
-      <div>
+      <div class="form-head">
         <h1 class="form-title">Create your HUMF account</h1>
         <p class="form-sub">Already a member? <a>Log in instead</a></p>
       </div>
