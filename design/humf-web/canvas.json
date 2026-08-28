@@ -3,13 +3,19 @@
     { "file": "Home.dc.html", "x": 0, "y": 0, "w": 1440, "h": 2200 },
     { "file": "Branches.dc.html", "x": 1560, "y": 0, "w": 1440, "h": 1200 },
     { "file": "Login.dc.html", "x": 3080, "y": 0, "w": 1440, "h": 900 },
-    { "file": "Signup.dc.html", "x": 3080, "y": 1020, "w": 1440, "h": 980 }
+    { "file": "Signup.dc.html", "x": 3080, "y": 1020, "w": 1440, "h": 980 },
+    { "file": "Verify.dc.html", "x": 4620, "y": 0, "w": 1440, "h": 900 },
+    { "file": "Success.dc.html", "x": 4620, "y": 1020, "w": 1440, "h": 900 },
+    { "file": "Account.dc.html", "x": 1560, "y": 1320, "w": 1440, "h": 1180 }
   ],
   "annotations": [
-    { "id": "note-home", "x": 0, "y": -80, "w": 400, "text": "1 — Home (brand intro, skeleton)\nMembership ฿349/mo (pink) + Elite Package ฿690/mo (premium black); community section is an honest \"coming soon\" skeleton." },
+    { "id": "note-home", "x": 0, "y": -80, "w": 400, "text": "1 — Home (brand intro, skeleton)\nMembership ฿349/mo (pink) + Elite Package ฿690/mo (premium black); community section is an honest \"coming soon\" skeleton. Header shows Log In/Sign Up when signed out, account chip when signed in." },
     { "id": "note-branches", "x": 1560, "y": -80, "w": 400, "text": "2 — Branches\nBrand map (uniform pink pins) + live branch list." },
     { "id": "note-login", "x": 3080, "y": -80, "w": 400, "text": "3 — Log In" },
-    { "id": "note-signup", "x": 3080, "y": 940, "w": 400, "text": "4 — Sign Up" }
+    { "id": "note-signup", "x": 3080, "y": 940, "w": 400, "text": "4 — Sign Up" },
+    { "id": "note-verify", "x": 4620, "y": -80, "w": 400, "text": "5 — Verify Email\nOTP sent after sign up; confirms account before first login." },
+    { "id": "note-success", "x": 4620, "y": 940, "w": 400, "text": "6 — Successful Login\nConfirmation state after verification / login completes." },
+    { "id": "note-account", "x": 1560, "y": 1240, "w": 400, "text": "7 — My Account (signed-in)\nWeb version of the mobile Profile page — avatar, membership, HUMF Card, coupons, history, payment, help." }
   ],
   "launch": { "view": "canvas" }
 }
