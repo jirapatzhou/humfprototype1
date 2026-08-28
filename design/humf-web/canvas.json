@@ -1,13 +1,15 @@
 {
   "artboards": [
-    { "file": "Home.dc.html", "x": 0, "y": 0, "w": 1440, "h": 2150 },
-    { "file": "Login.dc.html", "x": 1560, "y": 0, "w": 1440, "h": 900 },
-    { "file": "Signup.dc.html", "x": 1560, "y": 1020, "w": 1440, "h": 980 }
+    { "file": "Home.dc.html", "x": 0, "y": 0, "w": 1440, "h": 2200 },
+    { "file": "Branches.dc.html", "x": 1560, "y": 0, "w": 1440, "h": 800 },
+    { "file": "Login.dc.html", "x": 3080, "y": 0, "w": 1440, "h": 900 },
+    { "file": "Signup.dc.html", "x": 3080, "y": 1020, "w": 1440, "h": 980 }
   ],
   "annotations": [
-    { "id": "note-home", "x": 0, "y": -80, "w": 400, "text": "1 — Home (brand intro, skeleton)\nMembership info is real; community section is an honest \"coming soon\" skeleton." },
-    { "id": "note-login", "x": 1560, "y": -80, "w": 400, "text": "2 — Log In" },
-    { "id": "note-signup", "x": 1560, "y": 940, "w": 400, "text": "3 — Sign Up" }
+    { "id": "note-home", "x": 0, "y": -80, "w": 400, "text": "1 — Home (brand intro, skeleton)\nMembership ฿349/mo (pink) + Elite Package ฿690/mo (premium black); community section is an honest \"coming soon\" skeleton." },
+    { "id": "note-branches", "x": 1560, "y": -80, "w": 400, "text": "2 — Branches\nBrand map (uniform pink pins) + live branch list." },
+    { "id": "note-login", "x": 3080, "y": -80, "w": 400, "text": "3 — Log In" },
+    { "id": "note-signup", "x": 3080, "y": 940, "w": 400, "text": "4 — Sign Up" }
   ],
   "launch": { "view": "canvas" }
 }

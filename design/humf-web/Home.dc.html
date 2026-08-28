@@ -23,9 +23,8 @@
     /* Header */
     .header { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; }
     .header-inner { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; }
-    .brand-lockup { display: flex; align-items: center; gap: 10px; }
-    .brand-mark { width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0; }
-    .brand-word { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.3px; }
+    .logo-chip { display: flex; align-items: center; justify-content: center; background: #FF0091; padding: 9px 16px; border-radius: 10px; }
+    .logo-chip-text { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; color: #FFFFFF; }
     .nav-row { display: flex; align-items: center; gap: 34px; }
     .nav-link { font-size: 14px; font-weight: 700; color: #111111; }
     .nav-link.muted { color: #B4B4BC; pointer-events: none; }
@@ -78,18 +77,26 @@
       transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
     }
     .plan-card:hover { transform: scale(1.015); box-shadow: 0 16px 32px rgba(0,0,0,0.08); }
-    .plan-card.featured { background: #111111; color: #FFFFFF; }
+    .plan-card.featured { background: #FF0091; color: #FFFFFF; border-color: transparent; box-shadow: 0 16px 34px rgba(255,0,145,0.32); }
+    .plan-card.elite { background: #111111; color: #FFFFFF; border-color: transparent; }
     .plan-top { display: flex; align-items: center; justify-content: space-between; }
     .plan-name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 18px; }
     .plan-badge { font-size: 10px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; color: #FFFFFF; background: #FF0091; padding: 4px 10px; border-radius: 999px; }
+    .plan-card.featured .plan-badge { background: #FFFFFF; color: #FF0091; }
     .plan-price-row { display: flex; align-items: baseline; gap: 6px; }
     .plan-price { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 30px; }
-    .plan-card.featured .plan-price { color: #FF0091; }
+    .plan-card.featured .plan-price { color: #FFFFFF; text-shadow: 0 0 18px rgba(255,255,255,0.5); }
+    .plan-card.elite .plan-price { color: #FF0091; text-shadow: 0 0 16px rgba(255,0,145,0.4); }
     .plan-period { font-size: 13px; color: #7E7E87; }
-    .plan-card.featured .plan-period { color: rgba(255,255,255,0.7); }
+    .plan-card.featured .plan-period { color: rgba(255,255,255,0.82); }
+    .plan-card.elite .plan-period { color: rgba(255,255,255,0.7); }
     .plan-desc { font-size: 13.5px; line-height: 1.6; color: #7E7E87; }
-    .plan-card.featured .plan-desc { color: rgba(255,255,255,0.75); }
+    .plan-card.featured .plan-desc { color: rgba(255,255,255,0.88); }
+    .plan-card.elite .plan-desc { color: rgba(255,255,255,0.75); }
     .plan-desc.pending { font-style: italic; }
+    .plan-features { display: flex; flex-direction: column; gap: 9px; margin: 2px 0 4px 0; }
+    .plan-feature { display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.9); }
+    .feature-check { width: 18px; height: 18px; border-radius: 50%; background: rgba(255,0,145,0.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .plan-cta {
       margin-top: 6px; align-self: flex-start; font-size: 13px; font-weight: 700; padding: 11px 20px; border-radius: 999px;
       border: 1px solid rgba(0,0,0,0.14); color: #111111;
@@ -97,8 +104,8 @@
     }
     .plan-cta:hover { transform: scale(1.03); background: rgba(0,0,0,0.04); }
     .plan-cta:active { transform: scale(0.96); }
-    .plan-card.featured .plan-cta { background: #FFFFFF; color: #111111; border-color: transparent; }
-    .plan-card.featured .plan-cta:hover { opacity: 0.9; background: #FFFFFF; }
+    .plan-card.featured .plan-cta, .plan-card.elite .plan-cta { background: #FFFFFF; color: #111111; border-color: transparent; }
+    .plan-card.featured .plan-cta:hover, .plan-card.elite .plan-cta:hover { opacity: 0.9; background: #FFFFFF; }
     .plan-cta.disabled { opacity: 0.45; pointer-events: none; }
 
     /* Skeleton community section */
@@ -133,12 +140,8 @@
 <div class="page">
   <div class="header">
     <div class="header-inner">
-      <div class="brand-lockup">
-        <svg class="brand-mark" width="36" height="36" viewBox="0 0 44 44">
-          <circle cx="22" cy="22" r="22" fill="#FF0091"/>
-          <text x="22" y="27.5" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="800" font-size="14.5" letter-spacing="-0.4" fill="#FFFFFF">HUM</text>
-        </svg>
-        <span class="brand-word">HUMF</span>
+      <div class="logo-chip">
+        <span class="logo-chip-text">HUMF</span>
       </div>
       <div class="nav-row">
         <span class="nav-link">Home</span>
@@ -186,16 +189,31 @@
           <p class="plan-desc">Billed monthly, cancel anytime. Includes slot booking, Smart Key entry, and access to every HUMF branch.</p>
           <div class="plan-cta">Get Started</div>
         </div>
-        <div class="plan-card">
+        <div class="plan-card elite">
           <div class="plan-top">
-            <span class="plan-name">Day Pass</span>
+            <span class="plan-name">Elite Package</span>
+            <span class="plan-badge">Elite</span>
           </div>
           <div class="plan-price-row">
-            <span class="plan-price">฿—</span>
-            <span class="plan-period">/ visit</span>
+            <span class="plan-price">฿690</span>
+            <span class="plan-period">/ month</span>
           </div>
-          <p class="plan-desc pending">Pay-per-visit pricing is still being finalized.</p>
-          <div class="plan-cta disabled">Coming soon</div>
+          <p class="plan-desc">Everything in HUMF Membership, upgraded for members who want more.</p>
+          <div class="plan-features">
+            <div class="plan-feature">
+              <div class="feature-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FF0091" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              No reserve needed
+            </div>
+            <div class="plan-feature">
+              <div class="feature-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FF0091" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              Parking access
+            </div>
+            <div class="plan-feature">
+              <div class="feature-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FF0091" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              Access all branches
+            </div>
+          </div>
+          <div class="plan-cta">Get Started</div>
         </div>
       </div>
     </div>
