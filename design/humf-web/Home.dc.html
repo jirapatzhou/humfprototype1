@@ -23,7 +23,7 @@
     /* Header */
     .header { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; }
     .header-inner { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; }
-    .logo-chip { display: flex; align-items: center; justify-content: center; background: #FF0091; padding: 9px 16px; border-radius: 10px; }
+    .logo-chip { display: flex; align-items: center; justify-content: center; background: #FF0091; padding: 9px 16px; border-radius: 0; border: none; }
     .logo-chip-text { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; color: #FFFFFF; }
     .nav-row { display: flex; align-items: center; gap: 34px; }
     .nav-link { font-size: 14px; font-weight: 700; color: #111111; }
@@ -105,7 +105,19 @@
     }
     .plan-card:hover { transform: scale(1.015); box-shadow: 0 16px 32px rgba(0,0,0,0.08); }
     .plan-card.featured { background: #FF0091; color: #FFFFFF; border-color: transparent; box-shadow: 0 16px 34px rgba(255,0,145,0.32); }
-    .plan-card.elite { background: #0B0B0D; color: #FFFFFF; border-color: transparent; }
+    .plan-card.elite {
+      position: relative; overflow: hidden; color: #FFFFFF; border-color: transparent;
+      background: linear-gradient(135deg, #1c1c21 0%, #0B0B0D 45%, #0B0B0D 55%, #232328 100%);
+      box-shadow: 0 20px 44px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.07);
+    }
+    .plan-card.elite::before {
+      content: ''; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; z-index: 0;
+      background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.16) 45%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.16) 55%, transparent 100%);
+      transform: skewX(-18deg);
+      animation: elite-shine 3.4s ease-in-out infinite;
+    }
+    @keyframes elite-shine { 0% { left: -60%; } 55% { left: 130%; } 100% { left: 130%; } }
+    .plan-card.elite > * { position: relative; z-index: 1; }
     .plan-top { display: flex; align-items: center; justify-content: space-between; }
     .plan-name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 18px; }
     .plan-badge { font-size: 10px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; color: #FFFFFF; background: #FF0091; padding: 4px 10px; border-radius: 999px; }
@@ -156,14 +168,20 @@
     /* Get started tiles */
     .tile-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; max-width: 1020px; margin: 0 auto; }
     .tile-card {
-      background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-      border-radius: 20px; padding: 30px 20px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center;
+      position: relative; background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      border-radius: 20px; padding: 30px 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;
       transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
     }
     .tile-card:hover { transform: scale(1.02); box-shadow: 0 16px 32px rgba(0,0,0,0.08); }
     .tile-card:active { transform: scale(0.98); }
-    .tile-icon { width: 52px; height: 52px; border-radius: 16px; background: rgba(255,0,145,0.08); display: flex; align-items: center; justify-content: center; }
-    .tile-label { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15px; }
+    .tile-number {
+      position: absolute; top: 16px; left: 16px; width: 26px; height: 26px; border-radius: 50%;
+      background: #FF0091; color: #FFFFFF; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12.5px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .tile-icon { width: 52px; height: 52px; border-radius: 16px; background: rgba(255,0,145,0.08); display: flex; align-items: center; justify-content: center; margin-top: 10px; }
+    .tile-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 16px; margin: 0; }
+    .tile-desc { font-size: 12.5px; color: #7E7E87; line-height: 1.55; }
 
     /* Footer */
     .footer { border-top: 1px solid rgba(0,0,0,0.06); padding: 32px 0 44px 0; margin-top: 20px; }
@@ -184,7 +202,6 @@
         <span class="nav-link">Home</span>
         <span class="nav-link">Branches</span>
         <span class="nav-link">Memberships</span>
-        <span class="nav-link muted">Community — soon</span>
       </div>
       <div class="header-actions">
         <div class="account-chip" onClick="{{toggleMenu}}">
@@ -221,8 +238,8 @@
   <div class="hero">
     <div class="wrap">
       <p class="hero-eyebrow">Humanity · Ultimate · Mastery · Fitness</p>
-      <h1 class="hero-title">Humanity Ultimate Mastery Fitness. <span class="accent">Every Day and Every Place.</span></h1>
-      <p class="hero-sub">HUMF brings every branch, membership plan, and personal training package into one place — built for members who show up.</p>
+      <h1 class="hero-title"><span class="accent">Every Day and Every Where</span> Fitness</h1>
+      <p class="hero-sub">Low price and high franchise gym over Thailand — Built to Last Humanity.</p>
       <div class="search-bar">
         <span class="search-input">Search by address, city, or ZIP...</span>
         <div class="search-go">
@@ -333,26 +350,32 @@
   <div class="section">
     <div class="wrap">
       <div class="section-head">
-        <h2 class="section-title">Get Started</h2>
+        <h2 class="section-title">Easy to begin</h2>
       </div>
       <div class="tile-row">
         <div class="tile-card">
+          <div class="tile-number">1</div>
           <div class="tile-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke="#FF0091" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke="#FF0091" stroke-width="1.7"/></svg>
           </div>
-          <span class="tile-label">Find a Branch</span>
+          <h3 class="tile-title">Find Branch</h3>
+          <p class="tile-desc">Search the map and pick the HUMF closest to you.</p>
         </div>
         <div class="tile-card">
+          <div class="tile-number">2</div>
           <div class="tile-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="m12 2 2.4 7.2H21l-5.8 4.3 2.2 7.1L12 16.2 6.6 20.6l2.2-7.1L3 9.2h6.6Z" stroke="#FF0091" stroke-width="1.7" stroke-linejoin="round"/></svg>
           </div>
-          <span class="tile-label">View Membership</span>
+          <h3 class="tile-title">Select Package</h3>
+          <p class="tile-desc">Choose HUMF Membership or go Elite for full access.</p>
         </div>
         <div class="tile-card">
+          <div class="tile-number">3</div>
           <div class="tile-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 10v4M20 10v4" stroke="#FF0091" stroke-width="1.8" stroke-linecap="round"/><rect x="6" y="8" width="2.4" height="8" rx="1" stroke="#FF0091" stroke-width="1.8"/><rect x="15.6" y="8" width="2.4" height="8" rx="1" stroke="#FF0091" stroke-width="1.8"/><path d="M8.4 12h7.2" stroke="#FF0091" stroke-width="1.8" stroke-linecap="round"/></svg>
           </div>
-          <span class="tile-label">Book a Trainer</span>
+          <h3 class="tile-title">Start the Gym</h3>
+          <p class="tile-desc">Unlock the door with your Smart Key and get moving.</p>
         </div>
       </div>
     </div>

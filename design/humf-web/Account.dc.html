@@ -21,7 +21,7 @@
     /* Header (shared pattern) */
     .header { border-bottom: 1px solid rgba(0,0,0,0.06); }
     .header-inner { max-width: 1300px; margin: 0 auto; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
-    .logo-chip { display: flex; align-items: center; justify-content: center; background: #FF0091; padding: 9px 16px; border-radius: 10px; }
+    .logo-chip { display: flex; align-items: center; justify-content: center; background: #FF0091; padding: 9px 16px; border-radius: 0; border: none; }
     .logo-chip-text { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; color: #FFFFFF; }
     .nav-row { display: flex; align-items: center; gap: 30px; flex: 1 1 auto; justify-content: center; }
     .nav-link { font-size: 13.5px; font-weight: 700; color: #7E7E87; cursor: pointer; }
@@ -124,7 +124,6 @@
         <span class="nav-link">Home</span>
         <span class="nav-link">Branches</span>
         <span class="nav-link">Memberships</span>
-        <span class="nav-link muted">Community — soon</span>
       </div>
       <div class="header-actions">
         <div class="account-chip" onClick="{{toggleMenu}}">

@@ -22,7 +22,7 @@
     /* Header (shared with Home) */
     .header { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; }
     .header-inner { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; }
-    .logo-chip { display: flex; align-items: center; justify-content: center; background: #FF0091; padding: 9px 16px; border-radius: 10px; }
+    .logo-chip { display: flex; align-items: center; justify-content: center; background: #FF0091; padding: 9px 16px; border-radius: 0; border: none; }
     .logo-chip-text { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; color: #FFFFFF; }
     .nav-row { display: flex; align-items: center; gap: 34px; }
     .nav-link { font-size: 14px; font-weight: 700; color: #111111; }
@@ -145,7 +145,6 @@
         <span class="nav-link">Home</span>
         <span class="nav-link active">Branches</span>
         <span class="nav-link">Memberships</span>
-        <span class="nav-link muted">Community — soon</span>
       </div>
       <div class="header-actions">
         <div class="account-chip" onClick="{{toggleMenu}}">
