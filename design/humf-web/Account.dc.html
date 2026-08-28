@@ -76,6 +76,15 @@
     .profile-stat-num { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 20px; }
     .profile-stat-label { font-size: 10.5px; color: #7E7E87; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
 
+    .access-qr-card {
+      width: 100%; background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); border-radius: 20px;
+      padding: 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 6px;
+    }
+    .access-qr-title { font-size: 11px; font-weight: 800; color: #7E7E87; text-transform: uppercase; letter-spacing: 0.5px; }
+    .access-qr-box { width: 118px; height: 118px; border-radius: 16px; background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); padding: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.05); }
+    .access-qr-branch { font-size: 12.5px; font-weight: 700; }
+    .access-qr-note { font-size: 11px; color: #B4B4BC; text-align: center; }
+
     .invite-card {
       position: relative; overflow: hidden; border-radius: 20px; padding: 18px 20px; margin-top: 6px;
       display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #111111; width: 100%;
@@ -161,6 +170,25 @@
           <span class="profile-phone">081 ···· 5820</span>
           <a class="profile-edit">Edit profile</a>
           <span class="profile-tier">HUMF Membership</span>
+
+          <div class="access-qr-card">
+            <span class="access-qr-title">Gym Access QR</span>
+            <svg class="access-qr-box" width="118" height="118" viewBox="0 0 25 25">
+              <rect x="0" y="0" width="25" height="25" fill="#FFFFFF"/>
+              <rect x="0" y="0" width="7" height="7" fill="#111111"/><rect x="1.5" y="1.5" width="4" height="4" fill="#FFFFFF"/><rect x="2.6" y="2.6" width="1.8" height="1.8" fill="#111111"/>
+              <rect x="18" y="0" width="7" height="7" fill="#111111"/><rect x="19.5" y="1.5" width="4" height="4" fill="#FFFFFF"/><rect x="20.6" y="2.6" width="1.8" height="1.8" fill="#111111"/>
+              <rect x="0" y="18" width="7" height="7" fill="#111111"/><rect x="1.5" y="19.5" width="4" height="4" fill="#FFFFFF"/><rect x="2.6" y="20.6" width="1.8" height="1.8" fill="#111111"/>
+              <rect x="9" y="1" width="1.6" height="1.6" fill="#111111"/><rect x="12" y="1" width="1.6" height="1.6" fill="#111111"/><rect x="9" y="4" width="1.6" height="1.6" fill="#111111"/>
+              <rect x="15" y="9" width="1.6" height="1.6" fill="#111111"/><rect x="18" y="9" width="1.6" height="1.6" fill="#111111"/><rect x="9" y="9" width="1.6" height="1.6" fill="#111111"/>
+              <rect x="9" y="12" width="1.6" height="1.6" fill="#111111"/><rect x="12" y="12" width="1.6" height="1.6" fill="#111111"/><rect x="15" y="12" width="1.6" height="1.6" fill="#111111"/>
+              <rect x="21" y="12" width="1.6" height="1.6" fill="#111111"/><rect x="9" y="15" width="1.6" height="1.6" fill="#111111"/><rect x="13.2" y="15" width="1.6" height="1.6" fill="#111111"/>
+              <rect x="16.5" y="16.5" width="1.6" height="1.6" fill="#111111"/><rect x="9" y="18" width="1.6" height="1.6" fill="#111111"/><rect x="12" y="18" width="1.6" height="1.6" fill="#111111"/>
+              <rect x="15" y="21" width="1.6" height="1.6" fill="#111111"/><rect x="18" y="21" width="1.6" height="1.6" fill="#111111"/><rect x="21" y="18" width="1.6" height="1.6" fill="#111111"/>
+            </svg>
+            <span class="access-qr-branch">HUMF Thonglor · Main entrance</span>
+            <span class="access-qr-note">Show at any entrance scanner to unlock</span>
+          </div>
+
           <div class="profile-stat-row">
             <div class="profile-stat">
               <span class="profile-stat-num">12</span>
