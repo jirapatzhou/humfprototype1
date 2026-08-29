@@ -127,6 +127,12 @@
     .list-label { flex: 1 1 auto; font-size: 14.5px; font-weight: 700; }
     .list-trail { font-size: 12.5px; font-weight: 700; color: #FF0091; }
     .list-trail-box { font-size: 11.5px; font-weight: 700; color: #7E7E87; background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); padding: 7px 14px; border-radius: 999px; }
+    .list-trail-cta {
+      font-size: 11.5px; font-weight: 700; color: #FFFFFF; background: #FF0091; padding: 7px 14px; border-radius: 999px;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .list-trail-cta:hover { transform: scale(1.04); opacity: 0.92; }
+    .list-trail-cta:active { transform: scale(0.96); }
     .list-chevron { flex-shrink: 0; }
   </style>
 </helmet>
@@ -265,7 +271,7 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#111111" stroke-width="1.6"/><path d="M12 7.5V12l3 2" stroke="#111111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <span class="list-label">Visit &amp; Purchase History</span>
-            <svg class="list-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m9 6 6 6-6 6" stroke="#C7C7CE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="list-trail-cta">Upgrade my member</span>
           </div>
         </div>
 

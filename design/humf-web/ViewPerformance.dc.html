@@ -1,0 +1,266 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    .page {
+      width: 1440px; min-height: 980px; position: relative;
+      background: #FFFFFF; color: #111111;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+      display: flex; flex-direction: column;
+    }
+
+    /* Header (shared pattern) */
+    .header { border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .header-inner { max-width: 1300px; margin: 0 auto; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .logo-chip { display: flex; align-items: center; justify-content: center; background: #FF0091; padding: 9px 16px; border-radius: 0; border: none; }
+    .logo-chip-text { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; color: #FFFFFF; }
+    .nav-row { display: flex; align-items: center; gap: 30px; flex: 1 1 auto; justify-content: center; }
+    .nav-link { font-size: 13.5px; font-weight: 700; color: #7E7E87; cursor: pointer; }
+    .nav-link:hover { color: #111111; }
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .account-chip {
+      display: flex; align-items: center; gap: 9px; background: #F5F5F7; border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 999px; padding: 6px 14px 6px 6px; cursor: pointer;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .account-chip:hover { transform: scale(1.02); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+    .account-avatar { width: 32px; height: 32px; border-radius: 50%; background: #FF0091; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .account-avatar-text { color: #FFFFFF; font-weight: 800; font-size: 13px; }
+    .account-name { font-size: 13.5px; font-weight: 700; color: #111111; }
+
+    /* Perf header row */
+    .perf-wrap { max-width: 1300px; margin: 0 auto; padding: 36px 40px 60px 40px; display: flex; flex-direction: column; gap: 24px; }
+    .perf-top { display: flex; align-items: center; justify-content: space-between; }
+    .perf-title-col { display: flex; flex-direction: column; gap: 4px; }
+    .perf-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 28px; margin: 0; letter-spacing: -0.4px; }
+    .brand-word { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 3px; color: #B4B4BC; }
+    .perf-controls { display: flex; align-items: center; gap: 12px; }
+    .date-pill {
+      display: flex; align-items: center; gap: 10px; background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 999px; padding: 9px 16px;
+    }
+    .date-arrow { font-size: 13px; font-weight: 700; color: #7E7E87; cursor: pointer; }
+    .date-text { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #111111; }
+    .device-pill {
+      display: flex; align-items: center; gap: 7px; background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 999px; padding: 9px 14px;
+    }
+    .device-text { font-size: 12px; font-weight: 700; color: #111111; }
+    .device-dot { width: 6px; height: 6px; border-radius: 50%; background: #1BB864; }
+
+    /* Rings row — horizontal across the top */
+    .rings-row { display: flex; align-items: center; justify-content: space-around; background: #F5F5F7; border-radius: 24px; padding: 30px 20px; }
+    .ring-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .ring-wrap { position: relative; width: 110px; height: 110px; }
+    .ring-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+    .ring-value { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 22px; color: #111111; }
+    .ring-label { font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: #7E7E87; }
+
+    /* Tablet grid below rings */
+    .perf-grid { display: grid; grid-template-columns: 360px 1fr; gap: 24px; align-items: start; }
+
+    .stat-col { display: flex; flex-direction: column; gap: 16px; }
+    .stat-box {
+      background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); border-radius: 18px; padding: 18px 20px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .stat-box-title { font-size: 11px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: #7E7E87; }
+    .stat-box-body { display: flex; align-items: center; gap: 10px; }
+    .stat-check { width: 24px; height: 24px; border-radius: 50%; background: #1BB864; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .stat-main-text { font-size: 14px; font-weight: 700; color: #16965A; }
+    .stat-sub-text { font-size: 11.5px; color: #7E7E87; display: block; }
+    .stress-value { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 17px; color: #FF0091; background: rgba(255,0,145,0.1); border-radius: 9px; padding: 3px 9px; }
+
+    .connect-box {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      background: #111111; border-radius: 18px; padding: 16px 20px;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .connect-box:hover { transform: scale(1.01); box-shadow: 0 14px 30px rgba(0,0,0,0.18); }
+    .connect-box:active { transform: scale(0.98); }
+    .connect-label { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13.5px; color: #FFFFFF; }
+    .connect-icon { width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; }
+
+    .right-col { display: flex; flex-direction: column; gap: 16px; }
+    .section-label { font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 800; color: #111111; margin: 0; }
+    .list-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 20px rgba(0,0,0,0.04); border-radius: 20px; overflow: hidden; }
+    .list-row {
+      display: flex; align-items: center; gap: 12px; padding: 16px 18px; color: #111111;
+      transition: background 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .list-row:hover { background: #FAFAFB; }
+    .list-icon { width: 34px; height: 34px; border-radius: 10px; background: #F5F5F7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .list-label { flex: 1 1 auto; font-size: 14px; font-weight: 700; }
+
+    .activities-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 20px rgba(0,0,0,0.04); border-radius: 20px; padding: 8px; display: flex; flex-direction: column; gap: 6px; }
+    .activities-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 12px 4px 12px; }
+    .activities-title { font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: #7E7E87; }
+    .activity-row {
+      display: flex; align-items: center; gap: 14px; padding: 12px; border-radius: 14px;
+      transition: background 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .activity-row:hover { background: #F5F5F7; }
+    .activity-chip {
+      display: flex; align-items: center; gap: 6px; padding: 9px 12px; border-radius: 10px; flex-shrink: 0; min-width: 64px; justify-content: center;
+    }
+    .activity-chip-text { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 13px; }
+    .activity-name { flex: 1 1 auto; font-size: 14px; font-weight: 700; color: #111111; }
+    .activity-time { font-size: 12px; color: #7E7E87; text-align: right; }
+  </style>
+</helmet>
+
+<div class="page">
+  <div class="header">
+    <div class="header-inner">
+      <div class="logo-chip">
+        <span class="logo-chip-text">HUMF</span>
+      </div>
+      <div class="nav-row">
+        <span class="nav-link">Home</span>
+        <span class="nav-link">Branches</span>
+        <span class="nav-link">Memberships</span>
+      </div>
+      <div class="header-actions">
+        <div class="account-chip">
+          <div class="account-avatar"><span class="account-avatar-text">K</span></div>
+          <span class="account-name">Kaiqing</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="#7E7E87" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="perf-wrap">
+    <div class="perf-top">
+      <div class="perf-title-col">
+        <span class="brand-word">HUMF</span>
+        <h1 class="perf-title">My Performance</h1>
+      </div>
+      <div class="perf-controls">
+        <div class="date-pill">
+          <span class="date-arrow">‹</span>
+          <span class="date-text">Today</span>
+          <span class="date-arrow">›</span>
+        </div>
+        <div class="device-pill">
+          <div class="device-dot"></div>
+          <span class="device-text">Device 41%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rings-row">
+      <div class="ring-item">
+        <div class="ring-wrap">
+          <svg width="110" height="110" viewBox="0 0 96 96">
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#ECECEF" stroke-width="8"/>
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#FF0091" stroke-width="8" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="65" transform="rotate(-90 48 48)"/>
+          </svg>
+          <div class="ring-center"><span class="ring-value">74%</span></div>
+        </div>
+        <span class="ring-label">Sleep</span>
+      </div>
+      <div class="ring-item">
+        <div class="ring-wrap">
+          <svg width="110" height="110" viewBox="0 0 96 96">
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#ECECEF" stroke-width="8"/>
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#FF0091" stroke-width="8" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="118" transform="rotate(-90 48 48)"/>
+          </svg>
+          <div class="ring-center"><span class="ring-value">53%</span></div>
+        </div>
+        <span class="ring-label">Recovery</span>
+      </div>
+      <div class="ring-item">
+        <div class="ring-wrap">
+          <svg width="110" height="110" viewBox="0 0 96 96">
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#ECECEF" stroke-width="8"/>
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#FF0091" stroke-width="8" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="67" transform="rotate(-90 48 48)"/>
+          </svg>
+          <div class="ring-center"><span class="ring-value">15.4</span></div>
+        </div>
+        <span class="ring-label">Strain</span>
+      </div>
+    </div>
+
+    <div class="perf-grid">
+      <div class="stat-col">
+        <div class="stat-box">
+          <span class="stat-box-title">Health Monitor</span>
+          <div class="stat-box-body">
+            <div class="stat-check">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <span class="stat-main-text">Within range</span>
+              <span class="stat-sub-text">5/5 metrics</span>
+            </div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box-title">Stress Monitor</span>
+          <div class="stat-box-body">
+            <span class="stress-value">2.9</span>
+            <div>
+              <span class="stat-main-text" style="color:#C4006F;">High</span>
+              <span class="stat-sub-text">20:54</span>
+            </div>
+          </div>
+        </div>
+        <div class="connect-box">
+          <span class="connect-label">Connect device</span>
+          <div class="connect-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="7" y="7" width="10" height="10" rx="3" stroke="#FFFFFF" stroke-width="1.7"/><path d="M9.5 4h5M9.5 20h5" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-col">
+        <p class="section-label">My Day</p>
+        <div class="list-card">
+          <div class="list-row">
+            <div class="list-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" stroke="#111111" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="list-label">Daily Outlook</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m9 6 6 6-6 6" stroke="#C7C7CE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+        <div class="activities-card">
+          <div class="activities-head">
+            <span class="activities-title">Today's Activities</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 21h6v-6M21 3l-7 7M3 21l7-7" stroke="#7E7E87" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="activity-row">
+            <div class="activity-chip" style="background: rgba(255,0,145,0.1);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" fill="#FF0091"/></svg>
+              <span class="activity-chip-text" style="color:#FF0091;">7:00</span>
+            </div>
+            <span class="activity-name">Sleep</span>
+            <span class="activity-time">01:12 – 08:20</span>
+          </div>
+          <div class="activity-row">
+            <div class="activity-chip" style="background: rgba(255,0,145,0.1);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 10v4M20 10v4" stroke="#FF0091" stroke-width="1.8" stroke-linecap="round"/><rect x="6" y="8" width="2.4" height="8" rx="1" fill="#FF0091"/><rect x="15.6" y="8" width="2.4" height="8" rx="1" fill="#FF0091"/><path d="M8.4 12h7.2" stroke="#FF0091" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span class="activity-chip-text" style="color:#FF0091;">10.1</span>
+            </div>
+            <span class="activity-name">Weightlifting</span>
+            <span class="activity-time">15:58 – 17:20</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

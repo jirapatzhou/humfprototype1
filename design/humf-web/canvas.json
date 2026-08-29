@@ -8,7 +8,9 @@
     { "file": "Signup.dc.html", "x": 3080, "y": 1020, "w": 1440, "h": 980 },
     { "file": "Verify.dc.html", "x": 4620, "y": 0, "w": 1440, "h": 900 },
     { "file": "Success.dc.html", "x": 4620, "y": 1020, "w": 1440, "h": 900 },
-    { "file": "Account.dc.html", "x": 1560, "y": 1320, "w": 1440, "h": 1180 }
+    { "file": "Account.dc.html", "x": 1560, "y": 1320, "w": 1440, "h": 1180 },
+    { "file": "GetCard.dc.html", "x": 6160, "y": 0, "w": 1440, "h": 940 },
+    { "file": "ViewPerformance.dc.html", "x": 6160, "y": 1020, "w": 1440, "h": 1060 }
   ],
   "annotations": [
     { "id": "note-home", "x": 0, "y": -80, "w": 400, "text": "1 — Home, signed in\nMembership ฿349/mo (pink) + Elite Package ฿690/mo (premium black); real event cards for Wellness Wednesdays, Ice Bathing, Strength Challenge. Header shows the Kaiqing account chip + dropdown." },
@@ -19,7 +21,9 @@
     { "id": "note-signup", "x": 3080, "y": 940, "w": 400, "text": "4 — Sign Up" },
     { "id": "note-verify", "x": 4620, "y": -80, "w": 400, "text": "5 — Verify Email\nOTP sent after sign up; confirms account before first login." },
     { "id": "note-success", "x": 4620, "y": 940, "w": 400, "text": "6 — Successful Login\nConfirmation state after verification / login completes." },
-    { "id": "note-account", "x": 1560, "y": 1240, "w": 400, "text": "7 — My Account (signed-in)\nWeb version of the mobile Profile page — avatar, membership, gym access QR code, HUMF Card, coupons, history, payment, help." }
+    { "id": "note-account", "x": 1560, "y": 1240, "w": 400, "text": "7 — My Account (signed-in)\nWeb version of the mobile Profile page — avatar, membership, gym access QR code, HUMF Card, coupons, history, payment, help. HUMF Card row leads to Get HUMF Card; View My Performance row leads to My Performance." },
+    { "id": "note-getcard", "x": 6160, "y": -80, "w": 400, "text": "8 — Get HUMF Card\nReached after tapping Get card on the Account page. Card preview + delivery form: name, email, address." },
+    { "id": "note-viewperf", "x": 6160, "y": 940, "w": 400, "text": "9 — My Performance\nReached after tapping View My Performance on the Account page. Tablet/horizontal layout pulling the mobile Performance page's style — rings row on top, stat boxes + connect device on the left, My Day / Today's Activities on the right." }
   ],
   "launch": { "view": "canvas" }
 }
