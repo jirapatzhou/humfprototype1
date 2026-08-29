@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    .phone {
+      width: 390px; height: 844px; position: relative; overflow: hidden;
+      background: #FFFFFF; color: #111111;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+      display: flex; flex-direction: column;
+    }
+    .flow-header { flex-shrink: 0; padding: 18px 20px 6px 20px; display: flex; align-items: center; gap: 14px; }
+    .back-btn { width: 36px; height: 36px; border-radius: 12px; background: #F5F5F7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .page-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 19px; margin: 0; letter-spacing: -0.3px; }
+    .page-sub { font-size: 11.5px; color: #7E7E87; margin: 16px 20px 0 20px; }
+
+    .scroll { flex: 1 1 auto; overflow-y: auto; padding: 16px 20px 110px 20px; display: flex; flex-direction: column; gap: 18px; }
+
+    .legend-row { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .legend-item { display: flex; align-items: center; gap: 5px; font-size: 10.5px; font-weight: 700; color: #7E7E87; }
+    .legend-dot { width: 9px; height: 9px; border-radius: 3px; flex-shrink: 0; }
+    .legend-dot.open { background: #F5F5F7; border: 1.5px solid rgba(0,0,0,0.14); }
+    .legend-dot.tight { background: #FFF3D6; border: 1.5px solid #E7B94C; }
+    .legend-dot.full { background: #EDEDF0; }
+    .legend-dot.selected { background: #FF0091; }
+
+    .slot-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 9px; }
+    .slot-box {
+      aspect-ratio: 1 / 1; border-radius: 13px; background: #F5F5F7; border: 1.5px solid rgba(0,0,0,0.1);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .slot-box:active { transform: scale(0.94); }
+    .slot-box.tight { background: #FFF3D6; border-color: #E7B94C; }
+    .slot-box.full { background: #EDEDF0; border-color: transparent; }
+    .slot-box.selected { background: #FF0091; border-color: transparent; box-shadow: 0 8px 18px rgba(255,0,145,0.35); }
+    .slot-hour { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12px; }
+    .slot-box.full .slot-hour { color: #B4B4BC; }
+    .slot-box.selected .slot-hour { color: #FFFFFF; }
+    .slot-meta { font-size: 7.5px; font-weight: 700; color: #7E7E87; text-transform: uppercase; }
+    .slot-box.selected .slot-meta { color: rgba(255,255,255,0.85); }
+    .slot-box.full .slot-meta { color: #C7C7CE; }
+
+    .confirm-bar {
+      position: absolute; left: 0; right: 0; bottom: 0; flex-shrink: 0;
+      padding: 14px 20px 24px 20px; background: rgba(255,255,255,0.94); backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(0,0,0,0.06);
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .confirm-label-row { display: flex; align-items: center; justify-content: space-between; }
+    .confirm-label { font-size: 10.5px; font-weight: 700; color: #7E7E87; text-transform: uppercase; letter-spacing: 0.3px; }
+    .confirm-value { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 14px; }
+    .confirm-btn {
+      font-size: 14px; font-weight: 700; color: #FFFFFF; padding: 15px; border-radius: 999px; text-align: center;
+    }
+  </style>
+</helmet>
+
+<div class="phone">
+  <div class="flow-header">
+    <div class="back-btn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="m15 6-6 6 6 6" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h1 class="page-title">Plan My Workout</h1>
+  </div>
+  <p class="page-sub">HUMF Thonglor · pick a 1-hour slot · 24-hour access</p>
+
+  <div class="scroll">
+    <div class="legend-row">
+      <div class="legend-item"><div class="legend-dot open"></div>Open</div>
+      <div class="legend-item"><div class="legend-dot tight"></div>Almost full</div>
+      <div class="legend-item"><div class="legend-dot full"></div>Full</div>
+      <div class="legend-item"><div class="legend-dot selected"></div>Selected</div>
+    </div>
+
+    <div class="slot-grid">
+      <sc-for list="{{slots}}" as="item" hint-placeholder-count="24">
+        <div class="{{item.boxClass}}" onClick="{{item.pick}}">
+          <span class="slot-hour">{{item.hourLabel}}</span>
+          <span class="slot-meta">{{item.metaLabel}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div class="confirm-bar">
+    <div class="confirm-label-row">
+      <span class="confirm-label">Selected slot</span>
+      <span class="confirm-value">{{selectedLabel}}</span>
+    </div>
+    <div class="confirm-btn" style="background: {{confirmBg}}; opacity: {{confirmOpacity}}; pointer-events: {{confirmPointer}};" onClick="{{confirmBooking}}">{{confirmText}}</div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { selectedHour: null, booked: false };
+  }
+
+  buildSlots() {
+    const fullHours = [7, 8, 12, 18, 19];
+    const tightHours = [6, 9, 17, 20];
+    const out = [];
+    for (let h = 0; h < 24; h++) {
+      let status = 'open';
+      if (fullHours.includes(h)) status = 'full';
+      else if (tightHours.includes(h)) status = 'tight';
+      const selected = this.state.selectedHour === h;
+      const hourLabel = String(h).padStart(2, '0') + ':00';
+      const metaLabel = status === 'full' ? 'Full' : status === 'tight' ? 'Few' : '1 hr';
+      let boxClass = 'slot-box';
+      if (selected) boxClass += ' selected';
+      else if (status === 'full') boxClass += ' full';
+      else if (status === 'tight') boxClass += ' tight';
+      out.push({
+        h, hourLabel, metaLabel, boxClass,
+        pick: () => { if (status !== 'full') this.setState({ selectedHour: h, booked: false }); },
+      });
+    }
+    return out;
+  }
+
+  renderVals() {
+    const hasSelection = this.state.selectedHour !== null;
+    const h = this.state.selectedHour;
+    const selectedLabel = hasSelection
+      ? String(h).padStart(2, '0') + ':00–' + String((h + 1) % 24).padStart(2, '0') + ':00'
+      : 'No slot chosen yet';
+    const confirmText = this.state.booked ? 'Booked ✓' : 'Confirm Booking';
+    return {
+      slots: this.buildSlots(),
+      selectedLabel,
+      confirmText,
+      confirmBg: hasSelection ? (this.state.booked ? '#16965A' : '#111111') : '#B4B4BC',
+      confirmOpacity: hasSelection ? '1' : '0.6',
+      confirmPointer: hasSelection ? 'auto' : 'none',
+      confirmBooking: () => { if (hasSelection) this.setState({ booked: true }); },
+    };
+  }
+}
+</script>
+</body>
+</html>

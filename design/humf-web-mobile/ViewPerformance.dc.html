@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    .phone {
+      width: 390px; height: 844px; position: relative; overflow: hidden;
+      background: #FFFFFF; color: #111111;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+      display: flex; flex-direction: column;
+    }
+    .flow-header { flex-shrink: 0; padding: 18px 20px 4px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .flow-header-left { display: flex; align-items: center; gap: 14px; }
+    .back-btn { width: 36px; height: 36px; border-radius: 12px; background: #F5F5F7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .page-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 19px; margin: 0; letter-spacing: -0.3px; }
+    .date-pill { display: flex; align-items: center; gap: 8px; background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); border-radius: 999px; padding: 7px 12px; flex-shrink: 0; }
+    .date-arrow { font-size: 12px; font-weight: 700; color: #7E7E87; }
+    .date-text { font-size: 10.5px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; }
+
+    .scroll { flex: 1 1 auto; overflow-y: auto; padding: 16px 20px 40px 20px; display: flex; flex-direction: column; gap: 16px; }
+
+    .rings-row { display: flex; align-items: flex-start; justify-content: space-around; padding: 8px 0 2px 0; }
+    .ring-item { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+    .ring-wrap { position: relative; width: 88px; height: 88px; }
+    .ring-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+    .ring-value { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 17px; }
+    .ring-label { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: #7E7E87; }
+
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+    .stat-box { background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; padding: 13px 14px; display: flex; flex-direction: column; gap: 9px; }
+    .stat-box-title { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: #7E7E87; }
+    .stat-box-body { display: flex; align-items: center; gap: 8px; }
+    .stat-check { width: 18px; height: 18px; border-radius: 50%; background: #1BB864; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .stat-main-text { font-size: 11.5px; font-weight: 700; color: #16965A; }
+    .stat-sub-text { font-size: 10px; color: #7E7E87; display: block; }
+    .stress-value { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 14px; color: #FF0091; background: rgba(255,0,145,0.1); border-radius: 8px; padding: 2px 7px; }
+
+    .connect-box { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: #111111; border-radius: 16px; padding: 14px 16px; }
+    .connect-label { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12.5px; color: #FFFFFF; }
+    .connect-icon { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    .section-label { font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 800; margin: 2px 0 0 0; }
+    .list-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 16px rgba(0,0,0,0.04); border-radius: 18px; overflow: hidden; }
+    .list-row { display: flex; align-items: center; gap: 11px; padding: 13px 15px; }
+    .list-icon { width: 30px; height: 30px; border-radius: 10px; background: #F5F5F7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .list-label { flex: 1 1 auto; font-size: 12.5px; font-weight: 700; }
+
+    .activities-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 16px rgba(0,0,0,0.04); border-radius: 18px; padding: 7px; display: flex; flex-direction: column; gap: 5px; }
+    .activities-head { display: flex; align-items: center; justify-content: space-between; padding: 9px 9px 3px 9px; }
+    .activities-title { font-size: 10.5px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: #7E7E87; }
+    .activity-row { display: flex; align-items: center; gap: 11px; padding: 9px; }
+    .activity-chip { display: flex; align-items: center; gap: 5px; padding: 7px 9px; border-radius: 9px; flex-shrink: 0; min-width: 54px; justify-content: center; }
+    .activity-chip-text { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 11px; }
+    .activity-name { flex: 1 1 auto; font-size: 12.5px; font-weight: 700; }
+    .activity-time { font-size: 10.5px; color: #7E7E87; text-align: right; }
+  </style>
+</helmet>
+
+<div class="phone">
+  <div class="flow-header">
+    <div class="flow-header-left">
+      <div class="back-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="m15 6-6 6 6 6" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h1 class="page-title">My Performance</h1>
+    </div>
+    <div class="date-pill"><span class="date-arrow">‹</span><span class="date-text">Today</span><span class="date-arrow">›</span></div>
+  </div>
+
+  <div class="scroll">
+    <div class="rings-row">
+      <div class="ring-item">
+        <div class="ring-wrap">
+          <svg width="88" height="88" viewBox="0 0 96 96">
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#ECECEF" stroke-width="8"/>
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#FF0091" stroke-width="8" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="65" transform="rotate(-90 48 48)"/>
+          </svg>
+          <div class="ring-center"><span class="ring-value">74%</span></div>
+        </div>
+        <span class="ring-label">Sleep</span>
+      </div>
+      <div class="ring-item">
+        <div class="ring-wrap">
+          <svg width="88" height="88" viewBox="0 0 96 96">
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#ECECEF" stroke-width="8"/>
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#FF0091" stroke-width="8" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="118" transform="rotate(-90 48 48)"/>
+          </svg>
+          <div class="ring-center"><span class="ring-value">53%</span></div>
+        </div>
+        <span class="ring-label">Recovery</span>
+      </div>
+      <div class="ring-item">
+        <div class="ring-wrap">
+          <svg width="88" height="88" viewBox="0 0 96 96">
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#ECECEF" stroke-width="8"/>
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#FF0091" stroke-width="8" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="67" transform="rotate(-90 48 48)"/>
+          </svg>
+          <div class="ring-center"><span class="ring-value">15.4</span></div>
+        </div>
+        <span class="ring-label">Strain</span>
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-box">
+        <span class="stat-box-title">Health Monitor</span>
+        <div class="stat-box-body">
+          <div class="stat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><span class="stat-main-text">Within range</span><span class="stat-sub-text">5/5 metrics</span></div>
+        </div>
+      </div>
+      <div class="stat-box">
+        <span class="stat-box-title">Stress Monitor</span>
+        <div class="stat-box-body">
+          <span class="stress-value">2.9</span>
+          <div><span class="stat-main-text" style="color:#C4006F;">High</span><span class="stat-sub-text">20:54</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connect-box">
+      <span class="connect-label">Connect device</span>
+      <div class="connect-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="7" y="7" width="10" height="10" rx="3" stroke="#FFFFFF" stroke-width="1.7"/><path d="M9.5 4h5M9.5 20h5" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+    </div>
+
+    <p class="section-label">My Day</p>
+    <div class="list-card">
+      <div class="list-row">
+        <div class="list-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" stroke="#111111" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <span class="list-label">Daily Outlook</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m9 6 6 6-6 6" stroke="#C7C7CE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <div class="activities-card">
+      <div class="activities-head">
+        <span class="activities-title">Today's Activities</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 21h6v-6M21 3l-7 7M3 21l7-7" stroke="#7E7E87" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="activity-row">
+        <div class="activity-chip" style="background: rgba(255,0,145,0.1);">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" fill="#FF0091"/></svg>
+          <span class="activity-chip-text" style="color:#FF0091;">7:00</span>
+        </div>
+        <span class="activity-name">Sleep</span>
+        <span class="activity-time">01:12 – 08:20</span>
+      </div>
+      <div class="activity-row">
+        <div class="activity-chip" style="background: rgba(255,0,145,0.1);">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M4 10v4M20 10v4" stroke="#FF0091" stroke-width="1.8" stroke-linecap="round"/><rect x="6" y="8" width="2.4" height="8" rx="1" fill="#FF0091"/><rect x="15.6" y="8" width="2.4" height="8" rx="1" fill="#FF0091"/><path d="M8.4 12h7.2" stroke="#FF0091" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="activity-chip-text" style="color:#FF0091;">10.1</span>
+        </div>
+        <span class="activity-name">Weightlifting</span>
+        <span class="activity-time">15:58 – 17:20</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

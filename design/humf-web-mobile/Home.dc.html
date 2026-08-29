@@ -1,0 +1,255 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    a { color: #FF0091; text-decoration: none; }
+    .phone {
+      width: 390px; height: 844px; position: relative; overflow: hidden;
+      background: #FFFFFF; color: #111111;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+      display: flex; flex-direction: column;
+    }
+
+    /* Header */
+    .header { flex-shrink: 0; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .logo-chip { display: flex; align-items: center; justify-content: center; background: #FF0091; padding: 7px 13px; border-radius: 0; }
+    .logo-chip-text { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: -0.4px; color: #FFFFFF; }
+    .account-avatar-btn { width: 36px; height: 36px; border-radius: 50%; background: #FF0091; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .account-avatar-text { color: #FFFFFF; font-weight: 800; font-size: 13px; }
+
+    .scroll { flex: 1 1 auto; overflow-y: auto; padding: 0 20px 110px 20px; display: flex; flex-direction: column; gap: 30px; }
+
+    /* Hero */
+    .hero { text-align: center; padding-top: 26px; }
+    .hero-eyebrow { font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; color: #FF0091; font-weight: 800; margin: 0 0 12px 0; }
+    .hero-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 27px; line-height: 1.18; letter-spacing: -0.6px; margin: 0; }
+    .hero-title .accent { color: #FF0091; }
+    .hero-sub { font-size: 13px; color: #7E7E87; line-height: 1.55; margin: 14px 0 0 0; }
+    .search-bar {
+      display: flex; align-items: center; gap: 10px; margin: 20px 0 0 0;
+      background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); border-radius: 999px; padding: 6px 6px 6px 16px;
+    }
+    .search-input { flex: 1 1 auto; font-family: 'Manrope', sans-serif; font-size: 12.5px; color: #7E7E87; text-align: left; }
+    .search-go { width: 38px; height: 38px; border-radius: 50%; background: #FF0091; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+
+    /* Section shell */
+    .section-head { margin-bottom: 4px; }
+    .section-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.3px; margin: 0; }
+    .section-sub { font-size: 12px; color: #7E7E87; margin: 6px 0 14px 0; line-height: 1.5; }
+
+    /* Memberships — stacked full width */
+    .membership-col { display: flex; flex-direction: column; gap: 14px; }
+    .plan-card {
+      background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); border-radius: 20px; padding: 22px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .plan-card.featured { background: #FF0091; color: #FFFFFF; box-shadow: 0 14px 28px rgba(255,0,145,0.28); }
+    .plan-card.elite {
+      position: relative; overflow: hidden; color: #FFFFFF;
+      background: linear-gradient(135deg, #1c1c21 0%, #0B0B0D 45%, #0B0B0D 55%, #232328 100%);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.07);
+    }
+    .plan-card.elite::before {
+      content: ''; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; z-index: 0;
+      background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.16) 45%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.16) 55%, transparent 100%);
+      transform: skewX(-18deg); animation: elite-shine 3.4s ease-in-out infinite;
+    }
+    @keyframes elite-shine { 0% { left: -60%; } 55% { left: 130%; } 100% { left: 130%; } }
+    .plan-card.elite > * { position: relative; z-index: 1; }
+    .plan-top { display: flex; align-items: center; justify-content: space-between; }
+    .plan-name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15.5px; }
+    .plan-badge { font-size: 9px; font-weight: 800; letter-spacing: 0.4px; text-transform: uppercase; color: #FFFFFF; background: #FF0091; padding: 3px 9px; border-radius: 999px; }
+    .plan-card.featured .plan-badge { background: #FFFFFF; color: #FF0091; }
+    .plan-price-row { display: flex; align-items: baseline; gap: 5px; }
+    .plan-price { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 25px; }
+    .plan-card.elite .plan-price { color: #FF0091; text-shadow: 0 0 14px rgba(255,0,145,0.4); }
+    .plan-period { font-size: 11.5px; color: rgba(255,255,255,0.8); }
+    .plan-features { display: flex; flex-direction: column; gap: 7px; }
+    .plan-feature { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.9); }
+    .feature-check { width: 16px; height: 16px; border-radius: 50%; background: rgba(255,255,255,0.22); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .plan-card.elite .feature-check { background: rgba(255,0,145,0.2); }
+    .plan-cta {
+      margin-top: 2px; align-self: flex-start; font-size: 12px; font-weight: 700; padding: 10px 18px; border-radius: 999px;
+      background: #FFFFFF; color: #111111;
+    }
+
+    /* Events — stacked */
+    .event-col { display: flex; flex-direction: column; gap: 12px; }
+    .event-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 16px rgba(0,0,0,0.04); border-radius: 18px; padding: 16px; display: flex; gap: 14px; align-items: center; }
+    .event-thumb { width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .event-thumb.pink { background: #FF0091; }
+    .event-thumb.yellow { background: #FFE477; }
+    .event-thumb.tint { background: rgba(255,0,145,0.1); }
+    .event-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+    .event-date { font-size: 9.5px; font-weight: 800; color: #FF0091; text-transform: uppercase; letter-spacing: 0.3px; }
+    .event-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 13.5px; margin: 0; }
+    .event-desc { font-size: 11px; color: #7E7E87; line-height: 1.4; }
+
+    /* Easy to begin */
+    .step-col { display: flex; flex-direction: column; gap: 12px; }
+    .step-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 16px rgba(0,0,0,0.04); border-radius: 18px; padding: 16px; display: flex; align-items: center; gap: 14px; }
+    .step-number {
+      width: 26px; height: 26px; border-radius: 50%; background: #FF0091; color: #FFFFFF; flex-shrink: 0;
+      font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center;
+    }
+    .step-icon { width: 40px; height: 40px; border-radius: 12px; background: rgba(255,0,145,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .step-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 13.5px; margin: 0; }
+    .step-desc { font-size: 11px; color: #7E7E87; line-height: 1.4; }
+
+    .footer-note { font-size: 10.5px; color: #B4B4BC; line-height: 1.6; padding: 6px 0 4px 0; }
+
+    /* Tabbar */
+    .tabbar {
+      position: absolute; left: 0; right: 0; bottom: 0; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: space-around;
+      padding: 12px 12px 24px 12px;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+    .tab-label { font-size: 10px; font-weight: 700; color: #B4B4BC; }
+    .tab-item.active .tab-label { color: #FF0091; }
+    .tab-dot { width: 4px; height: 4px; border-radius: 50%; background: #FF0091; opacity: 0; }
+    .tab-item.active .tab-dot { opacity: 1; }
+  </style>
+</helmet>
+
+<div class="phone">
+  <div class="header">
+    <div class="logo-chip"><span class="logo-chip-text">HUMF</span></div>
+    <div class="account-avatar-btn"><span class="account-avatar-text">K</span></div>
+  </div>
+
+  <div class="scroll">
+    <div class="hero">
+      <p class="hero-eyebrow">Humanity · Ultimate · Mastery · Fitness</p>
+      <h1 class="hero-title"><span class="accent">Every Day and Every Where</span> Fitness</h1>
+      <p class="hero-sub">Low price and high franchise gym over Thailand — Built to Last Humanity.</p>
+      <div class="search-bar">
+        <span class="search-input">Search by address, city, ZIP...</span>
+        <div class="search-go">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="#FFFFFF" stroke-width="1.8"/><path d="m20 20-3.5-3.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-head">
+        <h2 class="section-title">Memberships</h2>
+        <p class="section-sub">Every HUMF membership unlocks live capacity booking and your digital Smart Key.</p>
+      </div>
+      <div class="membership-col">
+        <div class="plan-card featured">
+          <div class="plan-top"><span class="plan-name">Starter Package</span><span class="plan-badge">All-branch</span></div>
+          <div class="plan-price-row"><span class="plan-price">฿349</span><span class="plan-period">/ month</span></div>
+          <div class="plan-features">
+            <div class="plan-feature"><div class="feature-check"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Access 24/7</div>
+            <div class="plan-feature"><div class="feature-check"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Joining HUMF Community</div>
+            <div class="plan-feature"><div class="feature-check"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Receive HUMF Digital Card</div>
+          </div>
+          <div class="plan-cta">Get Started</div>
+        </div>
+        <div class="plan-card elite">
+          <div class="plan-top"><span class="plan-name">Elite Package</span><span class="plan-badge">Elite</span></div>
+          <div class="plan-price-row"><span class="plan-price">฿690</span><span class="plan-period">/ month</span></div>
+          <div class="plan-features">
+            <div class="plan-feature"><div class="feature-check"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FF0091" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>No reserve needed</div>
+            <div class="plan-feature"><div class="feature-check"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FF0091" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Parking access</div>
+            <div class="plan-feature"><div class="feature-check"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FF0091" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Access all branches</div>
+          </div>
+          <div class="plan-cta">Get Started</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-head">
+        <h2 class="section-title">What's Happening</h2>
+        <p class="section-sub">Events, classes, and challenges across every branch.</p>
+      </div>
+      <div class="event-col">
+        <div class="event-card">
+          <div class="event-thumb pink"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3v3M7 5l1.5 2.5M17 5l-1.5 2.5" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round"/><path d="M4 21c1-5 4-8 8-8s7 3 8 8" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.6" stroke="#FFFFFF" stroke-width="1.7"/></svg></div>
+          <div class="event-body">
+            <span class="event-date">Wed · 7:00 PM</span>
+            <h3 class="event-title">Wellness Wednesdays</h3>
+            <p class="event-desc">Guided mobility &amp; recovery, mats provided.</p>
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-thumb yellow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 14c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0" stroke="#111111" stroke-width="1.7" stroke-linecap="round"/><path d="M4 18c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0" stroke="#111111" stroke-width="1.7" stroke-linecap="round"/><path d="M12 4v8" stroke="#111111" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="4" r="1.6" fill="#111111"/></svg></div>
+          <div class="event-body">
+            <span class="event-date">Sat · 8:00 AM</span>
+            <h3 class="event-title">HUMF Ice Bathing Session</h3>
+            <p class="event-desc">Cold immersion &amp; breathwork with a coach.</p>
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-thumb tint"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="m12 2 2.4 7.2H21l-5.8 4.3 2.2 7.1L12 16.2 6.6 20.6l2.2-7.1L3 9.2h6.6Z" stroke="#FF0091" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+          <div class="event-body">
+            <span class="event-date">Starts Jan 6</span>
+            <h3 class="event-title">New Year Strength Challenge</h3>
+            <p class="event-desc">6-week challenge, weekly leaderboards.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-head">
+        <h2 class="section-title">Easy to begin</h2>
+      </div>
+      <div class="step-col">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke="#FF0091" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke="#FF0091" stroke-width="1.7"/></svg></div>
+          <div class="step-body"><h3 class="step-title">Find Branch</h3><p class="step-desc">Search the map, pick the closest HUMF.</p></div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m12 2 2.4 7.2H21l-5.8 4.3 2.2 7.1L12 16.2 6.6 20.6l2.2-7.1L3 9.2h6.6Z" stroke="#FF0091" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+          <div class="step-body"><h3 class="step-title">Select Package</h3><p class="step-desc">Starter Package or go Elite.</p></div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 10v4M20 10v4" stroke="#FF0091" stroke-width="1.8" stroke-linecap="round"/><rect x="6" y="8" width="2.4" height="8" rx="1" stroke="#FF0091" stroke-width="1.8"/><rect x="15.6" y="8" width="2.4" height="8" rx="1" stroke="#FF0091" stroke-width="1.8"/><path d="M8.4 12h7.2" stroke="#FF0091" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <div class="step-body"><h3 class="step-title">Start the Gym</h3><p class="step-desc">Unlock the door with your Smart Key.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer-note">HUMF member web prototype — structural skeleton only. Branch listings, membership tiers, and event details are placeholders pending final content.</p>
+  </div>
+
+  <div class="tabbar">
+    <div class="tab-item active">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 11.5 12 4l8 7.5" stroke="#FF0091" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke="#FF0091" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="tab-label">Home</span><div class="tab-dot"></div>
+    </div>
+    <div class="tab-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2Z" stroke="#B4B4BC" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="#B4B4BC" stroke-width="1.6"/></svg>
+      <span class="tab-label">Branches</span><div class="tab-dot"></div>
+    </div>
+    <div class="tab-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m12 2 2.4 7.2H21l-5.8 4.3 2.2 7.1L12 16.2 6.6 20.6l2.2-7.1L3 9.2h6.6Z" stroke="#B4B4BC" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <span class="tab-label">Memberships</span><div class="tab-dot"></div>
+    </div>
+    <div class="tab-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.2" r="3.4" stroke="#B4B4BC" stroke-width="1.6"/><path d="M4.8 19c1-3.4 3.6-5.2 7.2-5.2s6.2 1.8 7.2 5.2" stroke="#B4B4BC" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span class="tab-label">Account</span><div class="tab-dot"></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

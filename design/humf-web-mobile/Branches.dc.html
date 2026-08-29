@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    .phone {
+      width: 390px; height: 844px; position: relative; overflow: hidden;
+      background: #FFFFFF; color: #111111;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+      display: flex; flex-direction: column;
+    }
+    .header { flex-shrink: 0; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .logo-chip { display: flex; align-items: center; justify-content: center; background: #FF0091; padding: 7px 13px; border-radius: 0; }
+    .logo-chip-text { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: -0.4px; color: #FFFFFF; }
+    .account-avatar-btn { width: 36px; height: 36px; border-radius: 50%; background: #FF0091; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .account-avatar-text { color: #FFFFFF; font-weight: 800; font-size: 13px; }
+
+    .scroll { flex: 1 1 auto; overflow-y: auto; padding: 18px 20px 110px 20px; display: flex; flex-direction: column; gap: 18px; }
+    .page-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.4px; margin: 0; }
+    .page-sub { font-size: 12px; color: #7E7E87; margin: 6px 0 0 0; }
+    .search-bar {
+      display: flex; align-items: center; gap: 10px; background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 999px; padding: 6px 6px 6px 16px;
+    }
+    .search-input { flex: 1 1 auto; font-size: 12.5px; color: #7E7E87; }
+    .search-go { width: 36px; height: 36px; border-radius: 50%; background: #FF0091; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+
+    .map-panel { width: 100%; height: 170px; border-radius: 18px; overflow: hidden; background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); position: relative; }
+    .pin-label { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 8px; fill: #111111; }
+
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: #7E7E87; margin: 2px 0 0 0; }
+
+    .list-panel { display: flex; flex-direction: column; gap: 12px; }
+    .branch-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 16px rgba(0,0,0,0.04); border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+    .branch-top { display: flex; align-items: center; gap: 12px; }
+    .b-gauge { position: relative; width: 44px; height: 44px; flex-shrink: 0; }
+    .b-gauge-pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 11px; }
+    .b-name { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 14.5px; margin: 0; }
+    .b-meta { font-size: 11px; color: #7E7E87; display: flex; align-items: center; gap: 6px; margin-top: 2px; }
+    .b-dot-sep { width: 3px; height: 3px; border-radius: 50%; background: #C7C7CE; }
+    .branch-bottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .b-status { font-size: 11.5px; font-weight: 700; color: #C4006F; }
+    .b-book { font-size: 12px; font-weight: 700; color: #FFFFFF; background: #FF0091; padding: 8px 18px; border-radius: 999px; flex-shrink: 0; }
+    .b-book-disabled { background: #EDEDF0; color: #B4B4BC; }
+
+    .tabbar {
+      position: absolute; left: 0; right: 0; bottom: 0; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: space-around;
+      padding: 12px 12px 24px 12px;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+    .tab-label { font-size: 10px; font-weight: 700; color: #B4B4BC; }
+    .tab-item.active .tab-label { color: #FF0091; }
+    .tab-dot { width: 4px; height: 4px; border-radius: 50%; background: #FF0091; opacity: 0; }
+    .tab-item.active .tab-dot { opacity: 1; }
+  </style>
+</helmet>
+
+<div class="phone">
+  <div class="header">
+    <div class="logo-chip"><span class="logo-chip-text">HUMF</span></div>
+    <div class="account-avatar-btn"><span class="account-avatar-text">K</span></div>
+  </div>
+
+  <div class="scroll">
+    <div>
+      <h1 class="page-title">Find a HUMF near you</h1>
+      <p class="page-sub">5 branches across Bangkok, on live capacity.</p>
+    </div>
+
+    <div class="search-bar">
+      <span class="search-input">Search by address, city, ZIP...</span>
+      <div class="search-go"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="#FFFFFF" stroke-width="1.8"/><path d="m20 20-3.5-3.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    </div>
+
+    <svg class="map-panel" viewBox="0 0 350 170" preserveAspectRatio="xMidYMid slice">
+      <rect width="350" height="170" fill="#F5F5F7"/>
+      <path d="M0 60 C 90 40, 180 90, 350 55" stroke="#E3E3E8" stroke-width="10" fill="none"/>
+      <path d="M0 130 C 110 150, 220 100, 350 140" stroke="#E3E3E8" stroke-width="8" fill="none"/>
+      <rect x="230" y="20" width="90" height="60" rx="10" fill="#E9F3EC"/>
+      <circle cx="90" cy="65" r="7" fill="#FF0091"/><text x="90" y="52" text-anchor="middle" class="pin-label">Thonglor</text>
+      <circle cx="180" cy="45" r="7" fill="#FF0091"/><text x="180" y="34" text-anchor="middle" class="pin-label">Ari</text>
+      <circle cx="255" cy="95" r="7" fill="#FF0091"/><text x="255" y="112" text-anchor="middle" class="pin-label">Siam</text>
+      <circle cx="60" cy="120" r="5.5" fill="#111111"/>
+      <circle cx="310" cy="140" r="5.5" fill="#FF0091"/><text x="310" y="157" text-anchor="middle" class="pin-label">On Nut</text>
+      <circle cx="150" cy="95" r="6" fill="#111111"/><circle cx="150" cy="95" r="10" fill="none" stroke="#111111" stroke-width="1.5" opacity="0.3"/>
+    </svg>
+
+    <p class="section-label">Branches sorted by distance</p>
+
+    <div class="list-panel">
+      <div class="branch-card">
+        <div class="branch-top">
+          <div class="b-gauge">
+            <svg width="44" height="44" viewBox="0 0 54 54">
+              <circle cx="27" cy="27" r="22" fill="none" stroke="#F9DCEE" stroke-width="7"/>
+              <circle cx="27" cy="27" r="22" fill="none" stroke="#FF0091" stroke-width="7" stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="105" transform="rotate(-90 27 27)"/>
+            </svg>
+            <div class="b-gauge-pct">24%</div>
+          </div>
+          <div>
+            <p class="b-name">HUMF Thonglor</p>
+            <div class="b-meta"><span>0.8 km</span><div class="b-dot-sep"></div><span>Open until 22:00</span></div>
+          </div>
+        </div>
+        <div class="branch-bottom">
+          <span class="b-status">Low crowd · book anytime</span>
+          <div class="b-book">Book</div>
+        </div>
+      </div>
+
+      <div class="branch-card">
+        <div class="branch-top">
+          <div class="b-gauge">
+            <svg width="44" height="44" viewBox="0 0 54 54">
+              <circle cx="27" cy="27" r="22" fill="none" stroke="#F9DCEE" stroke-width="7"/>
+              <circle cx="27" cy="27" r="22" fill="none" stroke="#FF0091" stroke-width="7" stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="58" transform="rotate(-90 27 27)"/>
+            </svg>
+            <div class="b-gauge-pct">58%</div>
+          </div>
+          <div>
+            <p class="b-name">HUMF Ari</p>
+            <div class="b-meta"><span>1.4 km</span><div class="b-dot-sep"></div><span>Open until 23:00</span></div>
+          </div>
+        </div>
+        <div class="branch-bottom">
+          <span class="b-status">Moderate · a few slots left</span>
+          <div class="b-book">Book</div>
+        </div>
+      </div>
+
+      <div class="branch-card">
+        <div class="branch-top">
+          <div class="b-gauge">
+            <svg width="44" height="44" viewBox="0 0 54 54">
+              <circle cx="27" cy="27" r="22" fill="none" stroke="#F9DCEE" stroke-width="7"/>
+              <circle cx="27" cy="27" r="22" fill="none" stroke="#FF0091" stroke-width="7" stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="6" transform="rotate(-90 27 27)"/>
+            </svg>
+            <div class="b-gauge-pct">96%</div>
+          </div>
+          <div>
+            <p class="b-name">HUMF Siam</p>
+            <div class="b-meta"><span>2.6 km</span><div class="b-dot-sep"></div><span>Open until 22:00</span></div>
+          </div>
+        </div>
+        <div class="branch-bottom">
+          <span class="b-status">Near full · next slot 18:30</span>
+          <div class="b-book b-book-disabled">Full</div>
+        </div>
+      </div>
+
+      <div class="branch-card">
+        <div class="branch-top">
+          <div class="b-gauge">
+            <svg width="44" height="44" viewBox="0 0 54 54">
+              <circle cx="27" cy="27" r="22" fill="none" stroke="#F9DCEE" stroke-width="7"/>
+              <circle cx="27" cy="27" r="22" fill="none" stroke="#FF0091" stroke-width="7" stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="95" transform="rotate(-90 27 27)"/>
+            </svg>
+            <div class="b-gauge-pct">31%</div>
+          </div>
+          <div>
+            <p class="b-name">HUMF On Nut</p>
+            <div class="b-meta"><span>4.1 km</span><div class="b-dot-sep"></div><span>Open until 22:00</span></div>
+          </div>
+        </div>
+        <div class="branch-bottom">
+          <span class="b-status">Low crowd · book anytime</span>
+          <div class="b-book">Book</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabbar">
+    <div class="tab-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 11.5 12 4l8 7.5" stroke="#B4B4BC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke="#B4B4BC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="tab-label">Home</span><div class="tab-dot"></div>
+    </div>
+    <div class="tab-item active">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2Z" stroke="#FF0091" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="#FF0091" stroke-width="1.6"/></svg>
+      <span class="tab-label">Branches</span><div class="tab-dot"></div>
+    </div>
+    <div class="tab-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m12 2 2.4 7.2H21l-5.8 4.3 2.2 7.1L12 16.2 6.6 20.6l2.2-7.1L3 9.2h6.6Z" stroke="#B4B4BC" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <span class="tab-label">Memberships</span><div class="tab-dot"></div>
+    </div>
+    <div class="tab-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.2" r="3.4" stroke="#B4B4BC" stroke-width="1.6"/><path d="M4.8 19c1-3.4 3.6-5.2 7.2-5.2s6.2 1.8 7.2 5.2" stroke="#B4B4BC" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span class="tab-label">Account</span><div class="tab-dot"></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

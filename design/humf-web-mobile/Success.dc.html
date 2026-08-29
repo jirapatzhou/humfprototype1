@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    .phone {
+      width: 390px; height: 844px; position: relative; overflow: hidden;
+      background: #FF0091; color: #FFFFFF;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+    }
+    .glow-a { position: absolute; width: 340px; height: 340px; border-radius: 50%; background: rgba(255,255,255,0.08); top: -140px; left: -110px; }
+    .glow-b { position: absolute; width: 280px; height: 280px; border-radius: 50%; background: rgba(255,255,255,0.06); bottom: -110px; right: -90px; }
+    .card {
+      position: relative; width: 100%; background: #FFFFFF; border-radius: 26px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.25); padding: 34px 26px; display: flex; flex-direction: column; align-items: center; gap: 18px;
+      color: #111111;
+    }
+    .check-ring { width: 68px; height: 68px; border-radius: 50%; background: rgba(255,0,145,0.1); display: flex; align-items: center; justify-content: center; }
+    .check-fill { width: 48px; height: 48px; border-radius: 50%; background: #FF0091; display: flex; align-items: center; justify-content: center; }
+    .head-block { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+    .success-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 21px; margin: 0; }
+    .success-sub { font-size: 12.5px; color: #7E7E87; line-height: 1.55; margin: 0; max-width: 280px; }
+    .success-name { font-weight: 700; color: #FF0091; }
+    .mini-card { width: 100%; background: #F5F5F7; border-radius: 15px; padding: 13px 15px; display: flex; align-items: center; gap: 11px; }
+    .mini-avatar { width: 34px; height: 34px; border-radius: 50%; background: #FF0091; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .mini-avatar-text { color: #FFFFFF; font-weight: 800; font-size: 12.5px; }
+    .mini-info { display: flex; flex-direction: column; gap: 2px; }
+    .mini-name { font-size: 12.5px; font-weight: 700; }
+    .mini-meta { font-size: 10.5px; color: #7E7E87; }
+    .btn-obsidian { width: 100%; font-size: 13.5px; font-weight: 700; color: #FFFFFF; background: #111111; padding: 14px; border-radius: 999px; text-align: center; }
+    .btn-ghost { width: 100%; font-size: 12.5px; font-weight: 700; color: #111111; padding: 12px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); text-align: center; }
+  </style>
+</helmet>
+
+<div class="phone">
+  <div class="glow-a"></div>
+  <div class="glow-b"></div>
+  <div class="card">
+    <div class="check-ring">
+      <div class="check-fill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div class="head-block">
+      <h1 class="success-title">You're in!</h1>
+      <p class="success-sub">Welcome back, <span class="success-name">Kaiqing</span>. Your account is verified and ready.</p>
+    </div>
+    <div class="mini-card">
+      <div class="mini-avatar"><span class="mini-avatar-text">K</span></div>
+      <div class="mini-info"><span class="mini-name">Kaiqing</span><span class="mini-meta">Logged in · Elite Member</span></div>
+    </div>
+    <div class="btn-obsidian">Go to Home</div>
+    <div class="btn-ghost">View My Account</div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

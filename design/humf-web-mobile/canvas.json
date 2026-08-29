@@ -1,0 +1,29 @@
+{
+  "artboards": [
+    { "file": "HomeGuest.dc.html", "x": 0, "y": 0, "w": 390, "h": 844 },
+    { "file": "Home.dc.html", "x": 470, "y": 0, "w": 390, "h": 844 },
+    { "file": "Branches.dc.html", "x": 940, "y": 0, "w": 390, "h": 844 },
+    { "file": "PlanWorkout.dc.html", "x": 1410, "y": 0, "w": 390, "h": 844 },
+    { "file": "Login.dc.html", "x": 0, "y": 984, "w": 390, "h": 844 },
+    { "file": "Signup.dc.html", "x": 470, "y": 984, "w": 390, "h": 844 },
+    { "file": "Verify.dc.html", "x": 940, "y": 984, "w": 390, "h": 844 },
+    { "file": "Success.dc.html", "x": 1410, "y": 984, "w": 390, "h": 844 },
+    { "file": "Account.dc.html", "x": 0, "y": 1968, "w": 390, "h": 844 },
+    { "file": "GetCard.dc.html", "x": 470, "y": 1968, "w": 390, "h": 844 },
+    { "file": "ViewPerformance.dc.html", "x": 940, "y": 1968, "w": 390, "h": 844 }
+  ],
+  "annotations": [
+    { "id": "note-homeguest", "x": 0, "y": -80, "w": 390, "text": "1 — Home, signed out\nLog In / Sign Up buttons in the header, Log In as the last tab." },
+    { "id": "note-home", "x": 470, "y": -80, "w": 390, "text": "1b — Home, signed in\nAccount avatar in header; memberships and events stacked full-width." },
+    { "id": "note-branches", "x": 940, "y": -80, "w": 390, "text": "2 — Branches\nMap on top, branch cards stacked below. Book leads to Plan My Workout." },
+    { "id": "note-planworkout", "x": 1410, "y": -80, "w": 390, "text": "2b — Plan My Workout\n24 hourly slots, 5 per row, sticky confirm bar." },
+    { "id": "note-login", "x": 0, "y": 904, "w": 390, "text": "3 — Log In" },
+    { "id": "note-signup", "x": 470, "y": 904, "w": 390, "text": "4 — Sign Up" },
+    { "id": "note-verify", "x": 940, "y": 904, "w": 390, "text": "5 — Verify Email" },
+    { "id": "note-success", "x": 1410, "y": 904, "w": 390, "text": "6 — Successful Login" },
+    { "id": "note-account", "x": 0, "y": 1888, "w": 390, "text": "7 — My Account\nProfile, QR access, stats, membership & account lists, bottom tabbar." },
+    { "id": "note-getcard", "x": 470, "y": 1888, "w": 390, "text": "8 — Get HUMF Card\nCard preview stacked above the delivery form." },
+    { "id": "note-viewperf", "x": 940, "y": 1888, "w": 390, "text": "9 — My Performance\nRings, stat boxes, connect device, My Day, Today's Activities." }
+  ],
+  "launch": { "view": "canvas" }
+}
