@@ -3,6 +3,7 @@
     { "file": "Home.dc.html", "x": 0, "y": 0, "w": 1440, "h": 2200 },
     { "file": "HomeGuest.dc.html", "x": 0, "y": 2280, "w": 1440, "h": 2150 },
     { "file": "Branches.dc.html", "x": 1560, "y": 0, "w": 1440, "h": 1200 },
+    { "file": "PlanWorkout.dc.html", "x": 1560, "y": 2580, "w": 1440, "h": 1020 },
     { "file": "Login.dc.html", "x": 3080, "y": 0, "w": 1440, "h": 900 },
     { "file": "Signup.dc.html", "x": 3080, "y": 1020, "w": 1440, "h": 980 },
     { "file": "Verify.dc.html", "x": 4620, "y": 0, "w": 1440, "h": 900 },
@@ -12,7 +13,8 @@
   "annotations": [
     { "id": "note-home", "x": 0, "y": -80, "w": 400, "text": "1 — Home, signed in\nMembership ฿349/mo (pink) + Elite Package ฿690/mo (premium black); real event cards for Wellness Wednesdays, Ice Bathing, Strength Challenge. Header shows the Kaiqing account chip + dropdown." },
     { "id": "note-homeguest", "x": 0, "y": 2200, "w": 400, "text": "1b — Home, signed out\nSame page before login/sign up — header shows Log In / Sign Up buttons top right instead of the account chip." },
-    { "id": "note-branches", "x": 1560, "y": -80, "w": 400, "text": "2 — Branches\nBrand map (uniform pink pins) + live branch list." },
+    { "id": "note-branches", "x": 1560, "y": -80, "w": 400, "text": "2 — Branches\nBrand map (uniform pink pins) + live branch list. Tapping Book on any branch leads to Plan My Workout below." },
+    { "id": "note-planworkout", "x": 1560, "y": 2500, "w": 400, "text": "2b — Plan My Workout\nReached after tapping Book on Branches. 24 hourly 1-hour slots as square boxes, 5 per row — pick one, then Confirm Booking." },
     { "id": "note-login", "x": 3080, "y": -80, "w": 400, "text": "3 — Log In" },
     { "id": "note-signup", "x": 3080, "y": 940, "w": 400, "text": "4 — Sign Up" },
     { "id": "note-verify", "x": 4620, "y": -80, "w": 400, "text": "5 — Verify Email\nOTP sent after sign up; confirms account before first login." },

@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    a { color: #FF0091; text-decoration: none; } a:hover { color: #C4006F; }
+    .page {
+      width: 1440px; min-height: 980px; position: relative;
+      background: #FFFFFF; color: #111111;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+      display: flex; flex-direction: column;
+    }
+
+    /* Header (shared pattern) */
+    .header { border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .header-inner { max-width: 1300px; margin: 0 auto; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .logo-chip { display: flex; align-items: center; justify-content: center; background: #FF0091; padding: 9px 16px; border-radius: 0; border: none; }
+    .logo-chip-text { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; color: #FFFFFF; }
+    .nav-row { display: flex; align-items: center; gap: 30px; flex: 1 1 auto; justify-content: center; }
+    .nav-link { font-size: 13.5px; font-weight: 700; color: #7E7E87; cursor: pointer; }
+    .nav-link:hover { color: #111111; }
+    .nav-link.active { color: #111111; }
+    .header-actions { display: flex; align-items: center; gap: 12px; position: relative; }
+    .account-chip {
+      display: flex; align-items: center; gap: 9px; background: #F5F5F7; border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 999px; padding: 6px 14px 6px 6px; cursor: pointer;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .account-chip:hover { transform: scale(1.02); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+    .account-chip:active { transform: scale(0.97); }
+    .account-avatar { width: 32px; height: 32px; border-radius: 50%; background: #FF0091; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .account-avatar-text { color: #FFFFFF; font-weight: 800; font-size: 13px; }
+    .account-name { font-size: 13.5px; font-weight: 700; color: #111111; }
+
+    /* Body */
+    .wrap { max-width: 900px; margin: 0 auto; padding: 44px 40px 60px 40px; }
+    .plan-head { text-align: center; margin-bottom: 8px; }
+    .plan-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 34px; letter-spacing: -0.5px; margin: 0; }
+    .plan-sub { font-size: 14px; color: #7E7E87; margin: 10px 0 0 0; }
+
+    .legend-row { display: flex; align-items: center; justify-content: center; gap: 22px; margin: 26px 0 32px 0; }
+    .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; color: #7E7E87; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+    .legend-dot.open { background: #F5F5F7; border: 1.5px solid rgba(0,0,0,0.14); }
+    .legend-dot.tight { background: #FFF3D6; border: 1.5px solid #E7B94C; }
+    .legend-dot.full { background: #EDEDF0; }
+    .legend-dot.selected { background: #FF0091; }
+
+    .slot-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; max-width: 620px; margin: 0 auto; }
+    .slot-box {
+      aspect-ratio: 1 / 1; border-radius: 16px; background: #F5F5F7; border: 1.5px solid rgba(0,0,0,0.1);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; cursor: pointer;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1), background 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .slot-box:hover { transform: scale(1.04); box-shadow: 0 8px 18px rgba(0,0,0,0.08); }
+    .slot-box:active { transform: scale(0.96); }
+    .slot-box.tight { background: #FFF3D6; border-color: #E7B94C; }
+    .slot-box.full { background: #EDEDF0; border-color: transparent; color: #B4B4BC; cursor: default; }
+    .slot-box.full:hover { transform: none; box-shadow: none; }
+    .slot-box.selected { background: #FF0091; border-color: transparent; box-shadow: 0 10px 24px rgba(255,0,145,0.35); }
+    .slot-hour { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 15px; }
+    .slot-box.full .slot-hour { color: #B4B4BC; }
+    .slot-box.selected .slot-hour { color: #FFFFFF; }
+    .slot-meta { font-size: 9.5px; font-weight: 700; color: #7E7E87; text-transform: uppercase; letter-spacing: 0.3px; }
+    .slot-box.selected .slot-meta { color: rgba(255,255,255,0.85); }
+    .slot-box.full .slot-meta { color: #C7C7CE; }
+
+    .confirm-bar {
+      max-width: 620px; margin: 34px auto 0 auto; display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; background: #F5F5F7; border-radius: 20px; padding: 18px 22px;
+    }
+    .confirm-label-col { display: flex; flex-direction: column; gap: 2px; }
+    .confirm-label { font-size: 11px; font-weight: 700; color: #7E7E87; text-transform: uppercase; letter-spacing: 0.4px; }
+    .confirm-value { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 16px; }
+    .confirm-btn {
+      font-size: 14px; font-weight: 700; color: #FFFFFF; padding: 14px 26px; border-radius: 999px; text-align: center;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .confirm-btn:hover { transform: scale(1.03); opacity: 0.9; }
+    .confirm-btn:active { transform: scale(0.96); }
+  </style>
+</helmet>
+
+<div class="page">
+  <div class="header">
+    <div class="header-inner">
+      <div class="logo-chip">
+        <span class="logo-chip-text">HUMF</span>
+      </div>
+      <div class="nav-row">
+        <span class="nav-link">Home</span>
+        <span class="nav-link active">Branches</span>
+        <span class="nav-link">Memberships</span>
+      </div>
+      <div class="header-actions">
+        <div class="account-chip">
+          <div class="account-avatar"><span class="account-avatar-text">K</span></div>
+          <span class="account-name">Kaiqing</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="#7E7E87" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="plan-head">
+      <h1 class="plan-title">Plan My Workout</h1>
+      <p class="plan-sub">HUMF Thonglor · pick a 1-hour slot · 24-hour access</p>
+    </div>
+
+    <div class="legend-row">
+      <div class="legend-item"><div class="legend-dot open"></div>Open</div>
+      <div class="legend-item"><div class="legend-dot tight"></div>Almost full</div>
+      <div class="legend-item"><div class="legend-dot full"></div>Full</div>
+      <div class="legend-item"><div class="legend-dot selected"></div>Selected</div>
+    </div>
+
+    <div class="slot-grid">
+      <sc-for list="{{slots}}" as="item" hint-placeholder-count="24">
+        <div class="{{item.boxClass}}" onClick="{{item.pick}}">
+          <span class="slot-hour">{{item.hourLabel}}</span>
+          <span class="slot-meta">{{item.metaLabel}}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div class="confirm-bar">
+      <div class="confirm-label-col">
+        <span class="confirm-label">Selected slot</span>
+        <span class="confirm-value">{{selectedLabel}}</span>
+      </div>
+      <div class="confirm-btn" style="background: {{confirmBg}}; opacity: {{confirmOpacity}}; pointer-events: {{confirmPointer}};" onClick="{{confirmBooking}}">{{confirmText}}</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { selectedHour: null, booked: false };
+  }
+
+  buildSlots() {
+    const fullHours = [7, 8, 12, 18, 19];
+    const tightHours = [6, 9, 17, 20];
+    const out = [];
+    for (let h = 0; h < 24; h++) {
+      let status = 'open';
+      if (fullHours.includes(h)) status = 'full';
+      else if (tightHours.includes(h)) status = 'tight';
+      const selected = this.state.selectedHour === h;
+      const hourLabel = String(h).padStart(2, '0') + ':00';
+      const metaLabel = status === 'full' ? 'Full' : status === 'tight' ? 'Few left' : '1 hr';
+      let boxClass = 'slot-box';
+      if (selected) boxClass += ' selected';
+      else if (status === 'full') boxClass += ' full';
+      else if (status === 'tight') boxClass += ' tight';
+      out.push({
+        h, hourLabel, metaLabel, boxClass,
+        pick: () => { if (status !== 'full') this.setState({ selectedHour: h, booked: false }); },
+      });
+    }
+    return out;
+  }
+
+  renderVals() {
+    const hasSelection = this.state.selectedHour !== null;
+    const h = this.state.selectedHour;
+    const selectedLabel = hasSelection
+      ? String(h).padStart(2, '0') + ':00–' + String((h + 1) % 24).padStart(2, '0') + ':00'
+      : 'No slot chosen yet';
+    const confirmText = this.state.booked ? 'Booked ✓' : 'Confirm Booking';
+    return {
+      slots: this.buildSlots(),
+      selectedLabel,
+      confirmText,
+      confirmBg: hasSelection ? (this.state.booked ? '#16965A' : '#111111') : '#B4B4BC',
+      confirmOpacity: hasSelection ? '1' : '0.6',
+      confirmPointer: hasSelection ? 'auto' : 'none',
+      confirmBooking: () => { if (hasSelection) this.setState({ booked: true }); },
+    };
+  }
+}
+</script>
+</body>
+</html>
