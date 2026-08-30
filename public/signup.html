@@ -60,6 +60,13 @@
   .btn-obsidian:active { transform: scale(0.96); }
   .switch-row { text-align: center; font-size: 13.5px; color: #7E7E87; }
   .switch-link { font-weight: 700; }
+  .lang-toggle {
+    position: absolute; top: 24px; right: 24px; font-family: 'Manrope', sans-serif; font-size: 12.5px; font-weight: 700; color: #111111;
+    background: #F5F5F7; border: 1px solid rgba(0,0,0,0.08); border-radius: 999px; padding: 8px 14px; cursor: pointer; z-index: 5;
+    transition: transform 300ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .lang-toggle:hover { transform: scale(1.05); }
+  .lang-toggle:active { transform: scale(0.95); }
 </style>
 </head>
 <body>
@@ -72,20 +79,20 @@
       <span class="brand-word">HUMF</span>
     </div>
     <div class="brand-msg">
-      <p class="brand-title">Join HUMF in a couple minutes.</p>
-      <p class="brand-sub">One account, every branch. Here's what you get from day one:</p>
+      <p class="brand-title" data-i18n="signup.brand.title">Join HUMF in a couple minutes.</p>
+      <p class="brand-sub" data-i18n="signup.brand.sub">One account, every branch. Here's what you get from day one:</p>
       <div class="brand-list">
         <div class="brand-list-item">
           <div class="brand-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          Live capacity before you drive over
+          <span data-i18n="signup.feature1">Live capacity before you drive over</span>
         </div>
         <div class="brand-list-item">
           <div class="brand-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          Slot booking, so you always get a spot
+          <span data-i18n="signup.feature2">Slot booking, so you always get a spot</span>
         </div>
         <div class="brand-list-item">
           <div class="brand-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          A Smart Key that unlocks the door
+          <span data-i18n="signup.feature3">A Smart Key that unlocks the door</span>
         </div>
       </div>
     </div>
@@ -93,43 +100,45 @@
   </div>
 
   <div class="form-panel">
+    <button class="lang-toggle" type="button" data-lang-next="th">ไทย</button>
     <form class="form-card" onsubmit="window.location.href='/verify.html'; return false;">
       <div class="form-head">
-        <h1 class="form-title">Create your HUMF account</h1>
-        <p class="form-sub">Already a member? <a href="/login.html">Log in instead</a></p>
+        <h1 class="form-title" data-i18n="signup.form.title">Create your HUMF account</h1>
+        <p class="form-sub"><span data-i18n="signup.form.prompt">Already a member?</span> <a data-i18n="signup.form.cta" href="/login.html">Log in instead</a></p>
       </div>
       <div class="field-group">
         <div class="field-2col">
           <div class="field">
-            <span class="field-label">First name</span>
+            <span class="field-label" data-i18n="field.firstname">First name</span>
             <input class="field-input" type="text" placeholder="Nara">
           </div>
           <div class="field">
-            <span class="field-label">Last name</span>
+            <span class="field-label" data-i18n="field.lastname">Last name</span>
             <input class="field-input" type="text" placeholder="Suk">
           </div>
         </div>
         <div class="field">
-          <span class="field-label">Email</span>
+          <span class="field-label" data-i18n="field.email">Email</span>
           <input class="field-input" type="email" placeholder="you@email.com">
         </div>
         <div class="field">
-          <span class="field-label">Phone</span>
+          <span class="field-label" data-i18n="field.phone">Phone</span>
           <input class="field-input" type="tel" placeholder="081 234 5678">
         </div>
         <div class="field">
-          <span class="field-label">Password</span>
+          <span class="field-label" data-i18n="field.password">Password</span>
           <input class="field-input" type="password" placeholder="••••••••••">
         </div>
       </div>
       <div class="terms-row">
         <div class="checkbox"></div>
-        <span class="terms-text">I agree to HUMF's Terms of Service and Privacy Policy.</span>
+        <span class="terms-text" data-i18n="signup.terms">I agree to HUMF's Terms of Service and Privacy Policy.</span>
       </div>
-      <button class="btn-obsidian" type="submit">Create Account</button>
-      <p class="switch-row">Already have an account? <a class="switch-link" href="/login.html">Log in</a></p>
+      <button class="btn-obsidian" data-i18n="cta.createaccount" type="submit">Create Account</button>
+      <p class="switch-row"><span data-i18n="signup.switch.prompt">Already have an account?</span> <a class="switch-link" data-i18n="signup.switch.cta" href="/login.html">Log in</a></p>
     </form>
   </div>
 </div>
+<script src="/assets/i18n.js"></script>
 </body>
 </html>

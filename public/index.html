@@ -41,6 +41,13 @@
   }
   .btn-obsidian:hover { transform: scale(1.03); opacity: 0.9; }
   .btn-obsidian:active { transform: scale(0.96); }
+  .lang-toggle {
+    font-family: 'Manrope', sans-serif; font-size: 12.5px; font-weight: 700; color: #111111;
+    background: #F5F5F7; border: 1px solid rgba(0,0,0,0.08); border-radius: 999px; padding: 8px 14px; cursor: pointer;
+    transition: transform 300ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .lang-toggle:hover { transform: scale(1.05); }
+  .lang-toggle:active { transform: scale(0.95); }
 
   /* Hero */
   .hero { padding: 64px 0 76px 0; text-align: center; }
@@ -172,25 +179,26 @@
         <span class="logo-chip-text">HUMF</span>
       </a>
       <div class="nav-row">
-        <a class="nav-link" href="/">Home</a>
-        <a class="nav-link" href="/branches.html">Branches</a>
-        <a class="nav-link" href="#memberships">Memberships</a>
-        <a class="nav-link" href="/blog.html">Blog</a>
+        <a class="nav-link" data-i18n="nav.home" href="/">Home</a>
+        <a class="nav-link" data-i18n="nav.branches" href="/branches.html">Branches</a>
+        <a class="nav-link" data-i18n="nav.memberships" href="#memberships">Memberships</a>
+        <a class="nav-link" data-i18n="nav.blog" href="/blog.html">Blog</a>
       </div>
       <div class="header-actions">
-        <a class="btn-ghost" href="/login.html">Log In</a>
-        <a class="btn-obsidian" href="/signup.html">Sign Up</a>
+        <button class="lang-toggle" type="button" data-lang-next="th">ไทย</button>
+        <a class="btn-ghost" data-i18n="btn.login" href="/login.html">Log In</a>
+        <a class="btn-obsidian" data-i18n="btn.signup" href="/signup.html">Sign Up</a>
       </div>
     </div>
   </div>
 
   <div class="hero">
     <div class="wrap">
-      <p class="hero-eyebrow">Humanity · Ultimate · Mastery · Fitness</p>
-      <h1 class="hero-title"><span class="accent">Every Day and Every Where</span> Fitness</h1>
-      <p class="hero-sub">Low price and high franchise gym over Thailand — Built to Last Humanity.</p>
+      <p class="hero-eyebrow" data-i18n="hero.eyebrow">Humanity · Ultimate · Mastery · Fitness</p>
+      <h1 class="hero-title"><span class="accent" data-i18n="hero.accent">Every Day and Every Where</span> <span data-i18n="hero.rest">Fitness</span></h1>
+      <p class="hero-sub" data-i18n="hero.sub">Low price and high franchise gym over Thailand — Built to Last Humanity.</p>
       <form class="search-bar" action="/branches.html">
-        <input class="search-input" type="text" placeholder="Search by address, city, or ZIP...">
+        <input class="search-input" type="text" data-i18n-placeholder="search.placeholder" placeholder="Search by address, city, or ZIP...">
         <button class="search-go" type="submit" aria-label="Search">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="#FFFFFF" stroke-width="1.8"/><path d="m20 20-3.5-3.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/></svg>
         </button>
@@ -201,61 +209,61 @@
   <div class="section" id="memberships">
     <div class="wrap">
       <div class="section-head">
-        <h2 class="section-title">Memberships</h2>
-        <p class="section-sub">Every HUMF membership unlocks your home branch, live capacity booking, and your digital Smart Key.</p>
+        <h2 class="section-title" data-i18n="memberships.title">Memberships</h2>
+        <p class="section-sub" data-i18n="memberships.sub">Every HUMF membership unlocks your home branch, live capacity booking, and your digital Smart Key.</p>
       </div>
       <div class="membership-row">
         <div class="plan-card featured">
           <div class="plan-top">
-            <span class="plan-name">Starter Package</span>
-            <span class="plan-badge">All-branch</span>
+            <span class="plan-name" data-i18n="plan.starter.name">Starter Package</span>
+            <span class="plan-badge" data-i18n="plan.allbranch">All-branch</span>
           </div>
           <div class="plan-price-row">
             <span class="plan-price">฿349</span>
-            <span class="plan-period">/ month</span>
+            <span class="plan-period" data-i18n="plan.permonth">/ month</span>
           </div>
-          <p class="plan-desc">Billed monthly, cancel anytime. Includes slot booking, Smart Key entry, and access to every HUMF branch.</p>
+          <p class="plan-desc" data-i18n="plan.starter.desc">Billed monthly, cancel anytime. Includes slot booking, Smart Key entry, and access to every HUMF branch.</p>
           <div class="plan-features">
             <div class="plan-feature">
               <div class="feature-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              Access 24/7
+              <span data-i18n="plan.feature.access247">Access 24/7</span>
             </div>
             <div class="plan-feature">
               <div class="feature-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              Joining HUMF Community
+              <span data-i18n="plan.feature.community">Joining HUMF Community</span>
             </div>
             <div class="plan-feature">
               <div class="feature-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              Receive HUMF Digital Card
+              <span data-i18n="plan.feature.card">Receive HUMF Digital Card</span>
             </div>
           </div>
-          <a class="plan-cta" href="/signup.html">Get Started</a>
+          <a class="plan-cta" data-i18n="cta.getstarted" href="/signup.html">Get Started</a>
         </div>
         <div class="plan-card elite">
           <div class="plan-top">
-            <span class="plan-name">Elite Package</span>
-            <span class="plan-badge">Elite</span>
+            <span class="plan-name" data-i18n="plan.elite.name">Elite Package</span>
+            <span class="plan-badge" data-i18n="plan.elite.badge">Elite</span>
           </div>
           <div class="plan-price-row">
             <span class="plan-price">฿690</span>
-            <span class="plan-period">/ month</span>
+            <span class="plan-period" data-i18n="plan.permonth">/ month</span>
           </div>
-          <p class="plan-desc">Everything in Starter Package, upgraded for members who want more.</p>
+          <p class="plan-desc" data-i18n="plan.elite.desc">Everything in Starter Package, upgraded for members who want more.</p>
           <div class="plan-features">
             <div class="plan-feature">
               <div class="feature-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FF0091" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              No reserve needed
+              <span data-i18n="plan.feature.noreserve">No reserve needed</span>
             </div>
             <div class="plan-feature">
               <div class="feature-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FF0091" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              Parking access
+              <span data-i18n="plan.feature.parking">Parking access</span>
             </div>
             <div class="plan-feature">
               <div class="feature-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FF0091" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              Access all branches
+              <span data-i18n="plan.feature.allbranches">Access all branches</span>
             </div>
           </div>
-          <a class="plan-cta" href="/signup.html">Get Started</a>
+          <a class="plan-cta" data-i18n="cta.getstarted" href="/signup.html">Get Started</a>
         </div>
       </div>
     </div>
@@ -264,37 +272,37 @@
   <div class="section">
     <div class="wrap">
       <div class="section-head">
-        <h2 class="section-title">What's Happening at HUMF</h2>
-        <p class="section-sub">Events, classes, and challenges from the HUMF community — across every branch.</p>
+        <h2 class="section-title" data-i18n="events.title">What's Happening at HUMF</h2>
+        <p class="section-sub" data-i18n="events.sub">Events, classes, and challenges from the HUMF community — across every branch.</p>
       </div>
       <div class="event-row">
         <a class="event-card" href="/blog.html#wellness-wednesdays">
           <div class="event-thumb pink">
             <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="M12 3v3M7 5l1.5 2.5M17 5l-1.5 2.5" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round"/><path d="M4 21c1-5 4-8 8-8s7 3 8 8" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.6" stroke="#FFFFFF" stroke-width="1.7"/></svg>
           </div>
-          <span class="event-date">Every Wednesday · 7:00 PM</span>
-          <h3 class="event-title">Wellness Wednesdays</h3>
-          <p class="event-desc">Guided mobility and recovery session, open to every membership tier. Mats provided.</p>
+          <span class="event-date" data-i18n="event.wellness.date">Every Wednesday · 7:00 PM</span>
+          <h3 class="event-title" data-i18n="event.wellness.title">Wellness Wednesdays</h3>
+          <p class="event-desc" data-i18n="event.wellness.desc">Guided mobility and recovery session, open to every membership tier. Mats provided.</p>
         </a>
         <a class="event-card" href="/blog.html#ice-bathing">
           <div class="event-thumb yellow">
             <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="M4 14c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0" stroke="#111111" stroke-width="1.7" stroke-linecap="round"/><path d="M4 18c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0" stroke="#111111" stroke-width="1.7" stroke-linecap="round"/><path d="M12 4v8" stroke="#111111" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="4" r="1.6" fill="#111111"/></svg>
           </div>
-          <span class="event-date">Every Saturday · 8:00 AM</span>
-          <h3 class="event-title">HUMF Ice Bathing Session</h3>
-          <p class="event-desc">Community cold immersion and breathwork, led by a HUMF coach. Bring your own towel.</p>
+          <span class="event-date" data-i18n="event.ice.date">Every Saturday · 8:00 AM</span>
+          <h3 class="event-title" data-i18n="event.ice.title">HUMF Ice Bathing Session</h3>
+          <p class="event-desc" data-i18n="event.ice.desc">Community cold immersion and breathwork, led by a HUMF coach. Bring your own towel.</p>
         </a>
         <a class="event-card" href="/blog.html#strength-challenge">
           <div class="event-thumb tint">
             <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="m12 2 2.4 7.2H21l-5.8 4.3 2.2 7.1L12 16.2 6.6 20.6l2.2-7.1L3 9.2h6.6Z" stroke="#FF0091" stroke-width="1.7" stroke-linejoin="round"/></svg>
           </div>
-          <span class="event-date">Starts Jan 6 · 6 weeks</span>
-          <h3 class="event-title">New Year Strength Challenge</h3>
-          <p class="event-desc">A 6-week transformation challenge across every HUMF branch, with weekly leaderboards.</p>
+          <span class="event-date" data-i18n="event.challenge.date">Starts Jan 6 · 6 weeks</span>
+          <h3 class="event-title" data-i18n="event.challenge.title">New Year Strength Challenge</h3>
+          <p class="event-desc" data-i18n="event.challenge.desc">A 6-week transformation challenge across every HUMF branch, with weekly leaderboards.</p>
         </a>
       </div>
       <div class="section-more">
-        <a class="section-more-link" href="/blog.html">Read all HUMF stories →</a>
+        <a class="section-more-link" data-i18n="blog.readall" href="/blog.html">Read all HUMF stories →</a>
       </div>
     </div>
   </div>
@@ -302,7 +310,7 @@
   <div class="section">
     <div class="wrap">
       <div class="section-head">
-        <h2 class="section-title">Easy to begin</h2>
+        <h2 class="section-title" data-i18n="begin.title">Easy to begin</h2>
       </div>
       <div class="tile-row">
         <a class="tile-card" href="/branches.html">
@@ -310,24 +318,24 @@
           <div class="tile-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke="#FF0091" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke="#FF0091" stroke-width="1.7"/></svg>
           </div>
-          <h3 class="tile-title">Find Branch</h3>
-          <p class="tile-desc">Search the map and pick the HUMF closest to you.</p>
+          <h3 class="tile-title" data-i18n="begin.branch.title">Find Branch</h3>
+          <p class="tile-desc" data-i18n="begin.branch.desc">Search the map and pick the HUMF closest to you.</p>
         </a>
         <a class="tile-card" href="#memberships">
           <div class="tile-number">2</div>
           <div class="tile-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="m12 2 2.4 7.2H21l-5.8 4.3 2.2 7.1L12 16.2 6.6 20.6l2.2-7.1L3 9.2h6.6Z" stroke="#FF0091" stroke-width="1.7" stroke-linejoin="round"/></svg>
           </div>
-          <h3 class="tile-title">Select Package</h3>
-          <p class="tile-desc">Choose Starter Package or go Elite for full access.</p>
+          <h3 class="tile-title" data-i18n="begin.package.title">Select Package</h3>
+          <p class="tile-desc" data-i18n="begin.package.desc">Choose Starter Package or go Elite for full access.</p>
         </a>
         <a class="tile-card" href="/signup.html">
           <div class="tile-number">3</div>
           <div class="tile-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 10v4M20 10v4" stroke="#FF0091" stroke-width="1.8" stroke-linecap="round"/><rect x="6" y="8" width="2.4" height="8" rx="1" stroke="#FF0091" stroke-width="1.8"/><rect x="15.6" y="8" width="2.4" height="8" rx="1" stroke="#FF0091" stroke-width="1.8"/><path d="M8.4 12h7.2" stroke="#FF0091" stroke-width="1.8" stroke-linecap="round"/></svg>
           </div>
-          <h3 class="tile-title">Start the Gym</h3>
-          <p class="tile-desc">Unlock the door with your Smart Key and get moving.</p>
+          <h3 class="tile-title" data-i18n="begin.start.title">Start the Gym</h3>
+          <p class="tile-desc" data-i18n="begin.start.desc">Unlock the door with your Smart Key and get moving.</p>
         </a>
       </div>
     </div>
@@ -336,13 +344,14 @@
   <div class="footer">
     <div class="footer-inner">
       <div class="footer-links">
-        <span class="footer-link">Privacy</span>
-        <span class="footer-link">Terms</span>
-        <span class="footer-link">Contact</span>
+        <span class="footer-link" data-i18n="footer.privacy">Privacy</span>
+        <span class="footer-link" data-i18n="footer.terms">Terms</span>
+        <span class="footer-link" data-i18n="footer.contact">Contact</span>
       </div>
-      <p class="footer-note">HUMF member web prototype — structural skeleton only. Branch listings, membership tiers, and event details are placeholders pending final content.</p>
+      <p class="footer-note" data-i18n="footer.note">HUMF member web prototype — structural skeleton only. Branch listings, membership tiers, and event details are placeholders pending final content.</p>
     </div>
   </div>
 </div>
+<script src="/assets/i18n.js"></script>
 </body>
 </html>

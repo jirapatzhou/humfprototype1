@@ -58,6 +58,13 @@
   .divider-text { font-size: 11.5px; color: #B4B4BC; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
   .switch-row { text-align: center; font-size: 13.5px; color: #7E7E87; }
   .switch-link { font-weight: 700; }
+  .lang-toggle {
+    position: absolute; top: 24px; right: 24px; font-family: 'Manrope', sans-serif; font-size: 12.5px; font-weight: 700; color: #111111;
+    background: #F5F5F7; border: 1px solid rgba(0,0,0,0.08); border-radius: 999px; padding: 8px 14px; cursor: pointer; z-index: 5;
+    transition: transform 300ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .lang-toggle:hover { transform: scale(1.05); }
+  .lang-toggle:active { transform: scale(0.95); }
 </style>
 </head>
 <body>
@@ -70,41 +77,43 @@
       <span class="brand-word">HUMF</span>
     </div>
     <div class="brand-msg">
-      <p class="brand-title">Your gym, your city, one account.</p>
-      <p class="brand-sub">Log in to book a slot, unlock the door with your Smart Key, and manage your membership across every HUMF branch.</p>
+      <p class="brand-title" data-i18n="login.brand.title">Your gym, your city, one account.</p>
+      <p class="brand-sub" data-i18n="login.brand.sub">Log in to book a slot, unlock the door with your Smart Key, and manage your membership across every HUMF branch.</p>
     </div>
     <span class="brand-foot">© HUMF — member prototype</span>
   </div>
 
   <div class="form-panel">
+    <button class="lang-toggle" type="button" data-lang-next="th">ไทย</button>
     <form class="form-card" onsubmit="window.location.href='/home.html'; return false;">
       <div class="form-head">
-        <h1 class="form-title">Log in to HUMF</h1>
-        <p class="form-sub">Welcome back — pick up right where you left off.</p>
+        <h1 class="form-title" data-i18n="login.form.title">Log in to HUMF</h1>
+        <p class="form-sub" data-i18n="login.form.sub">Welcome back — pick up right where you left off.</p>
       </div>
       <div class="field-group">
         <div class="field">
-          <span class="field-label">Email or phone</span>
+          <span class="field-label" data-i18n="field.emailphone">Email or phone</span>
           <input class="field-input" type="text" placeholder="you@email.com">
         </div>
         <div class="field">
-          <span class="field-label">Password</span>
+          <span class="field-label" data-i18n="field.password">Password</span>
           <input class="field-input" type="password" placeholder="••••••••••">
         </div>
         <div class="field-row">
           <span></span>
-          <a class="forgot-link" href="#">Forgot password?</a>
+          <a class="forgot-link" data-i18n="login.forgot" href="#">Forgot password?</a>
         </div>
       </div>
-      <button class="btn-obsidian" type="submit">Log In</button>
+      <button class="btn-obsidian" data-i18n="btn.login" type="submit">Log In</button>
       <div class="divider-row">
         <div class="divider-line"></div>
-        <span class="divider-text">or</span>
+        <span class="divider-text" data-i18n="misc.or">or</span>
         <div class="divider-line"></div>
       </div>
-      <p class="switch-row">New to HUMF? <a class="switch-link" href="/signup.html">Create an account</a></p>
+      <p class="switch-row"><span data-i18n="login.switch.prompt">New to HUMF?</span> <a class="switch-link" data-i18n="login.switch.cta" href="/signup.html">Create an account</a></p>
     </form>
   </div>
 </div>
+<script src="/assets/i18n.js"></script>
 </body>
 </html>
