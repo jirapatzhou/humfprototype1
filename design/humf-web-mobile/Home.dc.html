@@ -45,14 +45,22 @@
 
     /* Live map */
     .map-card { position: relative; width: 100%; height: 210px; border-radius: 20px; overflow: hidden; margin-top: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); text-align: left; }
-    .map-head-row { position: absolute; top: 12px; left: 14px; right: 14px; display: flex; align-items: center; justify-content: space-between; z-index: 3; }
+    .map-card svg.map-svg { filter: blur(3.5px); transform: scale(1.04); }
+    .map-scrim { position: absolute; inset: 0; background: rgba(255,255,255,0.28); z-index: 2; }
+    .map-lock-badge {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 4;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+    }
+    .map-lock-circle { width: 46px; height: 46px; border-radius: 50%; background: rgba(17,17,17,0.85); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(0,0,0,0.25); }
+    .map-lock-text { font-size: 10.5px; font-weight: 800; color: #111111; background: rgba(255,255,255,0.9); padding: 4px 10px; border-radius: 999px; }
+    .map-head-row { position: absolute; top: 12px; left: 14px; right: 14px; display: flex; align-items: center; justify-content: space-between; z-index: 3; opacity: 0.55; }
     .map-live-badge { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.92); backdrop-filter: blur(6px); border-radius: 999px; padding: 6px 10px 6px 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     .map-live-dot { width: 6px; height: 6px; border-radius: 50%; background: #1BB864; animation: live-pulse 1.6s ease-in-out infinite; }
     @keyframes live-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
     .map-live-text { font-size: 9.5px; font-weight: 800; letter-spacing: 0.3px; text-transform: uppercase; color: #111111; }
-    .map-controls { position: absolute; bottom: 12px; right: 12px; display: flex; flex-direction: column; gap: 6px; z-index: 3; }
+    .map-controls { position: absolute; bottom: 12px; right: 12px; display: flex; flex-direction: column; gap: 6px; z-index: 3; opacity: 0.5; }
     .map-ctrl-btn { width: 30px; height: 30px; border-radius: 10px; background: rgba(255,255,255,0.95); box-shadow: 0 4px 10px rgba(0,0,0,0.12); display: flex; align-items: center; justify-content: center; }
-    .map-locate-btn { position: absolute; bottom: 12px; left: 12px; width: 34px; height: 34px; border-radius: 50%; background: #111111; box-shadow: 0 6px 14px rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center; z-index: 3; }
+    .map-locate-btn { position: absolute; bottom: 12px; left: 12px; width: 34px; height: 34px; border-radius: 50%; background: #111111; box-shadow: 0 6px 14px rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center; z-index: 3; opacity: 0.5; }
     .you-ring { animation: you-ring-pulse 2.2s ease-out infinite; transform-origin: center; }
     @keyframes you-ring-pulse { 0% { r: 6; opacity: 0.5; } 100% { r: 20; opacity: 0; } }
     .pin-label { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 8.5px; fill: #111111; }
@@ -152,7 +160,7 @@
         <div class="map-head-row">
           <div class="map-live-badge"><div class="map-live-dot"></div><span class="map-live-text">Live · near you</span></div>
         </div>
-        <svg width="100%" height="100%" viewBox="0 0 350 210" preserveAspectRatio="xMidYMid slice">
+        <svg class="map-svg" width="100%" height="100%" viewBox="0 0 350 210" preserveAspectRatio="xMidYMid slice">
           <rect width="350" height="210" fill="#EAEAE2"/>
           <rect x="235" y="10" width="105" height="80" rx="8" fill="#DCE9DC"/>
           <rect x="10" y="140" width="90" height="60" rx="8" fill="#D8E6F2"/>
@@ -184,6 +192,13 @@
           <circle cx="150" cy="150" r="7" fill="#111111"/>
           <circle cx="150" cy="150" r="3" fill="#FFFFFF"/>
         </svg>
+        <div class="map-scrim"></div>
+        <div class="map-lock-badge">
+          <div class="map-lock-circle">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2.5" stroke="#FFFFFF" stroke-width="1.8"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <span class="map-lock-text">Unlock with membership</span>
+        </div>
         <div class="map-controls">
           <div class="map-ctrl-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12h14" stroke="#111111" stroke-width="2" stroke-linecap="round"/></svg></div>
           <div class="map-ctrl-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#111111" stroke-width="2" stroke-linecap="round"/></svg></div>
