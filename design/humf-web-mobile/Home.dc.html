@@ -43,6 +43,21 @@
     .search-input { flex: 1 1 auto; font-family: 'Manrope', sans-serif; font-size: 12.5px; color: #7E7E87; text-align: left; }
     .search-go { width: 38px; height: 38px; border-radius: 50%; background: #FF0091; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
 
+    /* Live map */
+    .map-card { position: relative; width: 100%; height: 210px; border-radius: 20px; overflow: hidden; margin-top: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); text-align: left; }
+    .map-head-row { position: absolute; top: 12px; left: 14px; right: 14px; display: flex; align-items: center; justify-content: space-between; z-index: 3; }
+    .map-live-badge { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.92); backdrop-filter: blur(6px); border-radius: 999px; padding: 6px 10px 6px 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .map-live-dot { width: 6px; height: 6px; border-radius: 50%; background: #1BB864; animation: live-pulse 1.6s ease-in-out infinite; }
+    @keyframes live-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+    .map-live-text { font-size: 9.5px; font-weight: 800; letter-spacing: 0.3px; text-transform: uppercase; color: #111111; }
+    .map-controls { position: absolute; bottom: 12px; right: 12px; display: flex; flex-direction: column; gap: 6px; z-index: 3; }
+    .map-ctrl-btn { width: 30px; height: 30px; border-radius: 10px; background: rgba(255,255,255,0.95); box-shadow: 0 4px 10px rgba(0,0,0,0.12); display: flex; align-items: center; justify-content: center; }
+    .map-locate-btn { position: absolute; bottom: 12px; left: 12px; width: 34px; height: 34px; border-radius: 50%; background: #111111; box-shadow: 0 6px 14px rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center; z-index: 3; }
+    .you-ring { animation: you-ring-pulse 2.2s ease-out infinite; transform-origin: center; }
+    @keyframes you-ring-pulse { 0% { r: 6; opacity: 0.5; } 100% { r: 20; opacity: 0; } }
+    .pin-label { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 8.5px; fill: #111111; }
+    .pin-eta { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 7px; fill: #7E7E87; }
+
     /* Section shell */
     .section-head { margin-bottom: 4px; }
     .section-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.3px; margin: 0; }
@@ -131,6 +146,49 @@
         <div class="search-go">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="#FFFFFF" stroke-width="1.8"/><path d="m20 20-3.5-3.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/></svg>
         </div>
+      </div>
+
+      <div class="map-card">
+        <div class="map-head-row">
+          <div class="map-live-badge"><div class="map-live-dot"></div><span class="map-live-text">Live · near you</span></div>
+        </div>
+        <svg width="100%" height="100%" viewBox="0 0 350 210" preserveAspectRatio="xMidYMid slice">
+          <rect width="350" height="210" fill="#EAEAE2"/>
+          <rect x="235" y="10" width="105" height="80" rx="8" fill="#DCE9DC"/>
+          <rect x="10" y="140" width="90" height="60" rx="8" fill="#D8E6F2"/>
+          <path d="M0 70 C 90 50, 180 100, 350 65" stroke="#FFFFFF" stroke-width="9" fill="none"/>
+          <path d="M0 140 C 110 160, 220 110, 350 150" stroke="#FFFFFF" stroke-width="7" fill="none"/>
+          <path d="M120 0 L150 210" stroke="#FFFFFF" stroke-width="6" fill="none"/>
+          <path d="M255 0 L235 210" stroke="#FFFFFF" stroke-width="5" fill="none"/>
+
+          <g>
+            <circle cx="102" cy="95" r="7" fill="#FF0091"/>
+            <circle cx="102" cy="95" r="3" fill="#FFFFFF"/>
+            <text x="102" y="80" text-anchor="middle" class="pin-label">Thonglor</text>
+            <text x="102" y="112" text-anchor="middle" class="pin-eta">0.8 km</text>
+          </g>
+          <g>
+            <circle cx="190" cy="55" r="7" fill="#FF0091"/>
+            <circle cx="190" cy="55" r="3" fill="#FFFFFF"/>
+            <text x="190" y="40" text-anchor="middle" class="pin-label">Ari</text>
+            <text x="190" y="72" text-anchor="middle" class="pin-eta">1.4 km</text>
+          </g>
+          <g>
+            <circle cx="272" cy="118" r="7" fill="#FF0091"/>
+            <circle cx="272" cy="118" r="3" fill="#FFFFFF"/>
+            <text x="272" y="103" text-anchor="middle" class="pin-label">Siam</text>
+            <text x="272" y="135" text-anchor="middle" class="pin-eta">2.6 km</text>
+          </g>
+
+          <circle class="you-ring" cx="150" cy="150" r="6" fill="none" stroke="#111111" stroke-width="2"/>
+          <circle cx="150" cy="150" r="7" fill="#111111"/>
+          <circle cx="150" cy="150" r="3" fill="#FFFFFF"/>
+        </svg>
+        <div class="map-controls">
+          <div class="map-ctrl-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12h14" stroke="#111111" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="map-ctrl-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#111111" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+        <div class="map-locate-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#FFFFFF" stroke-width="1.8"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/></svg></div>
       </div>
     </div>
 
