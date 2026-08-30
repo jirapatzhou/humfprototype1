@@ -137,8 +137,11 @@
     background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 20px rgba(0,0,0,0.04);
     border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 14px;
     transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
+    text-decoration: none; color: inherit;
   }
   .event-card:hover { transform: scale(1.015); box-shadow: 0 16px 36px rgba(0,0,0,0.1); }
+  .section-more { text-align: center; margin-top: 28px; }
+  .section-more-link { font-size: 13.5px; font-weight: 700; }
   .event-card:active { transform: scale(0.98); }
   .event-thumb { height: 130px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .event-thumb.pink { background: #FF0091; }
@@ -185,6 +188,7 @@
         <a class="nav-link" href="/home.html">Home</a>
         <a class="nav-link" href="/branches.html">Branches</a>
         <a class="nav-link" href="#memberships">Memberships</a>
+        <a class="nav-link" href="/blog.html">Blog</a>
       </div>
       <div class="header-actions">
         <div class="account-chip" id="accountChip">
@@ -300,30 +304,33 @@
         <p class="section-sub">Events, classes, and challenges from the HUMF community — across every branch.</p>
       </div>
       <div class="event-row">
-        <div class="event-card">
+        <a class="event-card" href="/blog.html#wellness-wednesdays">
           <div class="event-thumb pink">
             <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="M12 3v3M7 5l1.5 2.5M17 5l-1.5 2.5" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round"/><path d="M4 21c1-5 4-8 8-8s7 3 8 8" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.6" stroke="#FFFFFF" stroke-width="1.7"/></svg>
           </div>
           <span class="event-date">Every Wednesday · 7:00 PM</span>
           <h3 class="event-title">Wellness Wednesdays</h3>
           <p class="event-desc">Guided mobility and recovery session, open to every membership tier. Mats provided.</p>
-        </div>
-        <div class="event-card">
+        </a>
+        <a class="event-card" href="/blog.html#ice-bathing">
           <div class="event-thumb yellow">
             <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="M4 14c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0" stroke="#111111" stroke-width="1.7" stroke-linecap="round"/><path d="M4 18c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0" stroke="#111111" stroke-width="1.7" stroke-linecap="round"/><path d="M12 4v8" stroke="#111111" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="4" r="1.6" fill="#111111"/></svg>
           </div>
           <span class="event-date">Every Saturday · 8:00 AM</span>
           <h3 class="event-title">HUMF Ice Bathing Session</h3>
           <p class="event-desc">Community cold immersion and breathwork, led by a HUMF coach. Bring your own towel.</p>
-        </div>
-        <div class="event-card">
+        </a>
+        <a class="event-card" href="/blog.html#strength-challenge">
           <div class="event-thumb tint">
             <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="m12 2 2.4 7.2H21l-5.8 4.3 2.2 7.1L12 16.2 6.6 20.6l2.2-7.1L3 9.2h6.6Z" stroke="#FF0091" stroke-width="1.7" stroke-linejoin="round"/></svg>
           </div>
           <span class="event-date">Starts Jan 6 · 6 weeks</span>
           <h3 class="event-title">New Year Strength Challenge</h3>
           <p class="event-desc">A 6-week transformation challenge across every HUMF branch, with weekly leaderboards.</p>
-        </div>
+        </a>
+      </div>
+      <div class="section-more">
+        <a class="section-more-link" href="/blog.html">Read all HUMF stories →</a>
       </div>
     </div>
   </div>
