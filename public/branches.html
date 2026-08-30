@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Branches — HUMF</title>
+<meta name="description" content="Find a HUMF branch near you, with live capacity.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23FF0091'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: #FF0091; text-decoration: none; } a:hover { color: #C4006F; }
+  .page {
+    width: 100%; position: relative;
+    background: #FFFFFF; color: #111111;
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    display: flex; flex-direction: column;
+  }
+
+  /* Header (shared with Home) */
+  .header { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; }
+  .header-inner { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; }
+  .logo-chip { display: flex; align-items: center; justify-content: center; background: #FF0091; padding: 9px 16px; border-radius: 0; border: none; }
+  .logo-chip-text { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; color: #FFFFFF; }
+  .nav-row { display: flex; align-items: center; gap: 34px; }
+  .nav-link { font-size: 14px; font-weight: 700; color: #111111; cursor: pointer; }
+  .nav-link.active { color: #FF0091; }
+  .header-actions { display: flex; align-items: center; gap: 12px; position: relative; }
+
+  /* Account chip + dropdown */
+  .account-chip {
+    display: flex; align-items: center; gap: 9px; background: #F5F5F7; border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 999px; padding: 6px 14px 6px 6px; cursor: pointer;
+    transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .account-chip:hover { transform: scale(1.02); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+  .account-chip:active { transform: scale(0.97); }
+  .account-avatar { width: 32px; height: 32px; border-radius: 50%; background: #FF0091; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .account-avatar-text { color: #FFFFFF; font-weight: 800; font-size: 13px; }
+  .account-name { font-size: 13.5px; font-weight: 700; color: #111111; }
+  .account-menu {
+    display: none; position: absolute; top: 56px; right: 0; width: 260px; background: #FFFFFF; border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.18); border: 1px solid rgba(0,0,0,0.06); padding: 8px; z-index: 30;
+  }
+  .account-menu-head { display: flex; align-items: center; gap: 12px; padding: 14px 12px; }
+  .account-menu-avatar { width: 44px; height: 44px; border-radius: 50%; background: #FF0091; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .account-menu-avatar-text { color: #FFFFFF; font-weight: 800; font-size: 16px; }
+  .account-menu-name { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 16px; }
+  .account-menu-divider { height: 1px; background: rgba(0,0,0,0.08); margin: 4px 8px; }
+  .account-menu-item {
+    display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: background 300ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .account-menu-item:hover { background: #F5F5F7; }
+  .account-menu-item.danger { color: #E0433D; }
+
+  /* Page intro */
+  .intro { max-width: 1180px; margin: 0 auto; padding: 20px 40px 8px 40px; }
+  .intro-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.5px; margin: 0; }
+  .intro-sub { font-size: 14.5px; color: #7E7E87; margin: 10px 0 0 0; max-width: 560px; line-height: 1.6; }
+  .search-bar {
+    display: flex; align-items: center; gap: 12px; max-width: 460px; margin: 24px 0 0 0;
+    background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); border-radius: 999px; padding: 8px 8px 8px 22px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  }
+  .search-input { flex: 1 1 auto; font-family: 'Manrope', sans-serif; font-size: 14px; color: #7E7E87; text-align: left; background: transparent; border: none; outline: none; }
+  .search-go {
+    width: 40px; height: 40px; border-radius: 50%; background: #FF0091; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; border: none; cursor: pointer;
+    transition: transform 300ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .search-go:hover { transform: scale(1.05); }
+  .search-go:active { transform: scale(0.95); }
+
+  /* Map + list layout */
+  .content-wrap { max-width: 1300px; margin: 0 auto; padding: 32px 40px 70px 40px; display: flex; flex-direction: column; gap: 32px; }
+  .section-label { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #7E7E87; font-weight: 700; margin: 0; }
+  .map-panel { width: 100%; height: 380px; border-radius: 24px; overflow: hidden; position: relative; background: #E7E4E7; box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+  .map-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .map-label { position: absolute; font-size: 11px; font-weight: 700; letter-spacing: 1px; color: rgba(23,5,18,0.32); text-transform: uppercase; }
+  .pin { position: absolute; display: flex; flex-direction: column; align-items: center; }
+  .pin-ring { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; background: #FF0091; box-shadow: 0 4px 14px rgba(255,0,145,0.4); }
+  .pin-ring::after { content: ''; position: absolute; inset: -9px; border-radius: 50%; border: 2px solid #FF0091; opacity: 0.4; animation: pin-pulse 2.2s ease-out infinite; }
+  @keyframes pin-pulse { 0% { transform: scale(0.7); opacity: 0.5; } 100% { transform: scale(1.8); opacity: 0; } }
+  .pin-dot { width: 11px; height: 11px; border-radius: 50%; background: #FFFFFF; }
+  .pin-label {
+    margin-top: 6px; font-size: 11px; font-weight: 700; color: #111111; background: #FFFFFF;
+    padding: 3px 9px; border-radius: 999px; box-shadow: 0 4px 10px rgba(0,0,0,0.14); white-space: nowrap;
+  }
+  .pin-plain { width: 13px; height: 13px; border-radius: 50%; background: #FF0091; border: 2.5px solid #FFFFFF; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+  .you-dot {
+    position: absolute; width: 16px; height: 16px; border-radius: 50%; background: #111111;
+    border: 3px solid #FFFFFF; box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  }
+
+  .list-panel { display: flex; flex-direction: column; gap: 14px; }
+  .branch-card {
+    background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); border-radius: 18px; padding: 20px 24px; display: flex; align-items: center; gap: 24px;
+    transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .branch-card:hover { transform: scale(1.008); box-shadow: 0 14px 28px rgba(0,0,0,0.08); }
+  .branch-card:active { transform: scale(0.99); }
+  .b-gauge { position: relative; width: 52px; height: 52px; flex-shrink: 0; }
+  .b-gauge-pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12px; }
+  .b-name-col { width: 170px; flex-shrink: 0; }
+  .b-name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15px; margin: 0; }
+  .b-meta-col { width: 200px; flex-shrink: 0; font-size: 12px; color: #7E7E87; display: flex; align-items: center; gap: 6px; }
+  .b-dot-sep { width: 3px; height: 3px; border-radius: 50%; background: #C7C7CE; flex-shrink: 0; }
+  .b-status-col { flex: 1 1 auto; font-size: 12px; font-weight: 700; color: #C4006F; min-width: 0; }
+  .b-book {
+    flex-shrink: 0; padding: 10px 16px; border-radius: 12px; background: #111111; color: #FFFFFF;
+    font-size: 12px; font-weight: 700; font-family: 'Manrope', sans-serif; border: none; cursor: pointer;
+    transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .b-book:hover { transform: scale(1.05); opacity: 0.92; }
+  .b-book:active { transform: scale(0.95); }
+  .b-book-disabled { background: #EDEDF0; color: #B4B4BC; cursor: default; }
+  .b-book-disabled:hover { transform: none; opacity: 1; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="header-inner">
+      <a class="logo-chip" href="/home.html">
+        <span class="logo-chip-text">HUMF</span>
+      </a>
+      <div class="nav-row">
+        <a class="nav-link" href="/home.html">Home</a>
+        <a class="nav-link active" href="/branches.html">Branches</a>
+        <a class="nav-link" href="/home.html#memberships">Memberships</a>
+      </div>
+      <div class="header-actions">
+        <div class="account-chip" id="accountChip">
+          <div class="account-avatar"><span class="account-avatar-text">K</span></div>
+          <span class="account-name">Kaiqing</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="#7E7E87" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="account-menu" id="accountMenu">
+          <div class="account-menu-head">
+            <div class="account-menu-avatar"><span class="account-menu-avatar-text">K</span></div>
+            <span class="account-menu-name">Kaiqing</span>
+          </div>
+          <div class="account-menu-divider"></div>
+          <a class="account-menu-item" href="/account.html">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.2" r="3.4" stroke="#111111" stroke-width="1.6"/><path d="M4.8 19c1-3.4 3.6-5.2 7.2-5.2s6.2 1.8 7.2 5.2" stroke="#111111" stroke-width="1.6" stroke-linecap="round"/></svg>
+            My Account
+          </a>
+          <div class="account-menu-item">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#111111" stroke-width="1.6"/><path d="M19.4 13.5a1.9 1.9 0 0 0 .38 2.1l.07.07a2.3 2.3 0 1 1-3.25 3.25l-.07-.07a1.9 1.9 0 0 0-2.1-.38 1.9 1.9 0 0 0-1.15 1.74V20.5a2.3 2.3 0 1 1-4.6 0v-.1a1.9 1.9 0 0 0-1.24-1.74 1.9 1.9 0 0 0-2.1.38l-.07.07a2.3 2.3 0 1 1-3.25-3.25l.07-.07a1.9 1.9 0 0 0 .38-2.1 1.9 1.9 0 0 0-1.74-1.15H3.5a2.3 2.3 0 1 1 0-4.6h.1a1.9 1.9 0 0 0 1.74-1.24 1.9 1.9 0 0 0-.38-2.1l-.07-.07A2.3 2.3 0 1 1 8.14 2.4l.07.07a1.9 1.9 0 0 0 2.1.38h.09a1.9 1.9 0 0 0 1.15-1.74V.9a2.3 2.3 0 1 1 4.6 0v.1a1.9 1.9 0 0 0 1.15 1.74h.09a1.9 1.9 0 0 0 2.1-.38l.07-.07a2.3 2.3 0 1 1 3.25 3.25l-.07.07a1.9 1.9 0 0 0-.38 2.1v.09a1.9 1.9 0 0 0 1.74 1.15h.1a2.3 2.3 0 1 1 0 4.6h-.1a1.9 1.9 0 0 0-1.74 1.15Z" stroke="#111111" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            Settings
+          </div>
+          <div class="account-menu-divider"></div>
+          <a class="account-menu-item danger" href="/">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M15 4H6a1.5 1.5 0 0 0-1.5 1.5v13A1.5 1.5 0 0 0 6 20h9" stroke="#E0433D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 12H10m10 0-3.5-3.5M20 12l-3.5 3.5" stroke="#E0433D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Log out
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="intro">
+    <h1 class="intro-title">Find a HUMF near you</h1>
+    <p class="intro-sub">5 branches across Bangkok, all on live capacity — see who's busy before you drive over.</p>
+    <form class="search-bar" action="/branches.html">
+      <input class="search-input" type="text" placeholder="Search by address, city, or ZIP...">
+      <button class="search-go" type="submit" aria-label="Search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="#FFFFFF" stroke-width="1.8"/><path d="m20 20-3.5-3.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </form>
+  </div>
+
+  <div class="content-wrap">
+    <div class="map-panel">
+      <svg class="map-svg" viewBox="0 0 1300 380" preserveAspectRatio="xMidYMid slice">
+        <rect width="1300" height="380" fill="#E7E4E7"/>
+        <path d="M-10 70 C 220 20, 420 60, 620 25 S 1000 -10, 1310 45" stroke="#FFFFFF" stroke-width="8" fill="none"/>
+        <path d="M-10 170 C 260 130, 480 220, 700 165 S 1040 100, 1310 150" stroke="#FFFFFF" stroke-width="11" fill="none"/>
+        <path d="M-10 280 C 240 320, 460 250, 700 300 S 1060 340, 1310 300" stroke="#FFFFFF" stroke-width="8" fill="none"/>
+        <path d="M240 -10 C 190 110, 300 190, 230 390" stroke="#FFFFFF" stroke-width="5" fill="none"/>
+        <path d="M760 -10 C 710 130, 820 220, 740 390" stroke="#FFFFFF" stroke-width="5" fill="none"/>
+        <path d="M500 -10 C 450 140, 540 230, 490 390" stroke="#FFFFFF" stroke-width="4" fill="none"/>
+        <path d="M-10 350 C 220 320, 460 370, 700 330 S 1060 300, 1310 340" stroke="#C7D8EC" stroke-width="24" fill="none" opacity="0.8"/>
+        <circle cx="1150" cy="80" r="70" fill="#D7E8D2" opacity="0.7"/>
+      </svg>
+      <span class="map-label" style="top: 26px; left: 330px;">Sukhumvit</span>
+      <span class="map-label" style="top: 200px; left: 60px;">Silom</span>
+      <span class="map-label" style="top: 330px; left: 520px;">Riverside</span>
+      <span class="map-label" style="top: 76px; left: 900px;">Ekkamai</span>
+
+      <div class="you-dot" style="top: 190px; left: 560px;"></div>
+
+      <div class="pin" style="top: 90px; left: 760px;">
+        <div class="pin-ring"><div class="pin-dot"></div></div>
+        <span class="pin-label">Thonglor · 24%</span>
+      </div>
+      <div class="pin" style="top: 230px; left: 320px;">
+        <div class="pin-ring"><div class="pin-dot"></div></div>
+        <span class="pin-label">Ari · 58%</span>
+      </div>
+      <div class="pin" style="top: 60px; left: 150px;">
+        <div class="pin-ring"><div class="pin-dot"></div></div>
+        <span class="pin-label">Siam · 96%</span>
+      </div>
+      <div class="pin" style="top: 290px; left: 980px;">
+        <div class="pin-ring"><div class="pin-dot"></div></div>
+        <span class="pin-label">On Nut · 31%</span>
+      </div>
+      <div class="pin-plain" style="position: absolute; top: 140px; left: 1130px;"></div>
+      <div class="pin-plain" style="position: absolute; top: 320px; left: 90px;"></div>
+    </div>
+
+    <p class="section-label">Branches sorted by distance</p>
+
+    <div class="list-panel">
+      <div class="branch-card">
+        <div class="b-gauge">
+          <svg width="52" height="52" viewBox="0 0 54 54">
+            <circle cx="27" cy="27" r="22" fill="none" stroke="#F9DCEE" stroke-width="7"/>
+            <circle cx="27" cy="27" r="22" fill="none" stroke="#FF0091" stroke-width="7" stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="105" transform="rotate(-90 27 27)"/>
+          </svg>
+          <div class="b-gauge-pct">24%</div>
+        </div>
+        <div class="b-name-col"><p class="b-name">HUMF Thonglor</p></div>
+        <div class="b-meta-col"><span>0.8 km</span><div class="b-dot-sep"></div><span>Open until 22:00</span></div>
+        <div class="b-status-col">Low crowd · book anytime</div>
+        <a class="b-book" href="/plan-workout.html">Book</a>
+      </div>
+
+      <div class="branch-card">
+        <div class="b-gauge">
+          <svg width="52" height="52" viewBox="0 0 54 54">
+            <circle cx="27" cy="27" r="22" fill="none" stroke="#F9DCEE" stroke-width="7"/>
+            <circle cx="27" cy="27" r="22" fill="none" stroke="#FF0091" stroke-width="7" stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="58" transform="rotate(-90 27 27)"/>
+          </svg>
+          <div class="b-gauge-pct">58%</div>
+        </div>
+        <div class="b-name-col"><p class="b-name">HUMF Ari</p></div>
+        <div class="b-meta-col"><span>1.4 km</span><div class="b-dot-sep"></div><span>Open until 23:00</span></div>
+        <div class="b-status-col">Moderate · a few slots left</div>
+        <a class="b-book" href="/plan-workout.html">Book</a>
+      </div>
+
+      <div class="branch-card">
+        <div class="b-gauge">
+          <svg width="52" height="52" viewBox="0 0 54 54">
+            <circle cx="27" cy="27" r="22" fill="none" stroke="#F9DCEE" stroke-width="7"/>
+            <circle cx="27" cy="27" r="22" fill="none" stroke="#FF0091" stroke-width="7" stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="6" transform="rotate(-90 27 27)"/>
+          </svg>
+          <div class="b-gauge-pct">96%</div>
+        </div>
+        <div class="b-name-col"><p class="b-name">HUMF Siam</p></div>
+        <div class="b-meta-col"><span>2.6 km</span><div class="b-dot-sep"></div><span>Open until 22:00</span></div>
+        <div class="b-status-col">Near full · next slot 18:30</div>
+        <span class="b-book b-book-disabled">Full</span>
+      </div>
+
+      <div class="branch-card">
+        <div class="b-gauge">
+          <svg width="52" height="52" viewBox="0 0 54 54">
+            <circle cx="27" cy="27" r="22" fill="none" stroke="#F9DCEE" stroke-width="7"/>
+            <circle cx="27" cy="27" r="22" fill="none" stroke="#FF0091" stroke-width="7" stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="95" transform="rotate(-90 27 27)"/>
+          </svg>
+          <div class="b-gauge-pct">31%</div>
+        </div>
+        <div class="b-name-col"><p class="b-name">HUMF On Nut</p></div>
+        <div class="b-meta-col"><span>4.1 km</span><div class="b-dot-sep"></div><span>Open until 22:00</span></div>
+        <div class="b-status-col">Low crowd · book anytime</div>
+        <a class="b-book" href="/plan-workout.html">Book</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/assets/account-menu.js"></script>
+</body>
+</html>

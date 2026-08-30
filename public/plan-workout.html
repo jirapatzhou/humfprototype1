@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan My Workout — HUMF</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23FF0091'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: #FF0091; text-decoration: none; }
+  .page {
+    width: 100%; min-height: 100vh; position: relative;
+    background: #FFFFFF; color: #111111;
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    display: flex; flex-direction: column;
+  }
+
+  /* Header (shared pattern) */
+  .header { border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .header-inner { max-width: 1300px; margin: 0 auto; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .logo-chip { display: flex; align-items: center; justify-content: center; background: #FF0091; padding: 9px 16px; border-radius: 0; border: none; }
+  .logo-chip-text { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; color: #FFFFFF; }
+  .nav-row { display: flex; align-items: center; gap: 30px; flex: 1 1 auto; justify-content: center; }
+  .nav-link { font-size: 13.5px; font-weight: 700; color: #7E7E87; cursor: pointer; }
+  .nav-link:hover { color: #111111; }
+  .nav-link.active { color: #111111; }
+  .header-actions { display: flex; align-items: center; gap: 12px; position: relative; }
+  .account-chip {
+    display: flex; align-items: center; gap: 9px; background: #F5F5F7; border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 999px; padding: 6px 14px 6px 6px; cursor: pointer;
+    transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .account-chip:hover { transform: scale(1.02); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+  .account-avatar { width: 32px; height: 32px; border-radius: 50%; background: #FF0091; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .account-avatar-text { color: #FFFFFF; font-weight: 800; font-size: 13px; }
+  .account-name { font-size: 13.5px; font-weight: 700; color: #111111; }
+
+  /* Body */
+  .wrap { max-width: 900px; margin: 0 auto; padding: 44px 40px 60px 40px; }
+  .plan-head { text-align: center; margin-bottom: 8px; }
+  .plan-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 34px; letter-spacing: -0.5px; margin: 0; }
+  .plan-sub { font-size: 14px; color: #7E7E87; margin: 10px 0 0 0; }
+
+  .legend-row { display: flex; align-items: center; justify-content: center; gap: 22px; margin: 26px 0 32px 0; }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; color: #7E7E87; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+  .legend-dot.open { background: #F5F5F7; border: 1.5px solid rgba(0,0,0,0.14); }
+  .legend-dot.tight { background: #FFF3D6; border: 1.5px solid #E7B94C; }
+  .legend-dot.full { background: #EDEDF0; }
+  .legend-dot.selected { background: #FF0091; }
+
+  .slot-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; max-width: 620px; margin: 0 auto; }
+  .slot-box {
+    aspect-ratio: 1 / 1; border-radius: 16px; background: #F5F5F7; border: 1.5px solid rgba(0,0,0,0.1);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; cursor: pointer;
+    transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1), background 300ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .slot-box:hover { transform: scale(1.04); box-shadow: 0 8px 18px rgba(0,0,0,0.08); }
+  .slot-box:active { transform: scale(0.96); }
+  .slot-box.tight { background: #FFF3D6; border-color: #E7B94C; }
+  .slot-box.full { background: #EDEDF0; border-color: transparent; color: #B4B4BC; cursor: default; }
+  .slot-box.full:hover { transform: none; box-shadow: none; }
+  .slot-box.selected { background: #FF0091; border-color: transparent; box-shadow: 0 10px 24px rgba(255,0,145,0.35); }
+  .slot-hour { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 15px; }
+  .slot-box.full .slot-hour { color: #B4B4BC; }
+  .slot-box.selected .slot-hour { color: #FFFFFF; }
+  .slot-meta { font-size: 9.5px; font-weight: 700; color: #7E7E87; text-transform: uppercase; letter-spacing: 0.3px; }
+  .slot-box.selected .slot-meta { color: rgba(255,255,255,0.85); }
+  .slot-box.full .slot-meta { color: #C7C7CE; }
+
+  .confirm-bar {
+    max-width: 620px; margin: 34px auto 0 auto; display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; background: #F5F5F7; border-radius: 20px; padding: 18px 22px;
+  }
+  .confirm-label-col { display: flex; flex-direction: column; gap: 2px; }
+  .confirm-label { font-size: 11px; font-weight: 700; color: #7E7E87; text-transform: uppercase; letter-spacing: 0.4px; }
+  .confirm-value { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 16px; }
+  .confirm-btn {
+    font-size: 14px; font-weight: 700; color: #FFFFFF; padding: 14px 26px; border-radius: 999px; text-align: center;
+    border: none; cursor: pointer;
+    transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .confirm-btn:hover { transform: scale(1.03); opacity: 0.9; }
+  .confirm-btn:active { transform: scale(0.96); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="header-inner">
+      <a class="logo-chip" href="/home.html">
+        <span class="logo-chip-text">HUMF</span>
+      </a>
+      <div class="nav-row">
+        <a class="nav-link" href="/home.html">Home</a>
+        <a class="nav-link active" href="/branches.html">Branches</a>
+        <a class="nav-link" href="/home.html#memberships">Memberships</a>
+      </div>
+      <div class="header-actions">
+        <a class="account-chip" href="/account.html">
+          <div class="account-avatar"><span class="account-avatar-text">K</span></div>
+          <span class="account-name">Kaiqing</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="#7E7E87" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="plan-head">
+      <h1 class="plan-title">Plan My Workout</h1>
+      <p class="plan-sub">HUMF Thonglor · pick a 1-hour slot · 24-hour access</p>
+    </div>
+
+    <div class="legend-row">
+      <div class="legend-item"><div class="legend-dot open"></div>Open</div>
+      <div class="legend-item"><div class="legend-dot tight"></div>Almost full</div>
+      <div class="legend-item"><div class="legend-dot full"></div>Full</div>
+      <div class="legend-item"><div class="legend-dot selected"></div>Selected</div>
+    </div>
+
+    <div class="slot-grid" id="slotGrid">
+      <div class="slot-box" data-hour="0" data-status="open"><span class="slot-hour">00:00</span><span class="slot-meta">1 hr</span></div>
+      <div class="slot-box" data-hour="1" data-status="open"><span class="slot-hour">01:00</span><span class="slot-meta">1 hr</span></div>
+      <div class="slot-box" data-hour="2" data-status="open"><span class="slot-hour">02:00</span><span class="slot-meta">1 hr</span></div>
+      <div class="slot-box" data-hour="3" data-status="open"><span class="slot-hour">03:00</span><span class="slot-meta">1 hr</span></div>
+      <div class="slot-box" data-hour="4" data-status="open"><span class="slot-hour">04:00</span><span class="slot-meta">1 hr</span></div>
+      <div class="slot-box" data-hour="5" data-status="open"><span class="slot-hour">05:00</span><span class="slot-meta">1 hr</span></div>
+      <div class="slot-box tight" data-hour="6" data-status="tight"><span class="slot-hour">06:00</span><span class="slot-meta">Few left</span></div>
+      <div class="slot-box full" data-hour="7" data-status="full"><span class="slot-hour">07:00</span><span class="slot-meta">Full</span></div>
+      <div class="slot-box full" data-hour="8" data-status="full"><span class="slot-hour">08:00</span><span class="slot-meta">Full</span></div>
+      <div class="slot-box tight" data-hour="9" data-status="tight"><span class="slot-hour">09:00</span><span class="slot-meta">Few left</span></div>
+      <div class="slot-box" data-hour="10" data-status="open"><span class="slot-hour">10:00</span><span class="slot-meta">1 hr</span></div>
+      <div class="slot-box" data-hour="11" data-status="open"><span class="slot-hour">11:00</span><span class="slot-meta">1 hr</span></div>
+      <div class="slot-box full" data-hour="12" data-status="full"><span class="slot-hour">12:00</span><span class="slot-meta">Full</span></div>
+      <div class="slot-box" data-hour="13" data-status="open"><span class="slot-hour">13:00</span><span class="slot-meta">1 hr</span></div>
+      <div class="slot-box" data-hour="14" data-status="open"><span class="slot-hour">14:00</span><span class="slot-meta">1 hr</span></div>
+      <div class="slot-box" data-hour="15" data-status="open"><span class="slot-hour">15:00</span><span class="slot-meta">1 hr</span></div>
+      <div class="slot-box" data-hour="16" data-status="open"><span class="slot-hour">16:00</span><span class="slot-meta">1 hr</span></div>
+      <div class="slot-box tight" data-hour="17" data-status="tight"><span class="slot-hour">17:00</span><span class="slot-meta">Few left</span></div>
+      <div class="slot-box full" data-hour="18" data-status="full"><span class="slot-hour">18:00</span><span class="slot-meta">Full</span></div>
+      <div class="slot-box full" data-hour="19" data-status="full"><span class="slot-hour">19:00</span><span class="slot-meta">Full</span></div>
+      <div class="slot-box tight" data-hour="20" data-status="tight"><span class="slot-hour">20:00</span><span class="slot-meta">Few left</span></div>
+      <div class="slot-box" data-hour="21" data-status="open"><span class="slot-hour">21:00</span><span class="slot-meta">1 hr</span></div>
+      <div class="slot-box" data-hour="22" data-status="open"><span class="slot-hour">22:00</span><span class="slot-meta">1 hr</span></div>
+      <div class="slot-box" data-hour="23" data-status="open"><span class="slot-hour">23:00</span><span class="slot-meta">1 hr</span></div>
+    </div>
+
+    <div class="confirm-bar">
+      <div class="confirm-label-col">
+        <span class="confirm-label">Selected slot</span>
+        <span class="confirm-value" id="confirmValue">No slot chosen yet</span>
+      </div>
+      <button class="confirm-btn" id="confirmBtn" style="background: #B4B4BC; opacity: 0.6; pointer-events: none;" type="button">Confirm Booking</button>
+    </div>
+  </div>
+</div>
+<script src="/assets/plan-workout.js"></script>
+</body>
+</html>

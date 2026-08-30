@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign Up — HUMF</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23FF0091'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: #FF0091; text-decoration: none; } a:hover { color: #C4006F; }
+  .page {
+    width: 100%; min-height: 100vh; position: relative;
+    background: #FFFFFF; color: #111111;
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    display: flex;
+  }
+  .brand-panel {
+    width: 44%; min-height: 100vh; background: #FF0091; position: relative; overflow: hidden;
+    display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between;
+    padding: 56px;
+  }
+  .brand-lockup { display: flex; align-items: center; gap: 10px; }
+  .brand-mark { width: 40px; height: 40px; border-radius: 11px; background: #FFFFFF; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .brand-word { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 20px; color: #FFFFFF; }
+  .brand-msg { max-width: 380px; }
+  .brand-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 36px; line-height: 1.2; color: #FFFFFF; margin: 0; letter-spacing: -0.5px; }
+  .brand-sub { font-size: 14.5px; color: rgba(255,255,255,0.82); line-height: 1.6; margin-top: 14px; }
+  .brand-list { display: flex; flex-direction: column; gap: 12px; margin-top: 22px; }
+  .brand-list-item { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: rgba(255,255,255,0.9); font-weight: 600; }
+  .brand-check { width: 20px; height: 20px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .brand-foot { font-size: 12px; color: rgba(255,255,255,0.65); }
+
+  .form-panel { flex: 1 1 auto; display: flex; align-items: center; justify-content: center; padding: 40px; }
+  .form-card { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 20px; }
+  .form-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 26px; margin: 0; letter-spacing: -0.4px; }
+  .form-head { display: flex; flex-direction: column; gap: 10px; }
+  .form-sub { font-size: 13.5px; color: #7E7E87; margin: 0; }
+  .field-group { display: flex; flex-direction: column; gap: 14px; }
+  .field-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .field { display: flex; flex-direction: column; gap: 7px; }
+  .field-label { font-size: 12px; font-weight: 700; color: #111111; }
+  .field-input {
+    font-family: 'Manrope', sans-serif; font-size: 14px; color: #111111;
+    background: #F5F5F7; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 13px 14px;
+    transition: border-color 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1);
+    outline: none;
+  }
+  .field-input:focus { border-color: #FF0091; box-shadow: 0 0 0 3px rgba(255,0,145,0.1); }
+  .terms-row { display: flex; align-items: flex-start; gap: 10px; }
+  .checkbox { width: 18px; height: 18px; border-radius: 6px; border: 1.5px solid rgba(0,0,0,0.2); flex-shrink: 0; margin-top: 1px; }
+  .terms-text { font-size: 12px; color: #7E7E87; line-height: 1.5; }
+  .btn-obsidian {
+    font-size: 14px; font-weight: 700; color: #FFFFFF; background: #111111; padding: 14px; border-radius: 999px;
+    text-align: center; border: none; cursor: pointer; display: block;
+    transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .btn-obsidian:hover { transform: scale(1.02); opacity: 0.9; }
+  .btn-obsidian:active { transform: scale(0.96); }
+  .switch-row { text-align: center; font-size: 13.5px; color: #7E7E87; }
+  .switch-link { font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="brand-panel">
+    <div class="brand-lockup">
+      <div class="brand-mark">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="m12 2 2.4 7.2H21l-5.8 4.3 2.2 7.1L12 16.2 6.6 20.6l2.2-7.1L3 9.2h6.6Z" fill="#FF0091"/></svg>
+      </div>
+      <span class="brand-word">HUMF</span>
+    </div>
+    <div class="brand-msg">
+      <p class="brand-title">Join HUMF in a couple minutes.</p>
+      <p class="brand-sub">One account, every branch. Here's what you get from day one:</p>
+      <div class="brand-list">
+        <div class="brand-list-item">
+          <div class="brand-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Live capacity before you drive over
+        </div>
+        <div class="brand-list-item">
+          <div class="brand-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Slot booking, so you always get a spot
+        </div>
+        <div class="brand-list-item">
+          <div class="brand-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="m5 13 5 5L19 7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          A Smart Key that unlocks the door
+        </div>
+      </div>
+    </div>
+    <span class="brand-foot">© HUMF — member prototype</span>
+  </div>
+
+  <div class="form-panel">
+    <form class="form-card" onsubmit="window.location.href='/verify.html'; return false;">
+      <div class="form-head">
+        <h1 class="form-title">Create your HUMF account</h1>
+        <p class="form-sub">Already a member? <a href="/login.html">Log in instead</a></p>
+      </div>
+      <div class="field-group">
+        <div class="field-2col">
+          <div class="field">
+            <span class="field-label">First name</span>
+            <input class="field-input" type="text" placeholder="Nara">
+          </div>
+          <div class="field">
+            <span class="field-label">Last name</span>
+            <input class="field-input" type="text" placeholder="Suk">
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-label">Email</span>
+          <input class="field-input" type="email" placeholder="you@email.com">
+        </div>
+        <div class="field">
+          <span class="field-label">Phone</span>
+          <input class="field-input" type="tel" placeholder="081 234 5678">
+        </div>
+        <div class="field">
+          <span class="field-label">Password</span>
+          <input class="field-input" type="password" placeholder="••••••••••">
+        </div>
+      </div>
+      <div class="terms-row">
+        <div class="checkbox"></div>
+        <span class="terms-text">I agree to HUMF's Terms of Service and Privacy Policy.</span>
+      </div>
+      <button class="btn-obsidian" type="submit">Create Account</button>
+      <p class="switch-row">Already have an account? <a class="switch-link" href="/login.html">Log in</a></p>
+    </form>
+  </div>
+</div>
+</body>
+</html>
