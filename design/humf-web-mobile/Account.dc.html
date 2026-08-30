@@ -44,6 +44,7 @@
     .profile-stat-row { width: 100%; display: flex; gap: 10px; margin-top: 2px; }
     .profile-stat { position: relative; flex: 1 1 0; border-radius: 15px; padding: 13px; display: flex; flex-direction: column; gap: 3px; background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); }
     .profile-stat-num { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 19px; color: #FF0091; animation: num-twinkle 2s ease-in-out infinite; }
+    .profile-stat-num.plain { color: #111111; animation: none; text-shadow: none; }
     @keyframes num-twinkle {
       0%, 100% { text-shadow: 0 0 5px rgba(255,0,145,0.3), 0 0 10px rgba(255,0,145,0.15); }
       50% { text-shadow: 0 0 12px rgba(255,0,145,0.75), 0 0 24px rgba(255,0,145,0.4); }
@@ -115,7 +116,7 @@
           <span class="profile-stat-label">Workouts / mo</span>
         </div>
         <div class="profile-stat">
-          <span class="profile-stat-num">5</span>
+          <span class="profile-stat-num plain">5</span>
           <span class="profile-stat-label">Branches used</span>
         </div>
       </div>

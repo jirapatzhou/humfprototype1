@@ -31,7 +31,8 @@
     .scroll { flex: 1 1 auto; overflow-y: auto; display: flex; flex-direction: column; }
 
     /* Full-screen unlock map */
-    .map-full { position: relative; width: 100%; height: 360px; flex-shrink: 0; overflow: hidden; }
+    .map-full-wrap { padding: 16px 16px 0 16px; flex-shrink: 0; }
+    .map-full { position: relative; width: 100%; height: 340px; border-radius: 26px; overflow: hidden; box-shadow: 0 10px 28px rgba(0,0,0,0.1); }
     .map-full svg { display: block; }
     .map-head-row { position: absolute; top: 14px; left: 16px; right: 16px; display: flex; align-items: center; justify-content: space-between; z-index: 3; }
     .map-live-badge { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.92); backdrop-filter: blur(6px); border-radius: 999px; padding: 6px 10px 6px 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
@@ -58,7 +59,12 @@
 
     .visit-col { display: flex; flex-direction: column; gap: 10px; }
     .visit-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 16px rgba(0,0,0,0.04); border-radius: 18px; padding: 14px; display: flex; align-items: center; gap: 12px; }
-    .visit-mark { width: 42px; height: 42px; border-radius: 12px; background: rgba(255,0,145,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .visit-mark {
+      width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0; padding: 3px;
+      display: flex; align-items: center; justify-content: center;
+      background: conic-gradient(#FF0091 var(--pct, 100%), #ECECEF 0);
+    }
+    .visit-mark-inner { width: 100%; height: 100%; border-radius: 50%; background: rgba(255,0,145,0.08); display: flex; align-items: center; justify-content: center; }
     .visit-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1 1 auto; }
     .visit-name { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 13.5px; margin: 0; }
     .visit-meta { font-size: 11px; color: #7E7E87; }
@@ -76,6 +82,7 @@
   </div>
 
   <div class="scroll">
+    <div class="map-full-wrap">
     <div class="map-full">
       <div class="map-head-row">
         <div class="map-live-badge"><div class="map-live-dot"></div><span class="map-live-text">Live · near you</span></div>
@@ -127,6 +134,7 @@
         </div>
       </div>
     </div>
+    </div>
 
     <div class="mygym-wrap">
       <div>
@@ -135,7 +143,9 @@
       </div>
       <div class="visit-col">
         <div class="visit-card">
-          <div class="visit-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke="#FF0091" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke="#FF0091" stroke-width="1.7"/></svg></div>
+          <div class="visit-mark" style="--pct: 100%;">
+            <div class="visit-mark-inner"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke="#FF0091" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke="#FF0091" stroke-width="1.7"/></svg></div>
+          </div>
           <div class="visit-body">
             <p class="visit-name">HUMF Thonglor</p>
             <span class="visit-meta">Visited today · 7:12 AM</span>
@@ -143,7 +153,9 @@
           <svg class="visit-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m9 6 6 6-6 6" stroke="#C7C7CE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
         <div class="visit-card">
-          <div class="visit-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke="#FF0091" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke="#FF0091" stroke-width="1.7"/></svg></div>
+          <div class="visit-mark" style="--pct: 50%;">
+            <div class="visit-mark-inner"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke="#FF0091" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke="#FF0091" stroke-width="1.7"/></svg></div>
+          </div>
           <div class="visit-body">
             <p class="visit-name">HUMF Ari</p>
             <span class="visit-meta">Visited 3 days ago</span>
@@ -151,7 +163,9 @@
           <svg class="visit-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m9 6 6 6-6 6" stroke="#C7C7CE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
         <div class="visit-card">
-          <div class="visit-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke="#FF0091" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke="#FF0091" stroke-width="1.7"/></svg></div>
+          <div class="visit-mark" style="--pct: 50%;">
+            <div class="visit-mark-inner"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke="#FF0091" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke="#FF0091" stroke-width="1.7"/></svg></div>
+          </div>
           <div class="visit-body">
             <p class="visit-name">HUMF Siam</p>
             <span class="visit-meta">Visited last week</span>
