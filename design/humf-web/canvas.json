@@ -13,8 +13,8 @@
     { "file": "ViewPerformance.dc.html", "x": 6160, "y": 1020, "w": 1440, "h": 1060 },
     { "file": "Membership.dc.html", "x": 7700, "y": 0, "w": 1440, "h": 2500 },
     { "file": "Coupons.dc.html", "x": 7700, "y": 2620, "w": 1000, "h": 800 },
-    { "file": "VisitHistory.dc.html", "x": 7700, "y": 3540, "w": 1000, "h": 900 },
-    { "file": "Payment.dc.html", "x": 7700, "y": 4560, "w": 1000, "h": 780 }
+    { "file": "VisitHistory.dc.html", "x": 7700, "y": 3540, "w": 900, "h": 900 },
+    { "file": "Payment.dc.html", "x": 7700, "y": 4560, "w": 900, "h": 780 }
   ],
   "annotations": [
     { "id": "note-home", "x": 0, "y": -80, "w": 400, "text": "1 — Home, signed in\nMembership ฿349/mo (pink) + Elite Package ฿690/mo (premium black); real event cards for Wellness Wednesdays, Ice Bathing, Strength Challenge. Header shows the Kaiqing account chip + dropdown." },

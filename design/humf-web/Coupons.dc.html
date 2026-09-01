@@ -29,6 +29,11 @@
       position: relative; background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 20px rgba(0,0,0,0.04);
       border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 10px; overflow: hidden;
     }
+    .coupon-card::before, .coupon-card::after {
+      content: ''; position: absolute; top: 50%; width: 18px; height: 18px; background: #FAFAFB; border-radius: 50%; transform: translateY(-50%);
+    }
+    .coupon-card::before { left: -9px; }
+    .coupon-card::after { right: -9px; }
     .coupon-card.used, .coupon-card.expired { opacity: 0.55; }
     .coupon-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
     .coupon-amount { font-weight: 800; font-size: 22px; color: #FF0091; }
