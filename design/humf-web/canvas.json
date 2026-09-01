@@ -1,7 +1,7 @@
 {
   "artboards": [
-    { "file": "Home.dc.html", "x": 0, "y": 0, "w": 1440, "h": 2200 },
-    { "file": "HomeGuest.dc.html", "x": 0, "y": 2280, "w": 1440, "h": 2150 },
+    { "file": "Home.dc.html", "x": 0, "y": 0, "w": 1440, "h": 2900 },
+    { "file": "HomeGuest.dc.html", "x": 0, "y": 3020, "w": 1440, "h": 2850 },
     { "file": "Branches.dc.html", "x": 1560, "y": 0, "w": 1440, "h": 1200 },
     { "file": "PlanWorkout.dc.html", "x": 1560, "y": 2580, "w": 1440, "h": 1020 },
     { "file": "Login.dc.html", "x": 3080, "y": 0, "w": 1440, "h": 900 },
@@ -10,11 +10,15 @@
     { "file": "Success.dc.html", "x": 4620, "y": 1020, "w": 1440, "h": 900 },
     { "file": "Account.dc.html", "x": 1560, "y": 1320, "w": 1440, "h": 1180 },
     { "file": "GetCard.dc.html", "x": 6160, "y": 0, "w": 1440, "h": 940 },
-    { "file": "ViewPerformance.dc.html", "x": 6160, "y": 1020, "w": 1440, "h": 1060 }
+    { "file": "ViewPerformance.dc.html", "x": 6160, "y": 1020, "w": 1440, "h": 1060 },
+    { "file": "Membership.dc.html", "x": 7700, "y": 0, "w": 1440, "h": 2500 },
+    { "file": "Coupons.dc.html", "x": 7700, "y": 2620, "w": 1000, "h": 800 },
+    { "file": "VisitHistory.dc.html", "x": 7700, "y": 3540, "w": 1000, "h": 900 },
+    { "file": "Payment.dc.html", "x": 7700, "y": 4560, "w": 1000, "h": 780 }
   ],
   "annotations": [
     { "id": "note-home", "x": 0, "y": -80, "w": 400, "text": "1 — Home, signed in\nMembership ฿349/mo (pink) + Elite Package ฿690/mo (premium black); real event cards for Wellness Wednesdays, Ice Bathing, Strength Challenge. Header shows the Kaiqing account chip + dropdown." },
-    { "id": "note-homeguest", "x": 0, "y": 2200, "w": 400, "text": "1b — Home, signed out\nSame page before login/sign up — header shows Log In / Sign Up buttons top right instead of the account chip." },
+    { "id": "note-homeguest", "x": 0, "y": 2940, "w": 400, "text": "1b — Home, signed out\nSame page before login/sign up — header shows Log In / Sign Up buttons top right instead of the account chip." },
     { "id": "note-branches", "x": 1560, "y": -80, "w": 400, "text": "2 — Branches\nBrand map (uniform pink pins) + live branch list. Tapping Book on any branch leads to Plan My Workout below." },
     { "id": "note-planworkout", "x": 1560, "y": 2500, "w": 400, "text": "2b — Plan My Workout\nReached after tapping Book on Branches. 24 hourly 1-hour slots as square boxes, 5 per row — pick one, then Confirm Booking." },
     { "id": "note-login", "x": 3080, "y": -80, "w": 400, "text": "3 — Log In" },
@@ -23,7 +27,11 @@
     { "id": "note-success", "x": 4620, "y": 940, "w": 400, "text": "6 — Successful Login\nConfirmation state after verification / login completes." },
     { "id": "note-account", "x": 1560, "y": 1240, "w": 400, "text": "7 — My Account (signed-in)\nWeb version of the mobile Profile page — avatar, membership, gym access QR code, HUMF Card, coupons, history, payment, help. HUMF Card row leads to Get HUMF Card; View My Performance row leads to My Performance." },
     { "id": "note-getcard", "x": 6160, "y": -80, "w": 400, "text": "8 — Get HUMF Card\nReached after tapping Get card on the Account page. Card preview + delivery form: name, email, address." },
-    { "id": "note-viewperf", "x": 6160, "y": 940, "w": 400, "text": "9 — My Performance\nReached after tapping View My Performance on the Account page. Tablet/horizontal layout pulling the mobile Performance page's style — rings row on top, stat boxes + connect device on the left, My Day / Today's Activities on the right." }
+    { "id": "note-viewperf", "x": 6160, "y": 940, "w": 400, "text": "9 — My Performance\nReached after tapping View My Performance on the Account page. Tablet/horizontal layout pulling the mobile Performance page's style — rings row on top, stat boxes + connect device on the left, My Day / Today's Activities on the right." },
+    { "id": "note-membership", "x": 7700, "y": -80, "w": 400, "text": "10 — Memberships\nStandalone page, not the landing-page teaser — a deep-dive selling-point breakdown per package. Starter: 78 branches, lowest price in Thailand, growth roadmap, 7/25/30-day streak rewards, Friday Run Club + partner logos, HUMF Card/NFC access, gamified 'Level Up Every Day' banner. Elite (dark section): skip-the-queue access, free parking, full facility + towel." },
+    { "id": "note-coupons", "x": 7700, "y": 2540, "w": 400, "text": "11 — My Coupons\nReached from the Account page's \"My Coupons\" row. Streak rewards, a referral reward, and a welcome offer — shown in active / used / expired states." },
+    { "id": "note-visithistory", "x": 7700, "y": 3460, "w": 400, "text": "12 — Visit & Purchase History\nReached from the Account page. Branch check-in log on top (branch, time, duration), billing history below (charges + card used)." },
+    { "id": "note-payment", "x": 7700, "y": 4480, "w": 400, "text": "13 — Manage My Payment\nReached from the Account page's \"Manage my payment\" row. Saved cards with a default badge + Add card, plus billing history with receipt links." }
   ],
   "launch": { "view": "canvas" }
 }

@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    a { color: #FF0091; text-decoration: none; } a:hover { color: #C4006F; }
+    .page { width: 900px; min-height: 720px; background: #FFFFFF; color: #111111; font-family: 'Manrope', system-ui, -apple-system, sans-serif; }
+
+    .header { border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .header-inner { max-width: 900px; margin: 0 auto; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .logo-chip { display: flex; align-items: center; justify-content: center; background: #FF0091; padding: 9px 16px; }
+    .logo-chip-text { font-weight: 800; font-size: 18px; letter-spacing: -0.5px; color: #FFFFFF; }
+    .back-link { display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700; color: #111111; cursor: pointer; }
+
+    .wrap { max-width: 900px; margin: 0 auto; padding: 40px; }
+    .page-title { font-weight: 800; font-size: 26px; margin: 0 0 6px 0; letter-spacing: -0.4px; }
+    .page-sub { font-size: 13.5px; color: #7E7E87; margin: 0 0 24px 0; }
+
+    .section-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; color: #7E7E87; margin: 0 0 12px 4px; }
+    .list-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 24px rgba(0,0,0,0.04); border-radius: 22px; overflow: hidden; margin-bottom: 28px; }
+    .visit-row { display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .visit-row:last-child { border-bottom: none; }
+    .visit-icon { width: 38px; height: 38px; border-radius: 11px; background: #F5F5F7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .visit-body { flex: 1 1 auto; min-width: 0; }
+    .visit-branch { font-weight: 700; font-size: 14px; }
+    .visit-meta { font-size: 12px; color: #7E7E87; margin-top: 2px; }
+    .visit-duration { font-size: 12.5px; font-weight: 700; color: #FF0091; flex-shrink: 0; }
+
+    .purchase-row { display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .purchase-row:last-child { border-bottom: none; }
+    .purchase-icon { width: 38px; height: 38px; border-radius: 11px; background: #F5F5F7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .purchase-body { flex: 1 1 auto; min-width: 0; }
+    .purchase-title { font-weight: 700; font-size: 14px; }
+    .purchase-meta { font-size: 12px; color: #7E7E87; margin-top: 2px; }
+    .purchase-amount { font-weight: 800; font-size: 14px; flex-shrink: 0; }
+  </style>
+</helmet>
+
+<div class="page">
+  <div class="header">
+    <div class="header-inner">
+      <div class="logo-chip"><span class="logo-chip-text">HUMF</span></div>
+      <div class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m15 6-6 6 6 6" stroke="#111111" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        My Account
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <h1 class="page-title">Visit &amp; Purchase History</h1>
+    <p class="page-sub">Every branch check-in and every charge to your HUMF membership, in one place.</p>
+
+    <p class="section-title">Recent Visits</p>
+    <div class="list-card">
+      <div class="visit-row">
+        <div class="visit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke="#FF0091" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.2" stroke="#FF0091" stroke-width="1.6"/></svg></div>
+        <div class="visit-body">
+          <div class="visit-branch">HUMF Thonglor</div>
+          <div class="visit-meta">Today · 07:12 AM entry</div>
+        </div>
+        <span class="visit-duration">1h 24m</span>
+      </div>
+      <div class="visit-row">
+        <div class="visit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke="#FF0091" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.2" stroke="#FF0091" stroke-width="1.6"/></svg></div>
+        <div class="visit-body">
+          <div class="visit-branch">HUMF Ari</div>
+          <div class="visit-meta">Yesterday · 06:48 PM entry</div>
+        </div>
+        <span class="visit-duration">55m</span>
+      </div>
+      <div class="visit-row">
+        <div class="visit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke="#FF0091" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.2" stroke="#FF0091" stroke-width="1.6"/></svg></div>
+        <div class="visit-body">
+          <div class="visit-branch">HUMF Thonglor</div>
+          <div class="visit-meta">3 days ago · 07:05 AM entry</div>
+        </div>
+        <span class="visit-duration">1h 10m</span>
+      </div>
+      <div class="visit-row">
+        <div class="visit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke="#FF0091" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.2" stroke="#FF0091" stroke-width="1.6"/></svg></div>
+        <div class="visit-body">
+          <div class="visit-branch">HUMF Siam</div>
+          <div class="visit-meta">5 days ago · 12:30 PM entry</div>
+        </div>
+        <span class="visit-duration">1h 40m</span>
+      </div>
+    </div>
+
+    <p class="section-title">Purchase History</p>
+    <div class="list-card">
+      <div class="purchase-row">
+        <div class="purchase-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#111111" stroke-width="1.6"/><path d="M12 7.5V12l3 2" stroke="#111111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="purchase-body">
+          <div class="purchase-title">Elite Package — Monthly</div>
+          <div class="purchase-meta">1 Aug 2026 · Visa •••• 4821</div>
+        </div>
+        <span class="purchase-amount">฿690</span>
+      </div>
+      <div class="purchase-row">
+        <div class="purchase-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#111111" stroke-width="1.6"/><path d="M12 7.5V12l3 2" stroke="#111111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="purchase-body">
+          <div class="purchase-title">Elite Package — Monthly</div>
+          <div class="purchase-meta">1 Jul 2026 · Visa •••• 4821</div>
+        </div>
+        <span class="purchase-amount">฿690</span>
+      </div>
+      <div class="purchase-row">
+        <div class="purchase-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m12 2 2.4 7.2H21l-5.8 4.3 2.2 7.1L12 16.2 6.6 20.6l2.2-7.1L3 9.2h6.6Z" stroke="#111111" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <div class="purchase-body">
+          <div class="purchase-title">Upgrade: Starter → Elite</div>
+          <div class="purchase-meta">15 Jun 2026 · Visa •••• 4821</div>
+        </div>
+        <span class="purchase-amount">฿341</span>
+      </div>
+      <div class="purchase-row">
+        <div class="purchase-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#111111" stroke-width="1.6"/><path d="M12 7.5V12l3 2" stroke="#111111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="purchase-body">
+          <div class="purchase-title">Starter Package — Monthly</div>
+          <div class="purchase-meta">1 Jun 2026 · Visa •••• 4821</div>
+        </div>
+        <span class="purchase-amount">฿349</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

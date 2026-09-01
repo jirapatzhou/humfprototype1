@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    a { color: #FF0091; text-decoration: none; } a:hover { color: #C4006F; }
+    .page { width: 900px; min-height: 720px; background: #FFFFFF; color: #111111; font-family: 'Manrope', system-ui, -apple-system, sans-serif; }
+
+    .header { border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .header-inner { max-width: 900px; margin: 0 auto; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .logo-chip { display: flex; align-items: center; justify-content: center; background: #FF0091; padding: 9px 16px; }
+    .logo-chip-text { font-weight: 800; font-size: 18px; letter-spacing: -0.5px; color: #FFFFFF; }
+    .back-link { display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700; color: #111111; cursor: pointer; }
+
+    .wrap { max-width: 900px; margin: 0 auto; padding: 40px; }
+    .page-title { font-weight: 800; font-size: 26px; margin: 0 0 6px 0; letter-spacing: -0.4px; }
+    .page-sub { font-size: 13.5px; color: #7E7E87; margin: 0 0 24px 0; }
+
+    .section-head-row { display: flex; align-items: center; justify-content: space-between; margin: 0 0 12px 4px; }
+    .section-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; color: #7E7E87; margin: 0; }
+    .add-btn { font-size: 12px; font-weight: 700; color: #FFFFFF; background: #111111; padding: 8px 16px; border-radius: 999px; border: none; cursor: pointer; }
+
+    .list-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 24px rgba(0,0,0,0.04); border-radius: 22px; overflow: hidden; margin-bottom: 28px; }
+    .card-row { display: flex; align-items: center; gap: 14px; padding: 17px 20px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .card-row:last-child { border-bottom: none; }
+    .card-brand { width: 44px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: #FFFFFF; flex-shrink: 0; }
+    .card-brand.visa { background: #1A1F71; }
+    .card-brand.mc { background: linear-gradient(90deg, #EB001B 50%, #F79E1B 50%); }
+    .card-body { flex: 1 1 auto; min-width: 0; }
+    .card-number { font-weight: 700; font-size: 14px; }
+    .card-meta { font-size: 12px; color: #7E7E87; margin-top: 2px; }
+    .card-default { font-size: 10.5px; font-weight: 800; color: #FF0091; background: rgba(255,0,145,0.1); padding: 5px 10px; border-radius: 999px; flex-shrink: 0; }
+    .card-remove { font-size: 12px; font-weight: 700; color: #B4B4BC; flex-shrink: 0; }
+
+    .invoice-row { display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .invoice-row:last-child { border-bottom: none; }
+    .invoice-body { flex: 1 1 auto; min-width: 0; }
+    .invoice-title { font-weight: 700; font-size: 13.5px; }
+    .invoice-meta { font-size: 11.5px; color: #7E7E87; margin-top: 2px; }
+    .invoice-amount { font-weight: 700; font-size: 13.5px; flex-shrink: 0; }
+    .invoice-receipt { font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  </style>
+</helmet>
+
+<div class="page">
+  <div class="header">
+    <div class="header-inner">
+      <div class="logo-chip"><span class="logo-chip-text">HUMF</span></div>
+      <div class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m15 6-6 6 6 6" stroke="#111111" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        My Account
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <h1 class="page-title">Manage My Payment</h1>
+    <p class="page-sub">Saved cards and billing history for your HUMF membership.</p>
+
+    <div class="section-head-row">
+      <p class="section-title">Payment Methods</p>
+      <div class="add-btn">+ Add card</div>
+    </div>
+    <div class="list-card">
+      <div class="card-row">
+        <div class="card-brand visa">VISA</div>
+        <div class="card-body">
+          <div class="card-number">•••• •••• •••• 4821</div>
+          <div class="card-meta">Expires 08/28</div>
+        </div>
+        <span class="card-default">Default</span>
+      </div>
+      <div class="card-row">
+        <div class="card-brand mc">MC</div>
+        <div class="card-body">
+          <div class="card-number">•••• •••• •••• 9013</div>
+          <div class="card-meta">Expires 03/27</div>
+        </div>
+        <span class="card-remove">Remove</span>
+      </div>
+    </div>
+
+    <p class="section-title">Billing History</p>
+    <div class="list-card">
+      <div class="invoice-row">
+        <div class="invoice-body">
+          <div class="invoice-title">Elite Package — Monthly</div>
+          <div class="invoice-meta">1 Aug 2026</div>
+        </div>
+        <span class="invoice-amount">฿690</span>
+        <span class="invoice-receipt">Receipt</span>
+      </div>
+      <div class="invoice-row">
+        <div class="invoice-body">
+          <div class="invoice-title">Elite Package — Monthly</div>
+          <div class="invoice-meta">1 Jul 2026</div>
+        </div>
+        <span class="invoice-amount">฿690</span>
+        <span class="invoice-receipt">Receipt</span>
+      </div>
+      <div class="invoice-row">
+        <div class="invoice-body">
+          <div class="invoice-title">Upgrade: Starter → Elite</div>
+          <div class="invoice-meta">15 Jun 2026</div>
+        </div>
+        <span class="invoice-amount">฿341</span>
+        <span class="invoice-receipt">Receipt</span>
+      </div>
+      <div class="invoice-row">
+        <div class="invoice-body">
+          <div class="invoice-title">Starter Package — Monthly</div>
+          <div class="invoice-meta">1 Jun 2026</div>
+        </div>
+        <span class="invoice-amount">฿349</span>
+        <span class="invoice-receipt">Receipt</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
