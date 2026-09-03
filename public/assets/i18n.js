@@ -115,7 +115,44 @@
       'signup.terms': "I agree to HUMF's Terms of Service and Privacy Policy.",
       'cta.createaccount': 'Create Account',
       'signup.switch.prompt': 'Already have an account?',
-      'signup.switch.cta': 'Log in'
+      'signup.switch.cta': 'Log in',
+
+      'blog.eyebrow': 'The HUMF Blog',
+      'blog.title': 'News, community & challenges',
+      'blog.sub': 'Everything happening across the HUMF network — straight from the branches, not a press release.',
+      'blog.backtotop': '↑ Back to top',
+
+      'blog.expansion.tag': 'HUMF News',
+      'blog.expansion.title': 'HUMF Expands to 78 Branches Across Bangkok',
+      'blog.expansion.excerpt': 'From five branches to seventy-eight — here\'s what that means for your membership.',
+      'blog.expansion.meta': 'HUMF News · 5 min read',
+      'blog.expansion.p1': 'Two years ago HUMF opened its first five branches on the promise that a gym should be close, honest about how busy it is, and cheap enough to actually use every day. That promise scaled better than we expected — HUMF is now live in 78 locations across Bangkok, from Thonglor to the outer ring roads, and the live-capacity map on your Home screen now reflects the whole network.',
+      'blog.expansion.p2': 'Nothing changes about how your membership works. Every Starter Package still includes access to every branch, no exceptions and no upcharge — the Elite Package still skips the reservation queue and adds parking. What does change is how close "your branch" can be: with 78 locations, most members now have a HUMF within a five-minute walk of home or work, not just their original sign-up branch.',
+      'blog.expansion.p3': 'We\'re rolling the expansion out with the same live-capacity system from day one at every new location, so the "book anytime" and "moderate crowd" labels on the Branches page are accurate from a branch\'s very first day open, not estimated. If a branch near you hasn\'t shown up in the list yet, it\'s opening soon — check back on the Branches page for the latest count.',
+
+      'blog.wellness.tag': 'Community',
+      'blog.wellness.title': 'Wellness Wednesdays',
+      'blog.wellness.excerpt': 'A weekly reset for your joints, your breath, and your nervous system — no cardio required.',
+      'blog.wellness.meta': 'Community · 3 min read',
+      'blog.wellness.p1': 'Every Wednesday at 7:00 PM, every HUMF branch runs the same 45-minute session: guided mobility work, breath-focused stretching, and enough floor time to actually undo what the rest of the week did to your hips and shoulders. It\'s led by a HUMF-certified coach, mats are provided, and it\'s open to every membership tier — Starter or Elite, no booking required.',
+      'blog.wellness.p2': 'This isn\'t a recovery day bolted on as an afterthought. Members who lift heavy earlier in the week consistently show up here to reset before the weekend, and it\'s become one of the most reliably full rooms in the HUMF community calendar — not because it\'s intense, but because it\'s the one hour nobody has to perform.',
+      'blog.wellness.p3': 'Show up in whatever you trained in that day. No sign-up, no gear beyond a water bottle — the room has mats.',
+
+      'blog.ice.tag': 'Recovery',
+      'blog.ice.title': 'HUMF Ice Bathing Session',
+      'blog.ice.excerpt': 'Cold immersion, real coaching, and a community that shows up before sunrise.',
+      'blog.ice.meta': 'Recovery · 4 min read',
+      'blog.ice.p1': 'Every Saturday at 8:00 AM, before the rest of the branch is even awake, a HUMF coach leads a guided cold immersion session — breathwork first, then a timed cold plunge, then a slow warm-up back to baseline. It\'s the kind of thing that sounds much worse described than it feels once you\'re actually in the room with other people doing it.',
+      'blog.ice.p2': 'The format matters more than the temperature: coaching on breath control before you go in is what makes the difference between a genuinely useful stress-response reset and just being uncomfortably cold. New members are walked through the basics — how long, how to breathe, when to get out — before anyone gets near the water.',
+      'blog.ice.p3': 'Bring your own towel; everything else, including the coaching, is included in every HUMF membership. If you\'re pregnant, have a cardiovascular condition, or are otherwise unsure it\'s right for you, talk to a HUMF coach before your first session.',
+
+      'blog.challenge.tag': 'Challenge',
+      'blog.challenge.title': 'New Year Strength Challenge',
+      'blog.challenge.excerpt': 'Six weeks, one leaderboard, every HUMF branch competing together.',
+      'blog.challenge.meta': 'Challenge · 4 min read',
+      'blog.challenge.p1': 'Starting January 6th, every HUMF branch runs the same six-week strength challenge, and every member is automatically enrolled the moment they walk in and log a workout — no separate sign-up. Each week tracks a different benchmark (total volume, a timed circuit, a max-effort lift), and results roll up into one leaderboard shared across all 78 branches, not just your home location.',
+      'blog.challenge.p2': 'The point isn\'t to turn HUMF into a competition gym — it\'s a shared reason to show up consistently across a season that usually kills momentum. Weekly standings post inside the app, and the top performers at each branch get recognized in that branch\'s community feed.',
+      'blog.challenge.p3': 'You don\'t need to do anything to join except train. The challenge tracks whatever you\'re already logging, and six weeks later it just ends — no penalty for skipping a week, no fee, no catch.'
     },
     th: {
       'nav.home': 'หน้าแรก',
@@ -232,7 +269,44 @@
       'signup.terms': 'ฉันยอมรับข้อกำหนดการใช้งานและนโยบายความเป็นส่วนตัวของ HUMF',
       'cta.createaccount': 'สร้างบัญชี',
       'signup.switch.prompt': 'มีบัญชีอยู่แล้ว?',
-      'signup.switch.cta': 'เข้าสู่ระบบ'
+      'signup.switch.cta': 'เข้าสู่ระบบ',
+
+      'blog.eyebrow': 'บล็อกของ HUMF',
+      'blog.title': 'ข่าวสาร ชุมชน และความท้าทาย',
+      'blog.sub': 'ทุกความเคลื่อนไหวในเครือข่าย HUMF — ตรงจากสาขา ไม่ใช่ข่าวประชาสัมพันธ์',
+      'blog.backtotop': '↑ กลับขึ้นด้านบน',
+
+      'blog.expansion.tag': 'ข่าว HUMF',
+      'blog.expansion.title': 'HUMF ขยายเป็น 78 สาขาทั่วกรุงเทพฯ',
+      'blog.expansion.excerpt': 'จาก 5 สาขา สู่ 78 สาขา — นี่คือสิ่งที่หมายถึงสำหรับสมาชิกภาพของคุณ',
+      'blog.expansion.meta': 'ข่าว HUMF · อ่าน 5 นาที',
+      'blog.expansion.p1': 'สองปีก่อน HUMF เปิด 5 สาขาแรกด้วยคำมั่นว่ายิมควรอยู่ใกล้ บอกความจุตามจริง และราคาถูกพอจะใช้ได้ทุกวัน คำมั่นนั้นขยายตัวได้ดีกว่าที่คาดไว้ — วันนี้ HUMF เปิดให้บริการแล้ว 78 สาขาทั่วกรุงเทพฯ ตั้งแต่ทองหล่อไปจนถึงถนนวงแหวนรอบนอก และแผนที่ความจุแบบเรียลไทม์บนหน้าแรกของคุณตอนนี้ครอบคลุมทั้งเครือข่ายแล้ว',
+      'blog.expansion.p2': 'สมาชิกภาพของคุณยังทำงานเหมือนเดิมทุกประการ ทุกแพ็กเกจเริ่มต้นยังคงเข้าใช้ได้ทุกสาขา ไม่มีข้อยกเว้นและไม่มีค่าใช้จ่ายเพิ่ม — แพ็กเกจเอลีทยังคงข้ามคิวจองและมีที่จอดรถให้เหมือนเดิม สิ่งที่เปลี่ยนไปคือ "สาขาของคุณ" จะใกล้ตัวคุณมากขึ้นแค่ไหน ด้วย 78 สาขา สมาชิกส่วนใหญ่ตอนนี้มี HUMF อยู่ในระยะเดินห้านาทีจากบ้านหรือที่ทำงาน ไม่ใช่แค่สาขาที่สมัครไว้ตอนแรก',
+      'blog.expansion.p3': 'เราเปิดระบบความจุแบบเรียลไทม์ตั้งแต่วันแรกในทุกสาขาใหม่ ดังนั้นป้าย "จองได้ทุกเมื่อ" และ "คนปานกลาง" บนหน้าสาขาจึงถูกต้องตั้งแต่วันแรกที่เปิด ไม่ใช่การประมาณการ หากสาขาใกล้คุณยังไม่ขึ้นในรายชื่อ แปลว่ากำลังจะเปิดเร็วๆ นี้ — กลับมาเช็กที่หน้าสาขาเพื่อดูจำนวนล่าสุด',
+
+      'blog.wellness.tag': 'ชุมชน',
+      'blog.wellness.title': 'Wellness Wednesdays',
+      'blog.wellness.excerpt': 'รีเซ็ตข้อต่อ ลมหายใจ และระบบประสาทของคุณทุกสัปดาห์ — ไม่ต้องคาร์ดิโอ',
+      'blog.wellness.meta': 'ชุมชน · อ่าน 3 นาที',
+      'blog.wellness.p1': 'ทุกวันพุธ เวลา 19:00 น. ทุกสาขา HUMF จัดคลาสเดียวกันนาน 45 นาที ได้แก่ การเคลื่อนไหวแบบมีไกด์ การยืดเหยียดโดยเน้นลมหายใจ และเวลาบนพื้นมากพอที่จะแก้ผลกระทบที่สัปดาห์ทั้งสัปดาห์ทำกับสะโพกและไหล่ของคุณ นำโดยโค้ชที่ผ่านการรับรองจาก HUMF มีเสื่อให้พร้อม และเปิดให้สมาชิกทุกระดับ ทั้งเริ่มต้นและเอลีท ไม่ต้องจองล่วงหน้า',
+      'blog.wellness.p2': 'นี่ไม่ใช่วันฟื้นฟูที่แถมมาแบบขอไปที สมาชิกที่ยกน้ำหนักหนักช่วงต้นสัปดาห์มักมาที่นี่เพื่อรีเซ็ตก่อนวันหยุด และกลายเป็นหนึ่งในคลาสที่เต็มสม่ำเสมอที่สุดในปฏิทินชุมชน HUMF ไม่ใช่เพราะมันหนัก แต่เพราะเป็นชั่วโมงเดียวที่ไม่มีใครต้องเค้นผลงาน',
+      'blog.wellness.p3': 'มาในชุดที่ใส่ซ้อมวันนั้นได้เลย ไม่ต้องลงทะเบียนล่วงหน้า ไม่ต้องเตรียมอุปกรณ์นอกจากขวดน้ำ — ห้องมีเสื่อให้พร้อม',
+
+      'blog.ice.tag': 'ฟื้นฟูร่างกาย',
+      'blog.ice.title': 'HUMF Ice Bathing Session',
+      'blog.ice.excerpt': 'แช่น้ำเย็น พร้อมโค้ชจริง และชุมชนที่มาก่อนพระอาทิตย์ขึ้น',
+      'blog.ice.meta': 'ฟื้นฟูร่างกาย · อ่าน 4 นาที',
+      'blog.ice.p1': 'ทุกวันเสาร์ เวลา 08:00 น. ก่อนที่สาขาจะตื่นเต็มที่ โค้ช HUMF จะนำคลาสแช่น้ำเย็นแบบมีไกด์ เริ่มด้วยการฝึกลมหายใจ ตามด้วยการแช่น้ำเย็นแบบจับเวลา แล้ววอร์มอัพช้าๆ กลับสู่ภาวะปกติ ฟังดูน่ากลัวกว่าที่รู้สึกจริงเมื่อได้อยู่ในห้องกับคนอื่นที่ทำไปด้วยกัน',
+      'blog.ice.p2': 'รูปแบบสำคัญกว่าอุณหภูมิ การฝึกควบคุมลมหายใจก่อนลงน้ำคือสิ่งที่ทำให้ต่างจากแค่หนาวเฉยๆ สมาชิกใหม่จะได้เรียนพื้นฐานก่อน ทั้งระยะเวลา วิธีหายใจ และเวลาที่ควรขึ้นจากน้ำ ก่อนที่ใครจะเข้าใกล้น้ำ',
+      'blog.ice.p3': 'เตรียมผ้าเช็ดตัวมาเอง ส่วนที่เหลือรวมถึงการโค้ชรวมอยู่ในสมาชิกภาพ HUMF ทุกแพ็กเกจ หากคุณกำลังตั้งครรภ์ มีภาวะหัวใจและหลอดเลือด หรือไม่แน่ใจว่าเหมาะกับคุณหรือไม่ ปรึกษาโค้ช HUMF ก่อนเซสชันแรกของคุณ',
+
+      'blog.challenge.tag': 'ความท้าทาย',
+      'blog.challenge.title': 'New Year Strength Challenge',
+      'blog.challenge.excerpt': 'หกสัปดาห์ กระดานผู้นำเดียว ทุกสาขา HUMF แข่งขันร่วมกัน',
+      'blog.challenge.meta': 'ความท้าทาย · อ่าน 4 นาที',
+      'blog.challenge.p1': 'เริ่ม 6 มกราคม ทุกสาขา HUMF จัดความท้าทายความแข็งแรงหกสัปดาห์เหมือนกัน และสมาชิกทุกคนถูกลงทะเบียนอัตโนมัติทันทีที่เข้ามาและบันทึกการออกกำลังกาย ไม่ต้องสมัครแยก แต่ละสัปดาห์วัดผลต่างกัน ทั้งปริมาณรวม วงจรจับเวลา และท่ายกสูงสุด ผลลัพธ์รวมกันเป็นกระดานผู้นำเดียวที่ใช้ร่วมกันทั้ง 78 สาขา ไม่ใช่แค่สาขาประจำของคุณ',
+      'blog.challenge.p2': 'จุดประสงค์ไม่ใช่เพื่อทำให้ HUMF เป็นยิมแข่งขัน แต่เป็นเหตุผลร่วมกันให้มาสม่ำเสมอตลอดฤดูกาลที่มักทำให้แรงจูงใจหมดไป อันดับรายสัปดาห์แสดงในแอป และผู้ทำผลงานดีที่สุดของแต่ละสาขาจะได้รับการยกย่องในฟีดชุมชนของสาขานั้น',
+      'blog.challenge.p3': 'คุณไม่ต้องทำอะไรเพิ่มนอกจากซ้อม ความท้าทายจะติดตามสิ่งที่คุณบันทึกอยู่แล้ว และหกสัปดาห์ต่อมาก็จบไปเอง ไม่มีบทลงโทษถ้าพลาดไปสักสัปดาห์ ไม่มีค่าธรรมเนียม ไม่มีเงื่อนไขแอบแฝง'
     }
   };
 

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Coupons — HUMF</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23FF0091'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: #FF0091; text-decoration: none; } a:hover { color: #C4006F; }
+  .page { width: 100%; min-height: 100vh; background: #FFFFFF; color: #111111; font-family: 'Manrope', system-ui, -apple-system, sans-serif; }
+
+  .header { border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .header-inner { max-width: 1000px; margin: 0 auto; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .logo-chip { display: flex; align-items: center; justify-content: center; background: #FF0091; padding: 9px 16px; }
+  .logo-chip-text { font-weight: 800; font-size: 18px; letter-spacing: -0.5px; color: #FFFFFF; }
+  .back-link { display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700; color: #111111; }
+  .back-link:hover { color: #111111; opacity: 0.7; }
+
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 40px; }
+  .page-title { font-weight: 800; font-size: 26px; margin: 0 0 6px 0; letter-spacing: -0.4px; }
+  .page-sub { font-size: 13.5px; color: #7E7E87; margin: 0 0 28px 0; }
+
+  .coupon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .coupon-card {
+    position: relative; background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 10px; overflow: hidden;
+  }
+  .coupon-card::before, .coupon-card::after {
+    content: ''; position: absolute; top: 50%; width: 18px; height: 18px; background: #FAFAFB; border-radius: 50%; transform: translateY(-50%);
+  }
+  .coupon-card::before { left: -9px; }
+  .coupon-card::after { right: -9px; }
+  .coupon-card.used, .coupon-card.expired { opacity: 0.55; }
+  .coupon-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .coupon-amount { font-weight: 800; font-size: 22px; color: #FF0091; }
+  .coupon-status {
+    font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; padding: 5px 10px; border-radius: 999px;
+  }
+  .coupon-status.active { background: rgba(255,0,145,0.1); color: #FF0091; }
+  .coupon-status.used { background: #F5F5F7; color: #7E7E87; }
+  .coupon-status.expired { background: #F5F5F7; color: #B4B4BC; }
+  .coupon-title { font-weight: 700; font-size: 14.5px; margin: 0; }
+  .coupon-desc { font-size: 12px; color: #7E7E87; line-height: 1.5; }
+  .coupon-divider { border-top: 1px dashed rgba(0,0,0,0.12); margin: 4px 0; }
+  .coupon-bottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .coupon-code { font-size: 11.5px; font-weight: 800; letter-spacing: 0.5px; background: #F5F5F7; padding: 6px 10px; border-radius: 8px; }
+  .coupon-expiry { font-size: 11px; color: #B4B4BC; }
+  .coupon-use-btn {
+    font-size: 11.5px; font-weight: 700; color: #FFFFFF; background: #111111; padding: 8px 16px; border-radius: 999px; border: none; cursor: pointer;
+    transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .coupon-use-btn:hover { transform: scale(1.04); opacity: 0.9; }
+
+  @media (max-width: 640px) { .coupon-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="header-inner">
+      <a class="logo-chip" href="/home.html"><span class="logo-chip-text">HUMF</span></a>
+      <a class="back-link" href="/account.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m15 6-6 6 6 6" stroke="#111111" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        My Account
+      </a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <h1 class="page-title">My Coupons</h1>
+    <p class="page-sub">Rewards from streaks, referrals, and HUMF promotions — apply them at checkout or booking.</p>
+
+    <div class="coupon-grid">
+      <div class="coupon-card">
+        <div class="coupon-top">
+          <span class="coupon-amount">฿150 off</span>
+          <span class="coupon-status active">Active</span>
+        </div>
+        <p class="coupon-title">7-Day Streak Reward</p>
+        <p class="coupon-desc">Earned by logging a workout 7 days in a row. Apply toward any month's membership charge.</p>
+        <div class="coupon-divider"></div>
+        <div class="coupon-bottom">
+          <span class="coupon-code">STREAK7</span>
+          <span class="coupon-expiry">Expires 30 Sep</span>
+        </div>
+      </div>
+
+      <div class="coupon-card">
+        <div class="coupon-top">
+          <span class="coupon-amount">Free session</span>
+          <span class="coupon-status active">Active</span>
+        </div>
+        <p class="coupon-title">Referral Reward</p>
+        <p class="coupon-desc">Your friend Nara joined using your invite link — you both get one free guided session.</p>
+        <div class="coupon-divider"></div>
+        <div class="coupon-bottom">
+          <span class="coupon-code">INVITE-NR2</span>
+          <span class="coupon-expiry">Expires 15 Oct</span>
+        </div>
+      </div>
+
+      <div class="coupon-card">
+        <div class="coupon-top">
+          <span class="coupon-amount">1 Month Free</span>
+          <span class="coupon-status active">Active</span>
+        </div>
+        <p class="coupon-title">30-Day Streak Reward</p>
+        <p class="coupon-desc">A full 30-day streak — your next billing cycle is on HUMF.</p>
+        <div class="coupon-divider"></div>
+        <div class="coupon-bottom">
+          <span class="coupon-code">STREAK30</span>
+          <span class="coupon-expiry">Expires 5 Nov</span>
+        </div>
+      </div>
+
+      <div class="coupon-card used">
+        <div class="coupon-top">
+          <span class="coupon-amount">HUMF Merch</span>
+          <span class="coupon-status used">Used</span>
+        </div>
+        <p class="coupon-title">25-Day Streak Reward</p>
+        <p class="coupon-desc">Redeemed for a HUMF T-shirt at Thonglor branch.</p>
+        <div class="coupon-divider"></div>
+        <div class="coupon-bottom">
+          <span class="coupon-code">STREAK25</span>
+          <span class="coupon-expiry">Used 12 Aug</span>
+        </div>
+      </div>
+
+      <div class="coupon-card expired">
+        <div class="coupon-top">
+          <span class="coupon-amount">฿100 off</span>
+          <span class="coupon-status expired">Expired</span>
+        </div>
+        <p class="coupon-title">Welcome Offer</p>
+        <p class="coupon-desc">New member discount on your first month.</p>
+        <div class="coupon-divider"></div>
+        <div class="coupon-bottom">
+          <span class="coupon-code">WELCOME100</span>
+          <span class="coupon-expiry">Expired 1 Jul</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
