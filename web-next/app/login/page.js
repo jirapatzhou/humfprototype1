@@ -9,7 +9,7 @@ export default function LoginPage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (status === 'authenticated') router.replace('/dashboard');
+    if (status === 'authenticated') router.replace('/account');
   }, [status, router]);
 
   return (
@@ -21,7 +21,7 @@ export default function LoginPage() {
         <button
           type="button"
           className="oauth-btn"
-          onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
+          onClick={() => signIn('google', { callbackUrl: '/account' })}
         >
           <svg width="18" height="18" viewBox="0 0 24 24">
             <path fill="#4285F4" d="M23.5 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.46c-.28 1.5-1.13 2.77-2.4 3.62v3h3.88c2.27-2.09 3.56-5.17 3.56-8.81Z"/>

@@ -19,6 +19,27 @@ a:hover { color: #C4006F; }
 }
 .btn-obsidian:hover { transform: scale(1.02); opacity: 0.9; color: #FFFFFF; }
 .btn-obsidian:active { transform: scale(0.96); }
+.btn-obsidian:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-ghost {
+  display: inline-block;
+  font-size: 14px; font-weight: 700; color: #111111; background: #FFFFFF;
+  padding: 13px 21px; border-radius: 999px; text-align: center;
+  border: 1px solid rgba(0,0,0,0.12); cursor: pointer;
+  transition: transform 300ms cubic-bezier(0.16,1,0.3,1), background 300ms cubic-bezier(0.16,1,0.3,1);
+}
+.btn-ghost:hover { transform: scale(1.02); background: #F5F5F7; color: #111111; }
+
+.btn-pink {
+  display: inline-block;
+  font-size: 14px; font-weight: 700; color: #FFFFFF; background: #FF0091;
+  padding: 14px 22px; border-radius: 999px; text-align: center;
+  border: none; cursor: pointer;
+  transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 300ms cubic-bezier(0.16,1,0.3,1);
+}
+.btn-pink:hover { transform: scale(1.02); opacity: 0.9; color: #FFFFFF; }
+
+.landing-nav { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
 /* Landing */
 .landing {
@@ -53,12 +74,84 @@ a:hover { color: #C4006F; }
 .oauth-btn:disabled:hover { transform: none; background: #FFFFFF; }
 .auth-back { display: block; margin-top: 18px; font-size: 12.5px; color: #7E7E87; }
 
-/* Dashboard */
-.dashboard { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px; background: #FAFAFB; }
-.dashboard-card {
-  width: 100%; max-width: 380px; background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); border-radius: 22px;
+/* Account */
+.account-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px; background: #FAFAFB; }
+.account-card {
+  width: 100%; max-width: 420px; background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); border-radius: 22px;
   padding: 36px 32px; box-shadow: 0 20px 50px rgba(0,0,0,0.06); text-align: center;
 }
 .avatar { width: 72px; height: 72px; border-radius: 50%; margin-bottom: 16px; }
-.dashboard-card h1 { font-size: 20px; font-weight: 800; margin: 0 0 4px 0; }
-.dashboard-card p { font-size: 13px; color: #7E7E87; margin: 0 0 24px 0; }
+.account-card h1 { font-size: 20px; font-weight: 800; margin: 0 0 4px 0; }
+.account-card .email { font-size: 13px; color: #7E7E87; margin: 0 0 14px 0; }
+.tier-badge {
+  display: inline-block; font-size: 12px; font-weight: 800; color: #FFFFFF; background: #111111;
+  padding: 7px 16px; border-radius: 999px; margin-bottom: 18px;
+}
+.stat-row { display: flex; gap: 10px; margin-bottom: 22px; }
+.stat { flex: 1 1 0; background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); border-radius: 14px; padding: 14px; }
+.stat-num { font-weight: 800; font-size: 20px; color: #FF0091; }
+.stat-label { font-size: 10.5px; color: #7E7E87; font-weight: 700; text-transform: uppercase; margin-top: 2px; }
+.account-links { display: flex; flex-direction: column; gap: 8px; margin: 18px 0; text-align: left; }
+.list-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 16px;
+  border-radius: 12px; background: #F5F5F7; font-size: 13.5px; font-weight: 700; color: #111111;
+  transition: background 300ms cubic-bezier(0.16,1,0.3,1);
+}
+.list-row:hover { background: #EFEFF2; color: #111111; }
+.list-row .trail { color: #FF0091; font-weight: 700; font-size: 12px; }
+.list-row .chevron { color: #B4B4BC; }
+
+/* Generic page wrap */
+.page-wrap, .branches-page, .membership-page { max-width: 900px; margin: 0 auto; padding: 48px 24px; }
+.page-wrap h1, .branches-page h1, .membership-page h1 { font-size: 26px; font-weight: 800; margin: 0 0 6px 0; letter-spacing: -0.4px; }
+.page-wrap .sub, .branches-page .sub, .membership-page .sub { font-size: 13.5px; color: #7E7E87; margin: 0 0 28px 0; }
+.sub-note { color: #C4006F; }
+.empty-state { font-size: 13.5px; color: #B4B4BC; padding: 24px; text-align: center; background: #F5F5F7; border-radius: 16px; }
+
+/* Branches */
+.branch-map { width: 100%; height: 360px; border-radius: 20px; overflow: hidden; margin-bottom: 24px; background: #F5F5F7; }
+.branch-list { display: flex; flex-direction: column; gap: 12px; }
+.branch-card { background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; padding: 16px 20px; }
+.branch-name { font-weight: 800; font-size: 15px; }
+.branch-meta { font-size: 12.5px; color: #7E7E87; margin-top: 4px; }
+.branch-capacity { font-size: 12.5px; font-weight: 700; color: #FF0091; margin-top: 6px; }
+
+/* Membership */
+.plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.plan-card { background: #F5F5F7; border: 1px solid rgba(0,0,0,0.06); border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 12px; }
+.plan-card.elite { background: #0B0B0D; color: #FFFFFF; }
+.plan-name { font-weight: 800; font-size: 17px; }
+.plan-price { font-weight: 800; font-size: 28px; }
+.plan-price span { font-size: 13px; font-weight: 600; color: #7E7E87; }
+.plan-card.elite .plan-price span { color: rgba(255,255,255,0.6); }
+.plan-features { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 13px; font-weight: 600; }
+.plan-cta {
+  margin-top: 8px; width: 100%; font-size: 13px; font-weight: 700; padding: 12px; border-radius: 999px;
+  background: #111111; color: #FFFFFF; border: none; cursor: pointer;
+}
+.plan-card.elite .plan-cta { background: #FF0091; }
+.plan-cta:disabled { opacity: 0.5; cursor: not-allowed; }
+@media (max-width: 600px) { .plan-grid { grid-template-columns: 1fr; } }
+
+/* Coupons */
+.coupon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.coupon-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 20px rgba(0,0,0,0.04); border-radius: 18px; padding: 20px; }
+.coupon-card.used, .coupon-card.expired { opacity: 0.55; }
+.coupon-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.coupon-amount { font-weight: 800; font-size: 20px; color: #FF0091; }
+.coupon-status { font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; background: rgba(255,0,145,0.1); color: #FF0091; }
+.coupon-status.used, .coupon-status.expired { background: #F5F5F7; color: #7E7E87; }
+.coupon-title { font-weight: 700; font-size: 14px; margin: 0 0 4px 0; }
+.coupon-desc { font-size: 12px; color: #7E7E87; margin: 0 0 12px 0; }
+.coupon-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; }
+.coupon-code { font-weight: 800; background: #F5F5F7; padding: 6px 10px; border-radius: 8px; }
+.coupon-expiry { color: #B4B4BC; }
+@media (max-width: 600px) { .coupon-grid { grid-template-columns: 1fr; } }
+
+/* Lists (visit history / payment) */
+.list-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 20px rgba(0,0,0,0.04); border-radius: 18px; overflow: hidden; margin-bottom: 20px; }
+.visit-row, .card-row, .invoice-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 13.5px; }
+.visit-row:last-child, .card-row:last-child, .invoice-row:last-child { border-bottom: none; }
+.visit-branch { font-weight: 700; }
+.visit-meta { color: #7E7E87; font-size: 12px; }
+.card-default { font-size: 10.5px; font-weight: 800; color: #FF0091; background: rgba(255,0,145,0.1); padding: 5px 10px; border-radius: 999px; }
