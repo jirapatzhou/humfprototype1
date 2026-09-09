@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 // --- Auth.js (NextAuth) standard models ---
@@ -18,11 +19,11 @@ model User {
   phone         String?
   createdAt     DateTime  @default(now())
 
-  accounts  Account[]
-  sessions  Session[]
+  accounts    Account[]
+  sessions    Session[]
   memberships Membership[]
-  coupons   Coupon[]
-  visits    Visit[]
+  coupons     Coupon[]
+  visits      Visit[]
 }
 
 model Account {
@@ -64,13 +65,13 @@ model VerificationToken {
 // --- HUMF domain models ---
 
 model Branch {
-  id          String  @id @default(cuid())
-  slug        String  @unique
+  id          String @id @default(cuid())
+  slug        String @unique
   name        String
   lat         Float
   lng         Float
-  capacityPct Int     @default(0)
-  openUntil   String  @default("22:00")
+  capacityPct Int    @default(0)
+  openUntil   String @default("22:00")
 
   visits Visit[]
 }
@@ -115,10 +116,10 @@ model Coupon {
 }
 
 model Visit {
-  id          String    @id @default(cuid())
-  userId      String
-  branchId    String
-  checkedInAt DateTime  @default(now())
+  id           String    @id @default(cuid())
+  userId       String
+  branchId     String
+  checkedInAt  DateTime  @default(now())
   checkedOutAt DateTime?
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)

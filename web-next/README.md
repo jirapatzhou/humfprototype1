@@ -56,36 +56,48 @@ Open http://localhost:3000. Branches and Memberships work immediately
 
 ## Deploy on Vercel
 
-1. **Database first.** In your Vercel account: **Storage → Create Database
-   → Postgres** (Neon-backed). Note the connection string it gives you —
-   Prisma wants a single `DATABASE_URL`, so copy the value Vercel calls
-   `POSTGRES_PRISMA_URL` (or `POSTGRES_URL`) into a `DATABASE_URL` env var.
+1. **Database first.** If you connected a Neon project directly (rather
+   than through Vercel's Storage tab), Neon gives you two connection
+   strings from its dashboard: a **pooled** one (hostname has `-pooler` in
+   it) and a **direct/unpooled** one (same hostname, no `-pooler`). Prisma
+   needs both — see `.env.example` for the exact shape:
+   - `DATABASE_URL` = the pooled string, with `&pgbouncer=true` appended
+     (used for normal app queries)
+   - `DIRECT_URL` = the unpooled string, as-is (used only for migrations —
+     PgBouncer's transaction pooling mode can't run `prisma migrate`)
+
+   If you instead used Vercel's own **Storage → Create Database → Postgres**
+   (also Neon-backed), Vercel auto-injects several `POSTGRES_*` variables —
+   map `POSTGRES_PRISMA_URL` to `DATABASE_URL` and `POSTGRES_URL_NON_POOLING`
+   to `DIRECT_URL`.
 2. **Add New… → Project**, import this GitHub repo again as a *separate*
    project (don't reuse the static site's project). Set **Root Directory**
    to `web-next`.
-3. Connect the Postgres database to this project (Vercel prompts for this,
-   or do it from the Storage tab).
-4. Under **Project Settings → Environment Variables** (Production *and*
+3. Under **Project Settings → Environment Variables** (Production *and*
    Preview), add:
-   - `DATABASE_URL` — from step 1
-   - `GOOGLE_CLIENT_ID` — `177078323646-72a4s4cc30gpgno10suhu47i52733f4f.apps.googleusercontent.com`
-   - `GOOGLE_CLIENT_SECRET` — from Google Cloud Console (see below). **Never
-     paste this in chat or commit it — env vars only.**
+   - `DATABASE_URL` and `DIRECT_URL` — from step 1
+   - `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` — from Google Cloud Console
+     (see below). **Never paste these in chat or commit them — env vars only.**
    - `NEXTAUTH_SECRET` — any random string, e.g. output of `openssl rand -base64 32`
-   - `NEXTAUTH_URL` — the exact Vercel URL Vercel gives this project,
-     e.g. `https://humf-app.vercel.app`
-5. Deploy. The build script (`prisma generate && prisma migrate deploy &&
+   - `NEXTAUTH_URL` — the exact Vercel URL Vercel gives this project. The
+     default `*.vercel.app` URL is completely fine to launch on — you do
+     **not** need to buy a custom domain first. HTTPS is included, nothing
+     about auth or the database cares whether the domain was purchased.
+     If you add a custom domain later, just update this value and the two
+     Google Console fields below to match — nothing else changes.
+4. Deploy. The build script (`prisma generate && prisma migrate deploy &&
    next build`) applies any pending migrations automatically on every
    deploy — no manual migration step needed after the first one.
-6. **Seed the production database once**, from your machine, after the
-   first successful deploy:
+5. **Seed the production database once**, from your own machine (this
+   can't be run from a sandboxed CI/agent environment that only allows
+   HTTPS egress to an allowlist — direct Postgres connections get blocked):
    ```bash
-   DATABASE_URL="<the same value as step 4>" npm run db:seed
+   DATABASE_URL="<same as step 3>" DIRECT_URL="<same as step 3>" npm run db:seed
    ```
 
 ## Google Cloud Console setup
 
-On the same OAuth client (`...72a4s4cc30gpgno10suhu47i52733f4f...`):
+On your OAuth client:
 
 - **Authorized JavaScript origins** — the bare origin, no path:
   - `http://localhost:3000` (local dev)
