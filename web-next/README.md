@@ -122,3 +122,9 @@ into Vercel's environment variables, not here.
   once there's a verified business account to process real charges.
 - Add a real branch check-in mechanism (NFC/QR scan hitting an API route
   that writes a `Visit` row) so Visit History actually fills in.
+
+## Deploy trigger note
+
+This paragraph exists to create the first commit-triggered deployment of
+this branch — Vercel can't be pointed at a branch as its Production Branch
+until at least one deployment of that branch exists.
